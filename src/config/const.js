@@ -1,0 +1,20 @@
+export const PURCHASE = {
+  UNIT: 1000,
+  MAX_AMOUNT: 20000,
+};
+
+export const LOTTO = {
+  MAX_NUMBER: 45,
+  MIN_NUMBER: 1,
+  MAX_LENGTH: 6,
+};
+
+export const PRIZE = {
+  FIRST: 2000000000,
+  SECOND: 30000000,
+  THIRD: 1500000,
+  FOURTH: 50000,
+  FIFTH: 5000,
+  MIN_MATCH_COUNT: 3,
+  BONUS_MATCH_COUNT: 5,
+};
