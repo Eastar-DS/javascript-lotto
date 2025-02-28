@@ -1,0 +1,46 @@
+.winning-number-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.winning-number-headers {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0 10px;
+}
+
+.header {
+  font-weight: bold;
+}
+
+.winning-and-bonus-input-container {
+  display: flex;
+  justify-content: space-between;
+  margin: 10px 0;
+  gap: 85px;
+}
+
+.winning-inputs {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.winning-input {
+  width: 45px;
+  height: 45px;
+  text-align: center;
+  border-radius: 5px;
+  margin: 0 5px;
+  font-size: 20px;
+}
+
+.bonus-input {
+  width: 45px;
+  height: 45px;
+  text-align: center;
+  border-radius: 5px;
+  font-size: 20px;
+}

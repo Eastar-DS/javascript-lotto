@@ -1,12 +1,11 @@
-import { LOTTO } from '../constants/messages.js';
+import { LOTTO } from './lottoConstants.js';
 
 export const calculateRevenue = (matchCounts, purchasePrice) => {
-  const sumOfLottoPrize = matchCounts.reduce((acc, cur, idx) => {
-    if (idx >= 3) {
-      acc += cur * calculateRevenueByMatch(idx);
-    }
-    return acc;
-  }, 0);
+  const matchedCountsMoreThanThree = matchCounts.slice(LOTTO.THREE_MATCH);
+  const sumOfLottoPrize = matchedCountsMoreThanThree.reduce(
+    (acc, cur, idx) => acc + cur * calculateRevenueByMatch(idx + LOTTO.THREE_MATCH),
+    0,
+  );
 
   return Number(((sumOfLottoPrize / purchasePrice) * 100).toFixed(1));
 };

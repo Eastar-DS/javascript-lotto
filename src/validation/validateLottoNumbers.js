@@ -1,9 +1,9 @@
-import { ERROR } from '../constants/errors.js';
-import { LOTTO } from '../constants/messages.js';
+import { LOTTO } from '../domain/lottoConstants.js';
+import { ERROR } from './errorConstants.js';
 import { hasEmptyString, isValueInteger } from './validateInput.js';
 
 const validateArrayOfWinningNumbers = (winningNumbers) => {
-  winningNumbers.forEach((value) => {
+  winningNumbers.some((value) => {
     const winningNumber = Number(value);
     hasEmptyString(value);
     isValueInteger(winningNumber);
@@ -16,11 +16,11 @@ export const validateWinningNumbers = (input) => {
   const winningNumbers = input.split(',');
   const winningNumberSet = new Set(winningNumbers);
 
-  if (winningNumbers.length !== 6) {
+  if (winningNumbers.length !== LOTTO.MAX_LENGTH) {
     throw new Error(ERROR.NOT_SAME_LENGTH_OF_WINNING_NUMBER);
   }
 
-  if (winningNumberSet.size !== 6) {
+  if (winningNumberSet.size !== LOTTO.MAX_LENGTH) {
     throw new Error(ERROR.DUPLICATED_WINNING_NUMBER);
   }
 
