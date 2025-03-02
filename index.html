@@ -1,16 +1,176 @@
 <!DOCTYPE html>
 <html lang="ko">
   <head>
+    <link rel="stylesheet" href="./reset.css" />
+    <link rel="stylesheet" href="./index.css" />
     <meta charset="UTF-8" />
     <title>🎱 행운의 로또</title>
+    <script type="module" src="./src/step2-index.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
   </head>
 
   <body>
-    <div id="app">
-      <h1>🎱 행운의 로또</h1>
+    <div id="app" class="container">
+      <header class="lotto-header">
+        <h2 class="lotto-title white-font">🎱 행운의 로또</h2>
+      </header>
+      <div class="lotto-layout">
+        <h2 class="lotto-title margin-bottom-m margin-top-l">
+          🎱 내 번호 당첨 확인 🎱
+        </h2>
+        <div class="ask-user-money-layout">
+          <label for="user-money" class="margin-bottom-xs"
+            >구입할 금액을 입력해주세요.</label
+          >
+          <div class="user-money-input-layout margin-bottom-m">
+            <input
+              type="number"
+              id="user-money"
+              min="1000"
+              step="1000"
+              class="user-input margin-right-m long user-input-left-align"
+              placeholder="금액"
+            />
+            <button type="button" id="purchase-lotto" class="btn">구입</button>
+          </div>
+        </div>
+        <div id="lottos" class="margin-bottom-m lotto-list-container hidden">
+          <p id="purchase-amount">총 n개를 구매했습니다.</p>
+          <ul id="lotto-list" class="lottos-list"></ul>
+        </div>
+
+        <div
+          id="check-user-number"
+          class="user-number-container margin-bottom-m hidden"
+        >
+          <label class="number-details">
+            지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.
+          </label>
+          <div class="number-labels">
+            <label for="user-lotto-numbers">당첨 번호</label>
+            <label for="user-bouns-number">보너스 번호</label>
+          </div>
+          <div class="user-input-numbers">
+            <ul class="user-input-lotto-numbers">
+              <li>
+                <label for="first-number" />
+                <input
+                  type="text"
+                  id="first-number"
+                  class="user-input short number-input"
+                />
+              </li>
+              <li>
+                <label for="second-number" />
+                <input
+                  type="text"
+                  id="second-number"
+                  class="user-input short"
+                />
+              </li>
+              <li>
+                <label for="third-number" />
+                <input
+                  type="text"
+                  id="third-number"
+                  class="user-input short number-input"
+                />
+              </li>
+              <li>
+                <label for="fourth-number" />
+                <input
+                  type="text"
+                  id="fourth-number"
+                  class="user-input short number-input"
+                />
+              </li>
+              <li>
+                <label for="fifth-number" />
+                <input
+                  type="text"
+                  id="fifth-number"
+                  class="user-input short number-input"
+                />
+              </li>
+              <li>
+                <label for="sixth-number" />
+                <input
+                  type="text"
+                  id="sixth-number"
+                  class="user-input short number-input"
+                />
+              </li>
+            </ul>
+
+            <label for="bonus-number" />
+            <input
+              type="text"
+              id="bonus-number"
+              class="user-input short number-input"
+            />
+          </div>
+          <button type="button" id="check-result" class="btn xlong">
+            결과 확인하기
+          </button>
+        </div>
+      </div>
+      <dialog id="result-modal" class="result-modal">
+        <img
+          src="./close.png"
+          alt="close button"
+          class="close-button"
+          id="close-button"
+        />
+        <div class="container">
+          <h2 class="lotto-subtitle">🏆 당첨 통계 🏆</h2>
+          <table class="result-table">
+            <thead class="result-detail-title">
+              <tr>
+                <th>일치 갯수</th>
+                <th>당첨금</th>
+                <th>당첨 갯수</th>
+              </tr>
+            </thead>
+            <tbody class="result-details">
+              <tr>
+                <th><p>3개</p></th>
+                <th><p id="three-match-price"></p></th>
+                <th><p id="three-match-amount">n개</p></th>
+              </tr>
+              <tr>
+                <th><p>4개</p></th>
+                <th><p id="four-match-price"></p></th>
+                <th><p id="four-match-amount">n개</p></th>
+              </tr>
+              <tr>
+                <th><p>5개</p></th>
+                <th><p id="five-match-price"></p></th>
+                <th><p id="five-match-amount">n개</p></th>
+              </tr>
+              <tr>
+                <th><p>5개+보너스볼</p></th>
+                <th><p id="five-match-with-bonus-price"></p></th>
+                <th><p id="five-match-with-bonus-amount">n개</p></th>
+              </tr>
+              <tr>
+                <th><p>6개</p></th>
+                <th><p id="six-match-price"></p></th>
+                <th><p id="six-match-amount">n개</p></th>
+              </tr>
+            </tbody>
+          </table>
+          <p id="revenue-rate-result" class="revenue-rate-result">
+            당신의 총 수익률은 %입니다.
+          </p>
+          <button type="button" id="reset-game" class="btn long">
+            다시 시작하기
+          </button>
+        </div>
+      </dialog>
+
+      <footer class="footer">
+        <p class="lotto-caption">&copy; 2025. spoyodevelop</p>
+      </footer>
     </div>
-    <script type="module" src="./src/step2-index.js"></script>
   </body>
 </html>
