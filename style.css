@@ -1,0 +1,257 @@
+#app {
+  width: 100%;
+  height: 100vh;
+}
+
+body {
+  font-family: "Roboto", sans-serif;
+}
+
+header {
+  background-color: var(--primary);
+  height: 4rem;
+  display: flex;
+  align-items: center;
+}
+
+.header-text {
+  text-decoration: none;
+  margin-left: 8.12rem;
+  color: var(--greyscale-1);
+  font-size: var(--title-size);
+  font-weight: 800;
+}
+
+main {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: calc(100vh - 9rem);
+  background-color: var(--greyscale-2);
+}
+
+.lotto-container {
+  width: 25.875rem;
+  height: 45.4375rem;
+  border-radius: 0.25rem;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  background-color: var(--greyscale-1);
+  padding: 2.5rem 1rem 2rem;
+}
+
+.lotto-container-title {
+  width: 23.875rem;
+  text-align: center;
+  font-size: var(--title-size);
+  font-weight: 800;
+}
+
+.lotto-purchase-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin: 1.75rem 0;
+}
+
+.lotto-purchase-container {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.purchase-amount-input {
+  height: 1.5rem;
+  padding: 0.5rem;
+  border-radius: 0.25rem;
+  border: 1px solid var(--greyscale-3);
+  width: 100%;
+}
+
+button {
+  background-color: var(--primary);
+  color: var(--greyscale-1);
+  text-align: center;
+  font-size: 0.875rem;
+  font-weight: 700;
+  letter-spacing: 0.07813rem;
+  padding: 0.375rem;
+  border-radius: 0.25rem;
+  border: none;
+
+  &:disabled {
+    background-color: var(--greyscale-4);
+    cursor: not-allowed;
+  }
+}
+
+.lotto-purchase-submit-button {
+  width: 3.5rem;
+}
+
+.lotto-ticket-list {
+  margin-top: 0.5rem;
+  max-height: 20rem;
+  overflow-y: auto;
+}
+
+.lotto-ticket-item {
+  display: flex;
+  align-items: center;
+  margin-top: 1rem;
+}
+
+.lotto-ticket-item > i {
+  font-size: 1.5rem;
+}
+
+.lotto-ticket-item > span {
+  margin-left: 0.5rem;
+  font-size: 0.9375rem;
+  align-items: center;
+}
+
+.input-container {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.input-guide-text {
+  display: inline-block;
+  margin-top: 3rem;
+}
+
+.winning-number-input-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.winning-number-wrapper {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.winning-number-input {
+  width: 2.125rem;
+  height: 2.25rem;
+  border-radius: 0.25rem;
+  border: 1px solid var(--greyscale-3);
+  text-align: center;
+}
+
+.bonus-number-input-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.bonus-number-input {
+  width: 2.125rem;
+  height: 2.25rem;
+  border-radius: 0.25rem;
+  border: 1px solid var(--greyscale-3);
+  text-align: center;
+}
+
+.result-button {
+  width: 100%;
+  padding: 0.75rem 0;
+}
+
+footer {
+  background-color: var(--greyscale-2);
+  height: 5rem;
+  border-top: 1px solid rgba(78, 91, 166, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.footer-text {
+  color: var(--primary);
+  font-size: 0.875rem;
+  font-weight: 700;
+  letter-spacing: 0.07813rem;
+}
+
+.modal-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 21.875rem;
+  height: 31.25rem;
+  border-radius: 0.25rem;
+  background-color: var(--greyscale-1);
+  padding: 1.5rem;
+}
+
+.modal-header {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1.5rem;
+}
+
+.modal-title {
+  font-size: var(--subtitle-size);
+  font-weight: 700;
+  font-size: 1.25rem;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+.modal-close-button {
+  background-color: transparent;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.result-list > li {
+  padding: 1rem 0;
+  display: flex;
+  justify-content: space-between;
+  border-top: 1px solid rgba(0, 0, 0, 0.12);
+
+  &:last-child {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+    margin-bottom: 2rem;
+  }
+}
+
+.result-list > li > span {
+  font-size: 0.9375rem;
+  width: 33%;
+  text-align: center;
+}
+
+.result-item-header {
+  font-weight: 800;
+}
+
+.modal-revenue-text {
+  color: var(--greyscale-5);
+  text-align: center;
+  font-size: 0.9375rem;
+  font-weight: 800;
+  margin-bottom: 2rem;
+}
+
+.modal-retry-button {
+  width: 100%;
+  padding: 0.8rem;
+}

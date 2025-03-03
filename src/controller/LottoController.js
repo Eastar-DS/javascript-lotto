@@ -19,6 +19,12 @@ class LottoController {
     this.bonusNumber = [];
   }
 
+  setContext(lottoTickets, winningNumber, bonusNumber) {
+    this.lottoTickets = lottoTickets;
+    this.winningNumber = winningNumber;
+    this.bonusNumber = bonusNumber;
+  }
+
   async play() {
     await this.runGame();
     await this.handleRestart();

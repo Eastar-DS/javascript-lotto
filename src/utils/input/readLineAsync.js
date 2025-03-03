@@ -1,6 +1,6 @@
-import readline from "readline";
+export const readLineAsync = async (query = "") => {
+  const readline = await import("readline");
 
-export const readLineAsync = (query = "") => {
   return new Promise((resolve) => {
     const rl = readline.createInterface({
       input: process.stdin,
