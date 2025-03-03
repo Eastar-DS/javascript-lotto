@@ -24,7 +24,7 @@ describe("validationLottoPrice 유효성 검사", () => {
     );
   });
 
-  test("101,000원은 최대 구입 금액(10만원)을 초과한다.", () => {
+  test("101,000원은 최대 구입 금액(100,000원)을 초과한다.", () => {
     const price = 101_000;
     expect(() => validationLottoPrice(price)).toThrow(
       new CustomError(ERROR_MESSAGE.INVALID_OVER_MAX_PRICE)

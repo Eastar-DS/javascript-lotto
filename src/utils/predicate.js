@@ -33,3 +33,7 @@ export const hasNotInteger = (array) => {
 
   return array.some((number) => !Number.isSafeInteger(number));
 };
+
+export const isFunction = (func) => {
+  return typeof func === "function";
+};

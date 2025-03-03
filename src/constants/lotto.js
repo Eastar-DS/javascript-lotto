@@ -36,3 +36,7 @@ export const LOTTO_RESTART_COMMAND = Object.freeze({
   restart: "y",
   end: "n",
 });
+
+export const LOTTO_CONTEXT = {
+  isPurchased: "isPurchased",
+};

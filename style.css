@@ -1,0 +1,275 @@
+* {
+  --lotto-greyscale-1: #fff;
+  --lotto-greyscale-2: #fcfcfd;
+  --lotto-greyscale-3: #b4b4b4;
+  --lotto-greyscale-4: #8b8b8b;
+  --lotto-greyscale-5: #000;
+  --lotto-primary: #4e5ba6;
+}
+
+#app {
+  width: 100%;
+  height: 100vh;
+}
+
+/* header */
+.header {
+  height: 4rem;
+  background: var(--lotto-primary);
+  display: flex;
+  align-items: center;
+}
+
+.header-nav {
+  margin: 0 8.13rem;
+}
+
+.header-title-link {
+  color: var(--lotto-greyscale-1);
+  font-size: 1.5rem;
+  font-weight: 800;
+  line-height: 2.25rem;
+}
+
+/* lotto-game */
+.lotto-game-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: calc(100vh - 9rem);
+}
+
+.lotto-game-box {
+  width: 25.875rem;
+  height: 45.4375rem;
+  border-radius: 0.25rem;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  background: var(--lotto-greyscale-1);
+  padding: 2.5rem 1rem 2rem;
+}
+
+.lotto-game-title {
+  color: var(--lotto-greyscale-5);
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: 800;
+  line-height: 2.25rem;
+}
+
+/* buy lotto */
+.buy-lotto-form {
+  margin: 1.75rem 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.buy-lotto-input-box {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.buy-lotto-input {
+  padding: 0.5rem;
+  height: 2.25rem;
+  border-radius: 0.25rem;
+  border: 1px solid var(--lotto-greyscale-3);
+  width: 100%;
+
+  &:disabled {
+    cursor: not-allowed;
+  }
+}
+
+.buy-lotto-submit-button {
+  width: 3.5rem;
+  padding: 0.5rem;
+  text-align: center;
+  border-radius: 0.25rem;
+  background: var(--lotto-primary);
+  color: var(--lotto-greyscale-1);
+  font-size: 0.875rem;
+  font-weight: 700;
+  line-height: 1rem;
+  letter-spacing: 0.07813rem;
+
+  &:disabled {
+    background: var(--lotto-greyscale-4);
+    cursor: not-allowed;
+  }
+}
+
+/* lotto ticket */
+.lotto-ticket-box {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+  height: 20.25rem;
+}
+
+.lotto-ticket-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  overflow-y: auto;
+}
+
+.lotto-ticket-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.lotto-ticket-icon {
+  font-size: 1.5rem;
+}
+
+/* lotto game form(winning number, bonus number) */
+.lotto-game-input-container {
+  display: flex;
+  justify-content: space-between;
+  margin: 0.75rem 0 1.7rem;
+}
+
+.lotto-game-input-box {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.winning-number-input-box {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.lotto-game-input {
+  padding: 0.25rem;
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 4px;
+  border: 1px solid var(--lotto-greyscale-3);
+  text-align: center;
+}
+
+.lotto-game-submit-button {
+  width: 100%;
+  padding: 0.75rem 0;
+  border-radius: 4px;
+  background: var(--lotto-primary);
+  color: var(--lotto-greyscale-1);
+  font-size: 0.875rem;
+  font-weight: 700;
+  line-height: 1rem;
+  letter-spacing: 0.07813rem;
+
+  &:disabled {
+    background: var(--lotto-greyscale-4);
+    cursor: not-allowed;
+  }
+}
+
+/* modal */
+.modal-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.modal-box {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 21.875rem;
+  height: 31.25rem;
+  border-radius: 4px;
+  background: var(--lotto-greyscale-1);
+  padding: 1rem 1rem 2rem;
+}
+
+.modal-header {
+  margin-bottom: 2rem;
+}
+
+.modal-close-box {
+  text-align: right;
+}
+
+.modal-title {
+  color: var(--lotto-greyscale-5);
+  text-align: center;
+  font-size: 1.25rem;
+  font-weight: 600;
+  line-height: 1.5rem;
+  letter-spacing: 0.00938rem;
+}
+
+.lotto-result-list > li {
+  padding: 0.65rem 0;
+  display: flex;
+  justify-content: space-between;
+  border-top: 1px solid rgba(0, 0, 0, 0.12);
+
+  &:last-child {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+  }
+}
+
+.lotto-result-list > li > span {
+  width: 33.3%;
+  text-align: center;
+}
+
+.lotto-result-item-header {
+  color: var(--lotto-greyscale-5);
+  text-align: center;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  line-height: 1.5rem;
+  letter-spacing: 0.03125rem;
+}
+
+.lotto-result-revenue-text {
+  color: var(--lotto-greyscale-5);
+  text-align: center;
+  font-size: 0.9375rem;
+  font-weight: 700;
+  line-height: 1.5rem;
+  letter-spacing: 0.03125rem;
+  margin: 2rem 0;
+}
+
+.lotto-restart-button {
+  color: var(--lotto-greyscale-1);
+  font-size: 0.875rem;
+  font-weight: 700;
+  line-height: 1rem;
+  letter-spacing: 0.07813rem;
+  border-radius: 4px;
+  background: var(--lotto-primary);
+  width: 100%;
+  height: 2.75rem;
+}
+
+/* footer */
+.footer {
+  height: 5rem;
+  border-top: 1px solid rgba(78, 91, 166, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.footer-text {
+  color: var(--lotto-primary);
+  text-align: center;
+  font-size: 0.875rem;
+  font-weight: 700;
+  line-height: 1rem;
+  letter-spacing: 0.07813rem;
+}

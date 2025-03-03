@@ -1,22 +1,22 @@
 import { getRevenueRate } from "../utils/math.js";
-import printLottoResult from "../view/output/printLottoResult.js";
 import calculatePrizeResult from "./calculatePrizeResult.js";
 import getTotalPrizeMoney from "./getTotalPrizeMoney.js";
 
-const showLottoResult = (
+const getLottoResult = (
   lottoNumbers,
   winningNumbers,
   bonusNumber,
   lottoPrice
 ) => {
-  const lottoResult = calculatePrizeResult(
+  const prizeResult = calculatePrizeResult(
     lottoNumbers,
     winningNumbers,
     bonusNumber
   );
-  const totalPrizeMoney = getTotalPrizeMoney(lottoResult);
+  const totalPrizeMoney = getTotalPrizeMoney(prizeResult);
   const revenueRate = getRevenueRate(totalPrizeMoney, lottoPrice);
-  printLottoResult(lottoResult, revenueRate);
+
+  return { prizeResult, revenueRate };
 };
 
-export default showLottoResult;
+export default getLottoResult;

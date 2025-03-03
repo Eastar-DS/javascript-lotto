@@ -13,12 +13,12 @@ const calculatePrizeResult = (lottoNumbers, winningNumbers, bonusNumber) => {
     }
 
     if (count === 5 && numbers.includes(bonusNumber)) {
-      const prevCount = result.get("5B") ?? 0;
+      const prevCount = result.get("5B");
       result.set("5B", prevCount + 1);
       return;
     }
 
-    const prevCount = result.get(count) ?? 0;
+    const prevCount = result.get(count);
     result.set(count, prevCount + 1);
   });
 
