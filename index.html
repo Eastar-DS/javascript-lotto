@@ -3,14 +3,166 @@
   <head>
     <meta charset="UTF-8" />
     <title>🎱 행운의 로또</title>
+    <link rel="stylesheet" href="./src/style/modal.css" />
+    <link rel="stylesheet" href="./src/style/init.css" />
+    <link rel="stylesheet" href="./src/style/paper.css" />
+    <link rel="stylesheet" href="./src/style/app.css" />
+    <link rel="stylesheet" href="./src/style/footer.css" />
+    <link rel="stylesheet" href="./src/style/title.css" />
+    <link rel="stylesheet" href="./src/style/basic.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
   </head>
 
   <body>
+    <!-- 모달 -->
+    <dialog class="modal_result">
+      <section class="modal_wrap">
+        <button class="modal_close_button">&times;</button>
+        <h2 class="modal_title">🏆 당첨 통계 🏆</h2>
+        <table class="modal_statistics">
+          <thead>
+            <tr>
+              <th>일치 갯수</th>
+              <th>당첨금</th>
+              <th>당첨 갯수</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>3개</td>
+              <td>5000</td>
+              <td class="modal_match_count"></td>
+            </tr>
+            <tr>
+              <td>4개</td>
+              <td>50,000</td>
+              <td class="modal_match_count"></td>
+            </tr>
+            <tr>
+              <td>5개</td>
+              <td>1,500,000</td>
+              <td class="modal_match_count"></td>
+            </tr>
+            <tr>
+              <td>5개+보너스볼</td>
+              <td>30,000,000</td>
+              <td class="modal_match_count"></td>
+            </tr>
+            <tr>
+              <td>6개</td>
+              <td>2,000,000,000</td>
+              <td class="modal_match_count"></td>
+            </tr>
+          </tbody>
+        </table>
+        <p class="modal_winning_rate"></p>
+        <button class="modal_restart_button" type="button">
+          다시 시작하기
+        </button>
+      </section>
+    </dialog>
+
+    <!-- 실제 서비스 -->
     <div id="app">
-      <h1>🎱 행운의 로또</h1>
+      <h1 class="title">🎱 행운의 로또</h1>
+      <main class="paper">
+        <h1 class="paper_title">🎱 내 번호 당첨 확인 🎱</h1>
+        <section class="paper_section">
+          <label for="paper_price_input">구입할 금액을 입력해주세요.</label>
+          <form class="paper_price_form">
+            <div class="paper_input_price_wrap">
+              <input
+                id="paper_price_input"
+                class="paper_price_input"
+                type="number"
+                max="100000"
+                min="1000"
+                required
+                placeholder="금액"
+              />
+              <button class="paper_buy_button" type="submit">구입</button>
+            </div>
+          </form>
+        </section>
+
+        <section class="paper_lotto_information_wrap">
+          <p class="paper_lotto_count"></p>
+          <section class="paper_lotto_information"></section>
+          <form class="paper_winning_form">
+            <section class="paper_winning_wrap">
+              <p>지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.</p>
+              <div class="paper_winning_text">
+                <p>당첨 번호</p>
+                <p>보너스 번호</p>
+              </div>
+              <div class="paper_winning_input_wrap">
+                <div>
+                  <input
+                    class="paper_winning_number_input"
+                    type="number"
+                    max="45"
+                    min="1"
+                    required
+                  />
+                  <input
+                    class="paper_winning_number_input"
+                    type="number"
+                    max="45"
+                    min="1"
+                    required
+                  />
+                  <input
+                    class="paper_winning_number_input"
+                    type="number"
+                    max="45"
+                    min="1"
+                    required
+                  />
+                  <input
+                    class="paper_winning_number_input"
+                    type="number"
+                    max="45"
+                    min="1"
+                    required
+                  />
+                  <input
+                    class="paper_winning_number_input"
+                    type="number"
+                    max="45"
+                    min="1"
+                    required
+                  />
+                  <input
+                    class="paper_winning_number_input"
+                    type="number"
+                    max="45"
+                    min="1"
+                    required
+                  />
+                </div>
+                <input
+                  class="paper_bonus_number_input"
+                  type="number"
+                  max="45"
+                  min="1"
+                  required
+                />
+              </div>
+            </section>
+            <button class="paper_result_button">결과 확인하기</button>
+          </form>
+        </section>
+      </main>
+      <footer>
+        <p class="footer">Copyright 2023. woowacourse</p>
+      </footer>
     </div>
     <script type="module" src="./src/step2-index.js"></script>
+    <script type="module" src="./src/webView/dom.js"></script>
+    <script type="module" src="./src/eventHandler/buyHandler.js"></script>
+    <script type="module" src="./src/eventHandler/resultHandler.js"></script>
+    <script type="module" src="./src/eventHandler/restartHandler.js"></script>
+    <script type="module" src="./src/eventHandler/modalHandler.js"></script>
   </body>
 </html>

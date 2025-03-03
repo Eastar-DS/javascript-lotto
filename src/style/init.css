@@ -1,0 +1,73 @@
+:root {
+  --primary: #4e5ba6;
+  --grayscale1: #fff;
+  --grayscale2: #fcfcfd;
+  --grayscale3: #b4b4b4;
+  --grayscale4: #8b8b8b;
+  --grayscale5: #000;
+}
+
+input,
+div,
+p,
+button,
+main,
+section,
+article {
+  box-sizing: border-box;
+}
+
+h1 {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 800;
+}
+
+h2 {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+body,
+p {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 400;
+}
+
+button {
+  background-color: var(--primary);
+  padding: 4px 6px;
+  border: none;
+  border-radius: 4px;
+  letter-spacing: 1.25px;
+  color: white;
+  cursor: pointer;
+}
+
+button:disabled {
+  background-color: var(--grayscale4);
+  cursor: not-allowed;
+}
+
+input {
+  border: 1px solid var(--grayscale4);
+  border-radius: 4px;
+}
+
+input::placeholder {
+  font-size: 15px;
+  font-weight: 400;
+  color: var(--grayscale4);
+}
+
+input:disabled {
+  cursor: not-allowed;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  margin: 0;
+  appearance: none;
+}

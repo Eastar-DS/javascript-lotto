@@ -2,11 +2,11 @@ import validationUtils from "../../util/validationUtil.js";
 
 const PURCHASE_PRICE_RANGE = {
   MIN: 1_000,
-  MAX: 10_000_000_000,
+  MAX: 100_000,
 };
 
 const PURCHASE_PRICE = {
-  IS_NUMBER_RANGE_OVER: `[ERROR] ${PURCHASE_PRICE_RANGE.MIN} 이상 ${PURCHASE_PRICE_RANGE.MAX}억 이하의 숫자를 입력해야합니다.`,
+  IS_NUMBER_RANGE_OVER: `[ERROR] ${PURCHASE_PRICE_RANGE.MIN.toLocaleString()} 이상 ${PURCHASE_PRICE_RANGE.MAX.toLocaleString()} 이하의 숫자를 입력해야합니다.`,
   IS_NOT_MULTIPLE: `[ERROR] ${PURCHASE_PRICE_RANGE.MIN} 단위로 나누어 떨어지는 숫자여야합니다.`,
 };
 

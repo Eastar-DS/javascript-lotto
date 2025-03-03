@@ -28,7 +28,7 @@ export default class NumbersValidator {
 
   static #isDuplicatedNumber(numbers) {
     if (new Set(numbers).size !== numbers.length)
-      throw new Error(WINNING_NUMBERS.IS_WRONG_ARRAY_LENGTH);
+      throw new Error(WINNING_NUMBERS.IS_DUPLICATED_NUMBER);
   }
 
   static #isArrayNumberRangeOver(numbers) {
