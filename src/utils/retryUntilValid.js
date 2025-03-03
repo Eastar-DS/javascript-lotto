@@ -1,13 +1,10 @@
-import readLineAsync from "./readLineAsync.js";
-
-const retryUntilValid = async (promptMessage, validateFunc) => {
-  try {
-    const input = await readLineAsync(promptMessage);
-    const validatedInput = validateFunc(input);
-    return validatedInput;
-  } catch (err) {
-    console.log(err);
-    return retryUntilValid(promptMessage, validateFunc);
+const retryUntilValid = async (func, onError) => {
+  while (true) {
+    try {
+      return await func();
+    } catch (e) {
+      onError(e);
+    }
   }
 };
 
