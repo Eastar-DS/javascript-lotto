@@ -1,0 +1,82 @@
+header {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  padding: 0px 130px;
+  height: 64px;
+  border-bottom-width: 1px;
+  background-color: var(--lotto-primary);
+}
+
+header .title {
+  color: var(--lotto-greyscale-1);
+}
+
+content {
+  display: flex;
+  justify-content: center;
+  padding: 84px 0px;
+}
+
+modal {
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  inset: 0px 0px 0px 0px;
+  width: 100%;
+  height: 100%;
+  background-color: #00000080;
+}
+
+modal div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 32px;
+  padding: 40px 0 32px 0;
+  width: 350px;
+  border-radius: 4px;
+  background-color: white;
+}
+
+footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80px;
+  border-top: 1px solid #4e5ba633;
+}
+
+footer p {
+  color: var(--lotto-primary) !important;
+}
+
+.hide-layout {
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+}
+
+.show-layout {
+  opacity: 1;
+  visibility: visible;
+  display: flex;
+  transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+}
+
+.reset-layout {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.disable-button {
+  background-color: gray !important;
+  cursor: default;
+}
+
+.disable-input {
+  background-color: lightgray;
+  color: gray;
+}

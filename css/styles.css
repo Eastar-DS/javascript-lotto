@@ -1,0 +1,10 @@
+@import "./variables.css";
+@import "./reset.css";
+
+@import "/css/style/lotto.css";
+@import "/css/style/layout.css";
+@import "/css/style/modal.css";
+
+body {
+  background-color: var(--lotto-greyscale-2);
+}

@@ -1,0 +1,119 @@
+.main-contents {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+  gap: 28px;
+  padding: 40px 0 32px 0;
+  width: 414px;
+  min-height: 414px;
+  border: 1px solid #0000001f;
+  border-radius: 4px;
+  background-color: var(--lotto-greyscale-1);
+}
+
+.main-contents div {
+  width: 382px;
+}
+
+.title {
+  display: flex;
+  justify-content: space-between;
+  color: var(--lotto-greyscale-5);
+}
+
+.input-contents {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.input-contents form {
+  display: flex;
+  justify-content: space-between;
+}
+
+.input-contents input {
+  display: flex;
+  width: 310px;
+  height: 36px;
+  gap: 10px;
+  padding: 8px 8px 0px;
+  border: 1px solid var(--lotto-greyscale-3);
+  border-radius: 4px;
+}
+
+.input-contents button {
+  width: 56px;
+  border-radius: 4px;
+  padding: 6px 6px 6px 8px;
+  text-align: center;
+  background-color: var(--lotto-primary);
+  color: var(--lotto-greyscale-1);
+}
+
+.lotto-contents {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.lotto-contents > div {
+  max-height: 400px;
+  overflow: auto;
+}
+
+.lotto-container_lotto img {
+  width: 34px;
+  height: 36px;
+}
+
+.lotto-container_lotto {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  gap: 8px;
+  color: var(--lotto-greyscale-5);
+}
+
+.winningLotto-contents {
+  display: flex;
+  visibility: hidden;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.winningLotto-contents div {
+  width: fit-content;
+}
+
+.winningLotto-contents form {
+  display: flex;
+  width: 382px;
+  justify-content: space-between;
+}
+
+.winningLotto-contents_bonusNumber {
+  text-align: right;
+}
+
+.winningLotto-contents input {
+  width: 34px;
+  height: 36px;
+  border: 1px solid var(--lotto-greyscale-3);
+  border-radius: 4px;
+}
+
+.result-contents {
+  display: flex;
+  visibility: hidden;
+  justify-content: center;
+  align-items: center;
+  padding: 6px 6px 6px 8px;
+  width: 382px;
+  height: 36px;
+  text-align: center;
+  border-radius: 4px;
+  background-color: var(--lotto-primary);
+  color: var(--lotto-greyscale-1);
+}

@@ -1,3 +1,8 @@
+## step1
+
+<details>
+  <summary>step1 요약</summary>
+
 - [x] 로또 구입 금액을 입력한다. -> ui
   - [x] 구입 금액 입력 받기 -> ui
   - [x] 예외 처리 -> domain
@@ -51,3 +56,75 @@
 - [x] 일치 개수 + 보너스 일치 여부만 판단
 - [x] 일치 판단기준 변환
 - [x] error 변수 상수화
+
+</details>
+
+## step2
+
+<details>
+  <summary>step2 1차 요약</summary>
+
+**요구사항**
+
+- [x] package.json > "homepage" 값에 본인의 GitHub username 입력
+- [x] npm run deploy 스크립트를 실행해서 배포
+  - https://mun-kyeong.github.io/javascript-lotto/index.html 링크로 배포 완료
+- [ ] 목적에 맞는 HTML 태그를 사용
+- [ ] CSS 속성 선언 순서의 일관성을 고려
+- [ ] CSS 속성은 가능하면 축약형(shorthand)을 사용
+- [ ] flexbox를 활용해 레이아웃을 구성
+
+**진행계획**
+
+- [x] figma를 통해 css 기본 속성 정의
+- 로또 구매 화면 제작
+
+  - # main contents
+  - [x] html 뼈대 구성
+  - [x] card title 제작 (css)
+  - [x] card input 입력창 제작 (css)
+    - # card input 기능 구현
+    - [x] 입력창을 통해 로또 생성 (feat)
+      - [x] 올바르지 않은 입력의 경우 에러 표시 필요
+  - [x] 로또 출력 화면 제작 (css)
+    - # 로또 출력 화면 기능 구현
+    - [x] 로또 개수 화면에 출력
+    - [x] 생성된 로또를 화면에 출력
+  - [x] 당첨번호 및 보너스 번호 입력 창 제작 (css)
+    - # 당첨번호 및 보너스 번호 기능 구현
+    - [x] 당첨번호 및 보너스 번호 가져오기
+  - [x] 결과 확인 버튼 제작 (css)
+  - # layout
+  - [x] header 제작
+  - [x] footer 제작
+
+- 당첨 통계 모달 화면 제작
+  - [x] 당첨 통계 html 뼈대 제작
+  - [x] 통계 title 제작 (css)
+  - [x] 일치 결과 테이블 제작 (css)
+  - [x] 수익률 출력 화면 제작 (css)
+  - [x] restart 버튼 제작 (css)
+    - [x] restart 기능 제작
+
+<details>
+
+**2차 PR반영**
+
+- [ ] modain/web 디렉터리에 대해서는 코멘트 확인
+- **layout 수정**
+- [x] className 명시적으로 변경하기
+- [x] restart-button 클래스명으로 변경
+- [x] !important 속성 삭제 & 선택자 특이도 높이기
+- [x] position - inset 속성으로 변경
+- [x] padding으로 통일
+- [x] title Document 삭제
+- [x] reset()에서 사용할 숨김 class 만들기
+
+- **feat**
+- [x] form 태그 사용하기 + reset 옵션 적용
+- [x] 화면 렌더링 시 필요한 input에 자동 focus 처리
+- [x] querySelector에서 jQuery사용으로 변경
+- [x] domain과 ui 역할 분리 - setup.js / modal.js
+- [x] 결과 확인 후 winnerLotto disable 처리해주기
+
+- [ ] commit 링크 연동
