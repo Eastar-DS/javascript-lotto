@@ -1,6 +1,6 @@
 import Lotto from "./Lotto.js";
-import { makeOneLottoArray } from "../utils/utils.js";
 import Constants from "../constant/Constants.js";
+import makeOneLottoArray from "../utils/makeOneLottoArray.js";
 
 class LottoGame {
   constructor(amount) {
@@ -12,14 +12,28 @@ class LottoGame {
       5: 0,
     };
 
-    this.lottos = Array.from({ length: amount }, () => new Lotto(makeOneLottoArray()));
+    this.lottos = Array.from(
+      { length: amount },
+      () => new Lotto(makeOneLottoArray())
+    );
   }
 
   getGameResult() {
     return this.result;
   }
 
+  #resetResult() {
+    this.result = {
+      1: 0,
+      2: 0,
+      3: 0,
+      4: 0,
+      5: 0,
+    };
+  }
+
   calculate(targetNumber, bonusNumber) {
+    this.#resetResult();
     this.lottos.forEach((lotto) => {
       const correctNumber = lotto.getCorrectNumber(targetNumber);
       const isBonus = lotto.hasBonusNumber(bonusNumber);
@@ -46,9 +60,9 @@ class LottoGame {
     );
   }
 
-  getEarningRate(amount) {
+  getEarningRate() {
     const rawEarningRate =
-      (this.getWinMoney() / (amount * Constants.LOTTO.UNIT)) * 100;
+      (this.getWinMoney() / (this.lottos.length * Constants.LOTTO.UNIT)) * 100;
     return rawEarningRate.toFixed(1);
   }
 }
