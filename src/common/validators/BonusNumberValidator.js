@@ -1,8 +1,8 @@
-import { KEY, LOTTO } from '../constants/CONFIGURATIONS.js';
-import { ERROR_MESSAGE } from '../constants/MESSAGES.js';
+import { KEY, LOTTO } from '../constants/Configurations.js';
+import { ERROR_MESSAGE } from '../constants/Messages.js';
 import { validateRange, validateType } from './validate.js';
 
-const validateDuplicate = (bonusNumber, winningNumbers) => {
+const validateDuplicateBonus = (bonusNumber, winningNumbers) => {
   if (winningNumbers.includes(bonusNumber)) {
     throw new Error(ERROR_MESSAGE.BONUS_NUMBER.DUPLICATE);
   }
@@ -17,8 +17,8 @@ const BonusNumberValidator = {
       min: LOTTO.MIN_NUMBER,
       max: LOTTO.MAX_NUMBER,
     });
-    validateDuplicate(bonusNumber, winningNumbers);
+    validateDuplicateBonus(bonusNumber, winningNumbers);
   },
 };
 
-export { BonusNumberValidator, validateDuplicate };
+export { BonusNumberValidator, validateDuplicateBonus };

@@ -1,10 +1,13 @@
-import { KEY, LOTTO } from '../../src/constants/CONFIGURATIONS';
-import { ERROR_MESSAGE } from '../../src/constants/MESSAGES';
+import { KEY, LOTTO } from '../../src/common/constants/Configurations';
+import { ERROR_MESSAGE } from '../../src/common/constants/Messages';
 import {
   BonusNumberValidator,
-  validateDuplicate,
-} from '../../src/validators/BonusNumberValidator';
-import { validateRange, validateType } from '../../src/validators/validate';
+  validateDuplicateBonus,
+} from '../../src/common/validators/BonusNumberValidator';
+import {
+  validateRange,
+  validateType,
+} from '../../src/common/validators/validate';
 
 describe('보너스 번호 검증 테스트', () => {
   describe('정상 케이스', () => {
@@ -52,7 +55,7 @@ describe('보너스 번호 검증 테스트', () => {
       const bonusNumber = 1;
       const winningNumbers = [1, 2, 3, 4, 5, 6];
 
-      expect(() => validateDuplicate(bonusNumber, winningNumbers)).toThrow(
+      expect(() => validateDuplicateBonus(bonusNumber, winningNumbers)).toThrow(
         ERROR_MESSAGE.BONUS_NUMBER.DUPLICATE,
       );
     });

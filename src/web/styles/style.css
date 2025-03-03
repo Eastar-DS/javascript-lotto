@@ -1,0 +1,51 @@
+:root {
+  --primary: #4e5ba6;
+  --footer-border-color: rgba(78, 91, 166, 0.2);
+  --dashboard-border-color: rgba(0, 0, 0, 0.12);
+  --greyscale-3: #b4b4b4;
+  --white-text-color: white;
+  --table-border-color: #ccc;
+  --backdrop-color: rgba(0, 0, 0, 0.5);
+  --backdrop-z-index: 9998;
+  --modal-z-index: 9999;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+#app {
+  display: flex;
+  flex-direction: column;
+  height: 100dvh;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  min-height: 64px;
+  background-color: var(--primary);
+  color: var(--white-text-color);
+  padding: 0 130px;
+}
+
+#main {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 30px 0;
+}
+
+.footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  min-height: 80px;
+  font-weight: 700;
+  color: var(--primary);
+  border-top: 1px solid var(--footer-border-color);
+}
