@@ -4,13 +4,47 @@
     <meta charset="UTF-8" />
     <title>🎱 행운의 로또</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@100..900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./src/styles/styles.css" />
     <title>Document</title>
   </head>
 
   <body>
-    <div id="app">
-      <h1>🎱 행운의 로또</h1>
-    </div>
+    <header id="app" class="header">
+      <h1 class="header-title">🎱 행운의 로또</h1>
+    </header>
+    <main class="container">
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">🎱 내 번호 당첨 확인 🎱</div>
+        </div>
+        <div class="card-content">
+          <div class="purchase-container">
+            <label class="purchase-text">구입할 금액을 입력해주세요.</label>
+            <div class="input-container">
+              <form class="input-form" id="purchase-form">
+                <input class="input" id="purchase-price" placeholder="금액" />
+                <button id="purchase-button" class="purchase-button">
+                  구입
+                </button>
+              </form>
+            </div>
+          </div>
+          <div class="lotto-container">
+            <div id="message-container"></div>
+            <div class="lotto-content"></div>
+          </div>
+        </div>
+      </div>
+    </main>
+    <footer>
+      <div>Copyright 2025. woowacourse</div>
+    </footer>
     <script type="module" src="./src/step2-index.js"></script>
   </body>
 </html>

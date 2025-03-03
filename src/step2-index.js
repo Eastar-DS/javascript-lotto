@@ -1,4 +1,14 @@
-/**
- * step 2의 시작점이 되는 파일입니다.
- * 노드 환경에서 사용하는 readline 등을 불러올 경우 정상적으로 빌드할 수 없습니다.
- */
+import SELECTORS from './constants/Selectors.js';
+import handlePurchase from './handlers/handlePurchase.js';
+import handleResult from './handlers/handleResult.js';
+
+document.addEventListener('DOMContentLoaded', () => {
+  const purchaseButton = document.getElementById(SELECTORS.BUTTON.PURCHASE);
+
+  purchaseButton.addEventListener('click', async (event) => {
+    event.preventDefault();
+    await handlePurchase();
+    const resultButton = document.getElementById(SELECTORS.BUTTON.RESULT);
+    resultButton.addEventListener('click', handleResult);
+  });
+});

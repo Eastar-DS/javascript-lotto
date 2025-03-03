@@ -16,14 +16,31 @@ import {
 } from './service/CalculatorService.js';
 import makeLotto from './service/LottoService.js';
 import { PRIZE_MONEY } from './constants/MagicNumber.js';
+import {
+  getConsoleBonusNumber,
+  getConsolePurchasePrice,
+  getConsoleUserRetry,
+  getConsoleWinningNumber,
+} from './service/InputService/ConsoleInputService.js';
+import { displayError } from './util/errorHandler.js';
 
 async function playGame() {
-  const { purchasePrice, purchaseAmount } = await getPurchasePrice();
+  const { purchasePrice, purchaseAmount } = await getPurchasePrice(
+    getConsolePurchasePrice,
+    displayError,
+  );
 
   const lottos = makeLotto(purchaseAmount);
 
-  const userLotto = await getWinningNumber();
-  const parsedLotto = await getBonusNumber(userLotto);
+  const userLotto = await getWinningNumber(
+    getConsoleWinningNumber,
+    displayError,
+  );
+  const parsedLotto = await getBonusNumber(
+    userLotto,
+    getConsoleBonusNumber,
+    displayError,
+  );
 
   const winCount = calculateWins(lottos, parsedLotto);
   const total = calculatePrize(winCount, PRIZE_MONEY);
@@ -32,12 +49,18 @@ async function playGame() {
   printPrizeHeader();
   printPrize(winCount);
   printRevenueRate(revenueRate);
-
-  const userRetry = await getUserRetry();
-
-  return userRetry;
 }
 
-const userRetry = await playGame();
+const main = async () => {
+  while (true) {
+    await playGame();
+    let userRetry;
 
-if (userRetry === 'y') await playGame();
+    while (true) {
+      userRetry = await getUserRetry(getConsoleUserRetry, displayError);
+      if (userRetry === 'y' || userRetry === 'n') break;
+    }
+    if (userRetry === 'n') break;
+  }
+};
+main();
