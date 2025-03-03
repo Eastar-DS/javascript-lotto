@@ -1,4 +1,4 @@
-import Lotto from "../src/domain/Lotto.js";
+import { Lotto } from "../src/domain/Lotto.js";
 
 test("로또 번호를 가질 수 있다.", () => {
   // given

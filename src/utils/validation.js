@@ -1,4 +1,4 @@
-import { ERROR } from "../constants/message.js";
+import { ERROR } from "../view/message.js";
 import { throwError } from "./throwError.js";
 
 export const isEmpty = (value) => {

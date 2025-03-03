@@ -1,6 +1,6 @@
 import { getRandomNumber } from "../utils/random.js";
-import Lotto from "./Lotto.js";
-import LottoNumber from "./LottoNumber.js";
+import { Lotto } from "./Lotto.js";
+import { LottoNumber } from "./LottoNumber.js";
 
 const LottoShop = {
   checkAndAddLottoNumbers: (store, number) => {
@@ -9,15 +9,12 @@ const LottoShop = {
   },
 
   issueLottoNumbers: () => {
-    const randomNumberStore = new Set();
-    while (randomNumberStore.size < LottoNumber.LOTTO_NUMBER.LENGTH) {
-      const number = getRandomNumber(
-        LottoNumber.LOTTO_NUMBER.MIN,
-        LottoNumber.LOTTO_NUMBER.MAX
-      );
-      LottoShop.checkAndAddLottoNumbers(randomNumberStore, number);
-    }
-    return new Lotto([...randomNumberStore]);
+    return new Lotto(
+      [...Array(LottoNumber.CONSTRAINTS.MAX)]
+        .map((_, i) => i + 1)
+        .sort(() => Math.random() - 0.5)
+        .slice(0, Lotto.CONSTRAINTS.COUNT)
+    );
   },
 
   createLottos: (count) => {

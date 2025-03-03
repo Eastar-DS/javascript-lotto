@@ -1,0 +1,13 @@
+.modal-container {
+  top: 0;
+  left: 0;
+  z-index: 9999;
+  background-color: rgba(0, 0, 0, 0.5);
+  border: border-box;
+}
+
+.modal {
+  width: 70%;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+}

@@ -1,4 +1,4 @@
-import Price from "../src/domain/Price";
+import { Price } from "../src/domain/Price";
 
 describe("구매 금액 숫자 유효성 검사를 진행한다", () => {
   test("1000원으로 나누어 떨어지지 않는 경우 에러를 발생시킨다.", () => {

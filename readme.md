@@ -1,43 +1,38 @@
 # javascript-lotto 
 
-## 폴더 구조
+## 1단계 폴더 구조
 
 ```
 ├── __test__
-│   ├── BonusNumberValidator.test.js
 │   ├── Lotto.test.js
 │   ├── LottoMachine.test.js
 │   ├── LottoResult.test.js
+│   ├── LottoShop.test.js
 │   ├── LottoValidator.test.js
-│   ├── PriceValidator.test.js
-│   └── Validator.test.js
-└── src/
-    ├── constants/
-    │   ├── lotto.js
-    │   ├── message.js
-    │   └── price.js   
+│   ├── Price.test.js
+│   └── PriceValidator.test.js
+└── src/ 
     ├── domain/
     │   ├── Lotto.js
     │   ├── LottoMachine.js
+    │   ├── LottoNumber.js
     │   ├── LottoResult.js
-    │   └── Ticket.js
+    │   ├── LottoShop.js
+    │   └── Price.js
     ├── utils/
     │   ├── count.js
     │   ├── random.js
-    │   └── throwError.js    
-    ├── validation/
-    │   ├── BonusNumberValidator.js
-    │   ├── LottoValidator.js
-    │   ├── PriceValidator.js
-    │   └── Validator.js     
+    │   ├── throwError.js
+    │   └── validation.js     
     ├── view/
+    │   ├── message.js
     │   ├── Input.js
     │   └── Output.js   
     ├── step1-index.js
     └── step2-index.js
 ```
 
-## 기능 목록
+## 1단계 기능 목록
 
 ### **입력**
 
@@ -88,7 +83,7 @@
     - [x]  예외2) 숫자가 아닌 경우
     - [x]  예외3) 범위를 벗어난 경우
     - [x]  예외4) 로또번호와 중복되는 경우
-- [ ] 재시도 여부
+- [x] 재시도 여부
     - [x] 예외1) y또는 n이 아닌 문자를 입력한 경우
 
 ### **lotto constants 목록**
@@ -113,3 +108,67 @@
 - [x]  당첨 번호
     - [x]  `6개의 숫자를 입력해야 합니다.`
     - [x]  `숫자는 중복될 수 없습니다.`
+
+## 2단계 폴더 구조
+
+├── step2-web
+├── component/ 
+│   ├── common
+│   │   ├── Box
+│   │   ├── Button
+│   │   ├── Input
+│   │   ├── Modal
+│   │   ├── Style
+│   │   ├── Table
+│   │   └── Text
+│   └── feature
+│       ├── Footer
+│       ├── Header
+│       ├── LottoMachine
+│       ├── LottoShop
+│       ├── NumberForm
+│       └── PriceForm
+├── core/ 
+│   └── component.js
+└── helper/ 
+    └── style.js
+
+## 2단계 기능 목록
+
+- [x] 부모 Component class 구현 
+
+### 공통 컴포넌트 분리 
+- [x] Box 컴포넌트
+- [x] Button 컴포넌트
+- [x] Input 컴포넌트
+- [x] Modal 컴포넌트
+- [x] Table 컴포넌트
+- [x] Text 컴포넌트
+
+### feature 컴포넌트 분리
+- [x] Header 컴포넌트
+- [x] Footer 컴포넌트
+- [x] LottoMachine 컴포넌트
+- [x] LottoResultBox 컴포넌트
+- [x] LottoShop 컴포넌트
+- [x] NumberForm 컴포넌트
+- [x] PriceForm 컴포넌트
+
+### css 작성
+
+- [x] 공통으로 사용될 width, height, position, margin
+- [x] colors 
+- [x] flex
+- [x] layout 초기화
+- [x] text
+
+### 도메인 연결
+
+- [x] PriceDomain 연결
+- [x] LottoNumberDomain 연결
+- [x] Lotto 연결
+- [x] LottoMachine 연결
+- [x] LottoResult 연결
+- [x] LottoResult 연결
+
+

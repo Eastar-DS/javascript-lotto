@@ -24,4 +24,7 @@ export const ERROR = Object.freeze({
   DUPLICATE: "중복된 숫자가 있습니다.",
 });
 
-export const RETRY_STRING = Object.freeze(["y", "Y", "n", "N"]);
+export const RETRY_STRING = Object.freeze({
+  Yes: "Y",
+  No: "N",
+});

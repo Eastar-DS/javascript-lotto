@@ -24,4 +24,4 @@ class LottoResult {
     return ((this.getTotalProfit() / this.#price) * 100).toFixed(1);
   }
 }
-export default LottoResult;
+export { LottoResult };

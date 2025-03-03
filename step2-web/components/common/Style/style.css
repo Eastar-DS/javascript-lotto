@@ -1,0 +1,91 @@
+.static {
+  position: static;
+}
+
+.fixed {
+  position: fixed;
+}
+
+.absolute {
+  position: absolute;
+}
+
+.relative {
+  position: relative;
+}
+
+.sticky {
+  position: sticky;
+}
+
+.w-full {
+  width: 100%;
+}
+
+.max-w-414 {
+  max-width: 414px;
+}
+
+.max-w-350 {
+  max-width: 350px;
+}
+
+.max-w-280 {
+  max-width: 280px;
+}
+
+.h-full {
+  height: 100%;
+}
+
+.h-36 {
+  height: 36px;
+}
+
+.inline {
+  display: inline;
+}
+
+.block {
+  display: block;
+}
+
+.inline-flex {
+  display: inline-flex;
+}
+
+.box-border {
+  box-sizing: border-box;
+}
+
+.border-b {
+  border-bottom-width: 1px;
+  border-bottom: 1px solid var(--gray-400);
+}
+
+.rounded-sm {
+  border-radius: 4px;
+}
+
+.rounded-lg {
+  border-radius: 12px;
+}
+
+.mt-20 {
+  margin-top: 20px;
+}
+
+.p-8 {
+  padding: 8px;
+}
+
+.px20-py0 {
+  padding: 20px 0px;
+}
+
+.px32-py15 {
+  padding: 32px 16px;
+}
+.cursor-pointer {
+  cursor: pointer;
+}
