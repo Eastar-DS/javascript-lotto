@@ -1,6 +1,7 @@
 const Constants = Object.freeze({
   LOTTO: {
     UNIT: 1000,
+    MAX_MONEY: 100_000,
     NUMBER_LENGTH: 6,
     MAX_NUMBER: 45,
     MIN_NUMBER: 1,
@@ -17,6 +18,13 @@ const Constants = Object.freeze({
       THIRD: 1_500_000,
       SECOND: 30_000_000,
       FIRST: 2_000_000_000,
+    },
+    RESULT_INDEX: {
+      MATCH6: "1", // 6개 일치
+      MATCH5_BONUS: "2", // 5개+보너스 일치
+      MATCH5: "3", // 5개 일치
+      MATCH4: "4", // 4개 일치
+      MATCH3: "5", // 3개 일치
     },
   },
   OPERATOR: {
@@ -37,6 +45,8 @@ const Constants = Object.freeze({
     BONUS_NUMBER_RANGE: "[ERROR] 보너스 번호의 범위는 1~45이어야한다.",
     BONUS_NUMBER_DUPLICATE: "[ERROR] 보너스 번호는 당첨번호와 중복될수 없다.",
     RESTART_STRING: "[ERROR] 다시 시작하기 위한 입력은 y또는 n이어야 한다.",
+    MONEY_TO_BIG: "[ERROR] 로또 구입금액은 10만원을 넘을수 없다.",
+    MONEY_TO_SMALL: "[ERROR] 로또 구입금액은 1000원 이상이어야 한다.",
   },
 });
 
