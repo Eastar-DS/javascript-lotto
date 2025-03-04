@@ -4,18 +4,22 @@ class LottoStatistics {
   #rankResult;
 
   constructor() {
+    this.init();
+  }
+
+  init() {
     this.#rankResult = {
-      '3개 일치': { count: 0, price: 5000 },
-      '4개 일치': { count: 0, price: 50000 },
-      '5개 일치': { count: 0, price: 1500000 },
-      '5개 일치, 보너스 볼 일치': { count: 0, price: 30000000 },
-      '6개 일치': { count: 0, price: 2000000000 },
+      '3개 일치': { name: '3', count: 0, price: 5000 },
+      '4개 일치': { name: '4', count: 0, price: 50000 },
+      '5개 일치': { name: '5', count: 0, price: 1500000 },
+      '5개 일치, 보너스 볼 일치': { name: '5+1', count: 0, price: 30000000 },
+      '6개 일치': { name: '6', count: 0, price: 2000000000 },
     };
   }
 
   compareLottos(userLottos, winningLotto) {
     userLottos.forEach((userLotto) => {
-      const sameNumberCount = userLotto.countSameNumber(winningLotto.lottoNumber);
+      const sameNumberCount = userLotto.getMatchedNumberCount(winningLotto.lottoNumber);
       const isIncludedBonusNumber = userLotto.hasNumber(winningLotto.bonusNumber);
       this.determineRank(sameNumberCount, isIncludedBonusNumber);
     });
@@ -41,7 +45,7 @@ class LottoStatistics {
   calculateProfit() {
     return Object.keys(this.#rankResult).reduce(
       (acc, key) => acc + (this.#rankResult[key].price * this.#rankResult[key].count),
-      CONFIG.INITIAL_NUMBER,
+      CONFIG.INITIAL_PROFIT,
     );
   }
 }

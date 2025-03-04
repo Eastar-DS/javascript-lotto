@@ -1,4 +1,4 @@
-const ERROR_MESSAGE_NORMALIZATION = (message) => `[ERROR] ${message}`;
+import normalizeErrorMessage from './utils/normalizeErrorMessage.js';
 
 const OUTPUT_MESSAGES = Object.freeze({
   LOTTO_QUANTITY: (quantity) => `${quantity}개를 구매했습니다.`,
@@ -15,7 +15,7 @@ const OutputView = {
   printSingleLotto(lotto) {
     console.log(OUTPUT_MESSAGES.SINGLE_LOTTO(lotto));
   },
-  printUserLottos(userLottos) {
+  renderUserLottos(userLottos) {
     OutputView.printLottoQuantity(userLottos.length);
     userLottos.forEach((lotto) => (
       OutputView.printSingleLotto(lotto.getNumbers())
@@ -28,18 +28,18 @@ const OutputView = {
   printRankResult(key, value) {
     console.log(OUTPUT_MESSAGES.RANK_RESULT(key, value));
   },
-  printStatisticsResult(rankResult) {
+  renderStatisticsResult(rankResult) {
     OutputView.printRankResultHeadLine();
     Object.keys(rankResult).forEach((key) => (
       OutputView.printRankResult(key, rankResult[key])
     ));
   },
 
-  printRevenueRate(revenueRate) {
+  renderRevenueRate(revenueRate) {
     console.log(OUTPUT_MESSAGES.REVENUE_RATE(revenueRate));
   },
   printErrorMessage(message) {
-    console.log(ERROR_MESSAGE_NORMALIZATION(message));
+    console.log(normalizeErrorMessage(message));
   },
 };
 

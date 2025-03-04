@@ -1,8 +1,6 @@
-import CONFIG from '../constants/config.js';
-
-export default function pickNumberInList(min, max) {
+export default function pickNumberInList({ min, max, maxLength }) {
   const randomNumbers = new Set();
-  while (randomNumbers.size < CONFIG.LOTTO.LENGTH) {
+  while (randomNumbers.size < maxLength) {
     const randomNumber = Math.floor(Math.random() * (max - min + 1)) + min;
     randomNumbers.add(randomNumber);
   }
