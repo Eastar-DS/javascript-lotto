@@ -2,7 +2,16 @@ import ERROR from "../constant/Error.js";
 import Validator from "../domain/Validator.js";
 import Output from "../view/Output.js";
 import { throwError } from "./util.js";
-import readline from "readline";
+
+async function getReadlineModule() {
+  if (typeof window === "undefined") {
+    const readline = await import("readline");
+    return readline.default;
+  } else {
+    console.warn("현재 환경에서는 `readline`을 사용할 수 없습니다.");
+    return null;
+  }
+}
 
 export async function inputHandler({
   promptMessage,
@@ -36,13 +45,20 @@ async function userInputEmptyHandler(promptMessage) {
 }
 
 export async function readLineAsync(query) {
-  return new Promise((resolve, reject) => {
+  return new Promise(async (resolve, reject) => {
     if (arguments.length !== 1) {
       reject(new Error("arguments must be 1"));
     }
 
     if (typeof query !== "string") {
       reject(new Error("query must be string"));
+    }
+
+    const readline = await getReadlineModule(); // ✅ readline을 동적으로 import
+
+    if (!readline) {
+      reject(new Error("readline은 브라우저 환경에서 사용할 수 없습니다."));
+      return;
     }
 
     const rl = readline.createInterface({

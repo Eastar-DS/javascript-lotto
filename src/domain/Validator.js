@@ -1,11 +1,13 @@
-const ValidationUtils = {
+import DEFINITION from "../constant/Definition.js";
+
+export const ValidationUtils = {
   isEmpty: (string) => string.trim().length === 0,
   isValidArrayLength: (array, min, max) =>
     array.length < min || array.length > max,
   isDuplicatedNumber: (array) => new Set(array).size !== array.length,
   isArrayNumberRangeOver: (numbers, min, max) =>
     numbers.some((number) =>
-      ValidationUtils.isNumberRangeOver(number, min, max)
+      ValidationUtils.isNumberRangeOver(number, min, max),
     ),
   isNotNaturalNumberInArray: (numbers) =>
     numbers.some((number) => ValidationUtils.isNotNaturalNumber(number)),
@@ -13,9 +15,15 @@ const ValidationUtils = {
   isNotNaturalNumber: (number) => number % 1 !== 0 || number < 1,
   isDuplicated: (array, element) =>
     new Set([...array, element]).size !== array.length + 1,
-  isNotMultiple: (number, unit) => number % unit !== 0,
+  isNotMultiple: (number, unit) => number % unit !== 0 || number === 0,
   isYN: (string) =>
     string.toLowerCase() !== "y" && string.toLowerCase() !== "n",
+  isNumberConvertible: (string) => {
+    if (typeof string !== "string") return false;
+    const trimmed = string.trim();
+    if (trimmed === "") return false;
+    return !isNaN(Number(trimmed));
+  },
 };
 
 const Validator = {
@@ -35,7 +43,35 @@ const Validator = {
       IS_ARRAY_NUMBER_RANGE_OVER: ValidationUtils.isArrayNumberRangeOver(
         numbers,
         1,
-        45
+        45,
+      ),
+    };
+
+    return errorResults;
+  },
+
+  webWinningNumbers: (numbers) => {
+    const errorResults = {
+      IS_VALID_ARRAY_LENGTH:
+        ValidationUtils.isValidArrayLength(numbers, 7, 7),
+      IS_DUPLICATED_NUMBER: ValidationUtils.isDuplicatedNumber(numbers),
+      IS_ARRAY_NUMBER_RANGE_OVER: ValidationUtils.isArrayNumberRangeOver(
+        numbers,
+        1,
+        45,
+      ),
+    };
+
+    return errorResults;
+  },
+
+  submitWinningNumbers: (numbers) => {
+    const errorResults = {
+      IS_DUPLICATED_NUMBER: ValidationUtils.isDuplicatedNumber(numbers),
+      IS_ARRAY_NUMBER_RANGE_OVER: ValidationUtils.isArrayNumberRangeOver(
+        numbers,
+        1,
+        45,
       ),
     };
 
@@ -60,10 +96,11 @@ const Validator = {
     const errorResults = {
       IS_NUMBER_RANGE_OVER: ValidationUtils.isNumberRangeOver(
         purchasePrice,
-        1000,
-        10000000000
+        DEFINITION.MIN.LOTTO_PURCHASE_PRICE,
+        DEFINITION.MAX.LOTTO_PURCHASE_PRICE,
       ),
       IS_NOT_MULTIPLE: ValidationUtils.isNotMultiple(purchasePrice, 1000),
+      IS_NOT_NUMBER: ValidationUtils.isNumberConvertible(purchasePrice),
     };
 
     return errorResults;
