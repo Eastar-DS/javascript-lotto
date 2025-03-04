@@ -1,16 +1,121 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ko">
   <head>
     <meta charset="UTF-8" />
     <title>🎱 행운의 로또</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <link rel="preload" as="image" href="/ticket.png" />
+    <link rel="stylesheet" href="./src/style/main.css" />
+    <script type="module" defer src="./src/step2-index.js"></script>
   </head>
 
   <body>
     <div id="app">
-      <h1>🎱 행운의 로또</h1>
+      <header>
+        <h1 class="title">🎱 행운의 로또</h1>
+      </header>
+
+      <!-- 로또 게임 -->
+      <main id="lottoGame" class="opacity-0">
+        <section class="inner">
+          <h2 class="title">🎱 내 번호 당첨 확인 🎱</h2>
+
+          <!-- 금액 입력 -->
+          <section class="purchase_amount_section">
+            <h2>구입할 금액을 입력해주세요.</h2>
+            <form class="purchase_amount">
+              <input type="text" id="purchaseAmountInput" placeholder="금액" />
+              <button id="purchaseButton" class="caption">구입</button>
+            </form>
+          </section>
+
+          <!-- 구매한 로또 목록 -->
+          <section class="lotto_pack_section">
+            <h2 class="purchase_count"></h2>
+            <div class="lotto_pack"></div>
+          </section>
+
+          <!-- 당첨 번호 및 보너스 번호 입력 -->
+          <section class="answer_lotto_section">
+            <h2 class="answer_lotto_title">지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.</h2>
+            <form class="answer_lotto">
+              <div class="answer_lotto_input">
+                <div class="answer_lotto_number">
+                  <span>당첨 번호</span>
+                  <div class="winning_input">
+                    <input type="text" class="number winning_number" maxlength="2" />
+                    <input type="text" class="number winning_number" maxlength="2" />
+                    <input type="text" class="number winning_number" maxlength="2" />
+                    <input type="text" class="number winning_number" maxlength="2" />
+                    <input type="text" class="number winning_number" maxlength="2" />
+                    <input type="text" class="number winning_number" maxlength="2" />
+                  </div>
+                </div>
+                <div class="answer_lotto_number">
+                  <span>보너스 번호</span>
+                  <div class="bonus_input">
+                    <input type="text" class="number bonus_number" maxlength="2" />
+                  </div>
+                </div>
+              </div>
+              <button id="resultButton" class="caption">결과 확인하기</button>
+            </form>
+          </section>
+        </section>
+      </main>
+
+      <!-- 당첨 결과 모달 -->
+      <dialog class="lotto_result_modal">
+        <section id="lottoResult">
+          <form method="dialog">
+            <button><img class="close" src="/close.png" alt="닫기" width="16px" height="16px" /></button>
+          </form>
+          <div class="inner">
+            <h2 class="title">🏆 당첨 통계 🏆</h2>
+            <div class="statistics">
+              <div class="header-row">
+                <span class="match_count">일치 갯수</span>
+                <span class="price">당첨금</span>
+                <span class="winning_count">당첨 갯수</span>
+              </div>
+              <div class="row">
+                <span class="match_count">3개</span>
+                <span class="price">5,000</span>
+                <span class="winning_count user_count">n개</span>
+              </div>
+              <div class="row">
+                <span class="match_count">4개</span>
+                <span class="price">50,000</span>
+                <span class="winning_count user_count">n개</span>
+              </div>
+              <div class="row">
+                <span class="match_count">5개</span>
+                <span class="price">1,500,000</span>
+                <span class="winning_count user_count">n개</span>
+              </div>
+              <div class="row">
+                <span class="match_count">5개+보너스볼</span>
+                <span class="price">30,000,000</span>
+                <span class="winning_count user_count">n개</span>
+              </div>
+              <div class="row">
+                <span class="match_count">6개</span>
+                <span class="price">2,000,000,000</span>
+                <span class="winning_count user_count">n개</span>
+              </div>
+            </div>
+            <span class="profit_rate"></span>
+            <button id="restartButton" class="caption">다시 시작하기</button>
+          </div>
+        </section>
+      </dialog>
+
+      <!-- 에러 모달 -->
+      <dialog class="error_modal"></dialog>
+
+      <footer>
+        <p class="caption">Copyright 2025. woowacourse</p>
+      </footer>
     </div>
-    <script type="module" src="./src/step2-index.js"></script>
   </body>
 </html>

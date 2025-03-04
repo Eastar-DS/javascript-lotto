@@ -1,8 +1,8 @@
-import LottoMachine from "../domain/LottoMachine/LottoMachine.js";
-import OutputView from "../view/OutputView.js";
-import profitCalculator from "../domain/profitCalculator/profitCalculator.js";
-import generateAnswerLotto from "../domain/generateAnswerLotto.js";
-import InputHandler from "./inputHandler.js";
+import LottoMachine from "../../domain/LottoMachine/LottoMachine.js";
+import OutputView from "../../view/OutputView.js";
+import profitCalculator from "../../domain/profitCalculator/profitCalculator.js";
+import generateAnswerLotto from "../../domain/generateAnswerLotto.js";
+import InputHandler from "./InputHandler.js";
 
 const startLottoGame = async () => {
   const purchaseAmount = await InputHandler.purchaseAmount();

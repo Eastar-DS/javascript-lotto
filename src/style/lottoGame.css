@@ -1,0 +1,109 @@
+#lottoGame {
+  width: fit-content;
+  border: 1px solid var(--lotto-greyscale-5-12);
+  background-color: var(--lotto-greyscale-1);
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  padding: 40px 16px 32px;
+  margin: 84px auto 69px;
+}
+
+#lottoGame .inner {
+  min-width: 382px;
+}
+
+#lottoGame .title {
+  display: flex;
+  justify-content: center;
+}
+
+#lottoGame .purchase_amount_section {
+  padding-top: 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  width: 100%;
+}
+
+#lottoGame .purchase_amount {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  height: 36px;
+}
+
+#lottoGame .purchase_amount input {
+  width: 100%;
+  padding: 8px 0 4px 8px;
+}
+
+#lottoGame .purchase_amount button {
+  min-width: fit-content;
+  padding: 0 14px;
+}
+
+#lottoGame .lotto_pack_section {
+  padding-top: 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+#lottoGame .lotto_pack_section .lotto_pack {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-height: 276px;
+  max-height: 276px;
+  overflow-y: scroll;
+}
+
+#lottoGame .lotto_pack_section .lotto_pack .lotto {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+#lottoGame .answer_lotto_section {
+  padding-top: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+#lottoGame.opacity-0 .answer_lotto_section {
+  opacity: 0;
+}
+
+#lottoGame .answer_lotto_section .answer_lotto {
+  display: flex;
+  flex-direction: column;
+  gap: 27px;
+}
+
+#lottoGame .answer_lotto_section .answer_lotto .answer_lotto_input {
+  display: flex;
+  justify-content: space-between;
+}
+
+#lottoGame .answer_lotto_section .answer_lotto .answer_lotto_number {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+#lottoGame .answer_lotto_section .answer_lotto .answer_lotto_number:has(.bonus_input) {
+  align-items: flex-end;
+}
+
+#lottoGame .answer_lotto_section input {
+  width: 34px;
+  height: 36px;
+  text-align: center;
+}
+
+#lottoGame .answer_lotto_section #resultButton {
+  padding: 10px 0;
+  width: 100%;
+}
