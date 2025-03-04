@@ -4,13 +4,55 @@
     <meta charset="UTF-8" />
     <title>🎱 행운의 로또</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <link rel="stylesheet" href="reset.css" />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
   </head>
 
+  <!-- header -->
   <body>
     <div id="app">
-      <h1>🎱 행운의 로또</h1>
+      <header>
+        <h1 class="font-title header-navigator">🎱 행운의 로또</h1>
+      </header>
+
+      <div class="alert-container"></div>
+
+      <div class="content-container">
+        <div class="lotto-card">
+          <div class="font-title">🎱 내 번호 당첨 확인 🎱</div>
+
+          <!-- price input -->
+          <div class="purchase-container">
+            <div class="font-body">구입할 금액을 입력해 주세요</div>
+            <div class="input-button-container">
+              <input class="large-input" placeholder="금액을 입력해 주세요 (1,000원 ~ 100,000원)" name="price" type="number" />
+              <button type="button" class="small-button" name="purchase">구입</button>
+              <div class="font-caption purchase-button-container"></div>
+            </div>
+          </div>
+          
+          <!-- lotto -->
+          <div class="font-body count-prompt"></div>
+
+          <div class="font-body lotto-numbers-container">
+            <div class="lotto-numbers-item"></div>
+          </div>
+
+          <div class="winning-prompt"></div>
+
+          <!-- winning numbers lotto -->
+          <div class="winning-bonus-container"></div>
+
+          <!-- result button -->
+          <div class="result-button-container"></div>
+        </div>
+      </div>
     </div>
+
+    <footer>
+      <p class="font-caption">Copyright 2023. woowacourse</p>
+    </footer>
     <script type="module" src="./src/step2-index.js"></script>
   </body>
 </html>
