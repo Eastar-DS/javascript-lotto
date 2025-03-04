@@ -1,21 +1,21 @@
-import validateBonusNumber from "../validations/validate/validateBonusNumber.js";
+import validateBonusNumber from '../validations/validate/validateBonusNumber.js';
 
 class WinningLotto {
   #winningLotto;
   #bonusNumber;
 
   constructor(winningLotto, bonusNumber) {
-    this.#winningLotto = winningLotto
-    this.#bonusNumber = bonusNumber
+    this.#winningLotto = winningLotto;
+    this.#bonusNumber = bonusNumber;
     validateBonusNumber(this.#winningLotto, this.#bonusNumber);
   }
 
-  matchedWinningCount(lotto){
-    return this.#winningLotto.numbers.filter((number) => lotto.hasNumber(number)).length;
+  get winningNumbers(){
+    return this.#winningLotto.numbers;
   }
 
-  isBonusMatched(lotto) {
-    return lotto.hasNumber(this.#bonusNumber);
+  get bonusNumber(){
+    return this.#bonusNumber;
   }
 }
 

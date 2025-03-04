@@ -3,13 +3,14 @@ export const LOTTO_CONDITION = {
   MIN_NUMBER: 1,
   MAX_NUMBER: 45,
   PRICE: 1000,
+  MAX_PRICE:100000
 };
 
 export const MESSAGE = {
-  PURCHASE_COUNT:"개를 구매했습니다.",
-  STATISTICS:"당첨 통계",
-  LINE:"--------------------"
-}
+  PURCHASE_COUNT: '개를 구매했습니다.',
+  STATISTICS: '당첨 통계',
+  LINE: '--------------------',
+};
 
 export const LOTTO_NUMBER_ERROR_MESSAGES = {
   COUNT: `${LOTTO_CONDITION.COUNT}자리 숫자를 입력해주세요.`,
@@ -21,20 +22,20 @@ export const LOTTO_NUMBER_ERROR_MESSAGES = {
 export const PURCHASE_NUMBER_ERROR_MESSAGES = {
   INTIGER: '정수를 입력해주세요.',
   UNIT: `${LOTTO_CONDITION.PRICE}원 단위로 입력해주세요.`,
-  MIN: `${LOTTO_CONDITION.PRICE}원 이상 입력해주세요.`,
+  RANGE: `${LOTTO_CONDITION.PRICE}원 이상 ${LOTTO_CONDITION.MAX_PRICE}미만의 금액을 입력해주세요.`,
 };
 
-export const RANKING_ERROR_MESSAGES = 'ranking 값이 유효하지 않습니다.'
+export const RANKING_ERROR_MESSAGES = 'ranking 값이 유효하지 않습니다.';
 
-export const PRICE_ERROR = '올바르지 않은 가격입니다.'
+export const PRICE_ERROR = '올바르지 않은 가격입니다.';
 
-export const Y_OR_NO_ERROR_MESSAGE = "y/n를 입력해주세요."
+export const Y_OR_NO_ERROR_MESSAGE = 'y/n를 입력해주세요.';
 
 export const BONUS_NUMBER_ERROR_MESSAGES = {
   INTIGER: '정수를 입력해주세요.',
   RANGE: `${LOTTO_CONDITION.MIN_NUMBER}~${LOTTO_CONDITION.MAX_NUMBER} 사이의 숫자를 입력해주세요.`,
-  DUPLICATE: '당첨 번호와 중복되었습니다.'
-}
+  DUPLICATE: '당첨 번호와 중복되었습니다.',
+};
 
 export const RANKING = {
   FIRST: { RANK: 1, MATCH_COUNT: 6, PRIZE: 2_000_000_000 },
@@ -48,12 +49,12 @@ export const INPUT_MESSAGE = {
   PURCHASE: '구입금액을 입력해 주세요.',
   WINNING_NUMBERS: '당첨 번호를 입력해 주세요.',
   BONUS_NUMBER: '보너스 번호를 입력해 주세요.',
-  RE_START:'다시 시작하시겠습니까? (y/n)'
+  RE_START: '다시 시작하시겠습니까? (y/n)',
 };
 
 export const LINE_BREAK = '';
 
-export const LOTTO_NUMBER_DELIMITER = ","
+export const LOTTO_NUMBER_DELIMITER = ',';
 
-export const YES = "y"
-export const NO = "n"
+export const YES = 'y';
+export const NO = 'n';
