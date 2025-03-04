@@ -1,20 +1,20 @@
 import { LOTTO_SYSTEM } from './constants/LottoSystem.js';
 import { calculateRevenue } from './domain/calculateRevenue.js';
-import { getLottos } from './domain/getLottos.js';
+import { generateLottos } from './domain/generateLottos.js';
 import { getWinningMatchCount } from './domain/getWinningMatchCount.js';
 import WinningLotto from './domain/WinningLotto.js';
 import { checkReplay } from './utils/checkReplay.js';
 import { parseWinningNumbers } from './utils/parseString.js';
-import { isYesOrNo } from './validation/validateInput.js';
+import { validateRestart } from './validation/validateInput.js';
 import { validateBonusNumber, validateWinningNumbers } from './validation/validateLottoNumbers.js';
 import { validatePurchasePrice } from './validation/validatePurchasePrice.js';
-import handleUserInput from './view/handleUserInput.js';
-import { printPurchasedQuantity, printLottos, printStatistics } from './view/output.js';
+import handleUserInput from './view/console/handleUserInput.js';
+import { printPurchasedQuantity, printLottos, printStatistics } from './view/console/output.js';
 
 async function run() {
   const purchasePrice = Number(await handleUserInput(INPUT.PURCHASE_PRICE, validatePurchasePrice));
   const quantityOfLottos = Math.floor(purchasePrice / LOTTO_SYSTEM.MIN_PURCHASE_PRICE);
-  const lottos = getLottos(quantityOfLottos);
+  const lottos = generateLottos(quantityOfLottos);
   printPurchasedQuantity(quantityOfLottos);
   printLottos(lottos.map((lotto) => `[${lotto.getNumbers().join(', ')}]`));
 
@@ -23,14 +23,14 @@ async function run() {
 
   const stirngOfbonusNumber = await handleUserInput(INPUT.BONUS_NUMBER, validateBonusNumber(winningNumbers));
   const bonusNumber = Number(stirngOfbonusNumber);
-  const lottoNumbers = new WinningLotto(winningNumbers, bonusNumber);
+  const winningLotto = new WinningLotto(winningNumbers, bonusNumber);
 
-  const matchCounts = getWinningMatchCount(lottos, lottoNumbers);
+  const matchCounts = getWinningMatchCount(lottos, winningLotto);
   const revenue = calculateRevenue(matchCounts, purchasePrice);
 
   printStatistics(matchCounts, revenue);
 
-  const yesOrNo = await handleUserInput(INPUT.REPLAY_GAME, isYesOrNo);
+  const yesOrNo = await handleUserInput(INPUT.REPLAY_GAME, validateRestart);
   await checkReplay(yesOrNo, run);
 }
 

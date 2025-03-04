@@ -1,4 +1,24 @@
-/**
- * step 2의 시작점이 되는 파일입니다.
- * 노드 환경에서 사용하는 readline 등을 불러올 경우 정상적으로 빌드할 수 없습니다.
- */
+import { DOM } from './DOM/dom.js';
+import { handleBonusNumberInput, handlePurchaseSubmit, handleWinningNumberInput } from './view/web/inputHandler.js';
+import { handleRestartButtonClick, handleResultButtonClick } from './view/web/buttonHandler.js';
+import { handleModalCloseClick } from './view/web/uiHandler.js';
+
+DOM.purchaseForm.addEventListener('submit', handlePurchaseSubmit);
+
+DOM.winningInputs.forEach((input, index) => {
+  input.addEventListener('input', (event) => {
+    handleWinningNumberInput(index, event.target.value);
+  });
+});
+
+DOM.bonusInput.addEventListener('input', (event) => {
+  handleBonusNumberInput(event.target.value);
+});
+
+document.addEventListener('click', (event) => {
+  if (event.target && event.target.id === 'result-button') handleResultButtonClick();
+
+  if (event.target && event.target.classList.contains('modal-close')) handleModalCloseClick();
+
+  if (event.target && event.target.id === 'restart-button') handleRestartButtonClick();
+});

@@ -6,29 +6,27 @@ export const validateLottoNumbers = (lottoNumbers) => {
   if (!Array.isArray(lottoNumbers)) {
     lottoNumbers = [lottoNumbers];
   }
+
   lottoNumbers.forEach((value) => {
     const lottoNumber = Number(value);
-    hasEmptyString(value);
-    isValueInteger(lottoNumber);
-    checkRangeOfLottoNumber(lottoNumber);
+    if (hasEmptyString(value)) throw new Error(ERROR.EMPTY_VALUE);
+    if (!isValueInteger(lottoNumber)) throw new Error(ERROR.NOT_POSITIVE_INTEGER);
+    if (!isInRangeOfLottoNumber(lottoNumber)) throw new Error(ERROR.NOT_RANGE_OF_WINNING_NUMBER);
   });
 };
 
-export const checkRangeOfLottoNumber = (input) => {
-  if (input < LOTTO_SYSTEM.MIN_LOTTO_NUMBER || input > LOTTO_SYSTEM.MAX_LOTTO_NUMBER) {
-    throw new Error(ERROR.NOT_RANGE_OF_WINNING_NUMBER);
-  }
-};
+export const isInRangeOfLottoNumber = (input) =>
+  input >= LOTTO_SYSTEM.SIZE.MIN_LOTTO_NUMBER && input <= LOTTO_SYSTEM.SIZE.MAX_LOTTO_NUMBER;
 
 export const validateWinningNumbers = (input) => {
-  const winningNumbers = input.split(',');
+  const winningNumbers = typeof input === 'string' ? input.split(',') : input;
   const winningNumberSet = new Set(winningNumbers);
 
-  if (winningNumbers.length !== LOTTO_SYSTEM.MAX_LENGTH) {
+  if (winningNumbers.length !== LOTTO_SYSTEM.SIZE.MAX_LENGTH) {
     throw new Error(ERROR.NOT_SAME_LENGTH_OF_WINNING_NUMBER);
   }
 
-  if (winningNumberSet.size !== LOTTO_SYSTEM.MAX_LENGTH) {
+  if (winningNumberSet.size !== LOTTO_SYSTEM.SIZE.MAX_LENGTH) {
     throw new Error(ERROR.DUPLICATED_WINNING_NUMBER);
   }
 
