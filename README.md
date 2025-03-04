@@ -1,3 +1,100 @@
+# Step 2
+
+### 📌 주요 변경 사항
+
+- Step 1에만 필요한 파일은 console 폴더에, Step 2에만 필요한 파일은 ui 폴더에 위치
+
+### 📌 About
+
+- React의 setState, componentDidMount, componentDidUpdate 등의 라이프사이클 메서드를 모방하여 상태 기반 UI 업데이트가 가능합니다.
+
+### 🏗 컴포넌트 구조
+
+- 상태 관리 `setState(newState)`
+
+  - `setState(newState)` 호출 시, 이전 state와 비교하여 변경된 state 키만 추적
+  - 변경된 state 목록(`changedKeys`)을 `componentDidUpdate(changedKeys)`에 전달하여 필요한 부분만 업데이트
+
+- 라이프사이클 메서드 지원
+
+  - `componentDidMount()`: 초기 렌더링 후 실행됨
+  - `componentDidUpdate(changedKeys)`: setState() 호출 후 변경된 state 목록을 기반으로 실행
+
+- 이벤트 핸들링 시스템
+
+  - events 객체를 사용하여 이벤트를 자동으로 등록
+  - `"eventType@selector": handler` 형식으로 선언
+  - `bindEvents()`에서 `querySelectorAll(selector)`로 해당하는 모든 요소에 이벤트 바인딩
+  - usage:
+
+  ```js
+  this.events = {
+    "submit@.lotto-form": this.submit.bind(this),
+    "click@.modal__restart": this.handleRestart.bind(this),
+  };
+  ```
+
+## 🎯 UI 상태 관리 패턴 정리
+
+### 🚀 목표
+
+- 가상 DOM 없이도 불필요한 렌더링을 최소화하는 방법을 고민
+
+### ❌ 기존 문제: setState() 호출 시 전체가 리렌더링됨
+
+- 초기 구현에서는 setState()를 호출하면 this.target.innerHTML = this.template()가 실행되며 전체 UI가 다시 렌더링
+- 이로 인해 input이 초기화되는 문제 발생 (ex: 숫자 입력 후 모달이 열리면 입력값이 초기화됨)
+
+### ✅ 최종 해결: state와 UI 업데이트 동작을 미리 연결하자!
+
+#### 1. watchState()로 특정 state가 변경될 때 실행할 UI 업데이트 함수 등록
+
+- 특정 state가 변경될 때 실행해야 하는 UI 업데이트 로직을 `#stateToUIMap`에 저장
+- `setState()`가 실행되면 `componentDidUpdate([...this.#changedKeys]);`에서 변경된 state만 업데이트
+
+```js
+watchState(stateKey, callback) {
+  this.#stateToUIMap[stateKey] = callback;
+}
+```
+
+usage:
+
+```js
+setup() {
+  this.state = {
+    price: 0,
+    lottoBundle: [],
+    winningNumbers: Array(Lotto.SIZE).fill(""),
+    bonusNumber: "",
+    opened: false,
+  };
+
+  this.watchState("price", this.renderLottoUI.bind(this));
+  this.watchState("opened", this.toggleModal.bind(this));
+}
+```
+
+#### 2. 변경된 state에 따라 UI 업데이트 실행
+
+```js
+componentDidUpdate(changedKeys) {
+  changedKeys.forEach((key) => {
+    if (this.#stateToUIMap[key]) {
+      this.#stateToUIMap[key](); // 등록된 UI 업데이트 함수 실행
+    }
+  });
+}
+```
+
+- price가 변경되면 renderLottoList(), renderWinningNumbersForm()만 실행
+- opened 상태가 변경되면 renderResultModal()만 실행
+
+<br>
+<br>
+
+# Step 1
+
 ## 폴더 구조
 
 ```

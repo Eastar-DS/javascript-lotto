@@ -1,0 +1,79 @@
+#lotto-game {
+  width: min(100%, 400px);
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  border-radius: 5px;
+  padding: 40px 16px;
+  margin: 20px;
+  display: flex;
+  flex-direction: column;
+
+  h2 {
+    margin-inline: auto;
+  }
+}
+
+.lotto-form {
+  display: flex;
+  flex-direction: column;
+  margin-block: 20px;
+
+  & > div {
+    display: flex;
+    gap: 16px;
+    margin-top: 8px;
+  }
+
+  input {
+    border: 1px solid var(--color-greyscale-3);
+    padding: 8px;
+    border-radius: 2px;
+    flex: 1;
+  }
+}
+
+.lotto-list__item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-block: 5px;
+
+  span:first-child {
+    font-size: 3.6rem;
+    padding-top: 5px;
+  }
+}
+
+#winning-numbers-form {
+  margin-top: auto;
+  & > div {
+    display: flex;
+    justify-content: space-between;
+  }
+}
+.winning-numbers {
+  display: flex;
+  flex-direction: column;
+  margin-top: 10px;
+}
+
+.winning-numbers__bonus {
+  align-items: flex-end;
+}
+
+.winning-numbers > div {
+  display: flex;
+  gap: 4px;
+  margin-top: 8px;
+}
+
+.number__input {
+  width: 36px;
+  height: 36px;
+  border: 1px solid var(--color-greyscale-3);
+  border-radius: 5px;
+}
+
+.open-result-button {
+  width: 100%;
+  margin-top: 20px;
+}
