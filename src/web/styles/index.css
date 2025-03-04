@@ -1,0 +1,5 @@
+@import "./static.css";
+@import "./reset.css";
+@import "./variables.css";
+@import "../prepareCompare/prepareCompare.css";
+@import "../winningResult/winningResult.css";
