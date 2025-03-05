@@ -1,0 +1,51 @@
+.prize-result-modal[open] {
+  width: 350px;
+  height: 500px;
+  padding: var(--default-padding);
+
+  font-size: 15px;
+  line-height: 24px;
+}
+
+.result-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.result-container > h2 {
+  height: 24px;
+
+  font-weight: 700;
+  font-size: 20px;
+}
+
+.result-container > h3 {
+  height: 24px;
+  margin: 32px 0;
+
+  font-weight: 600;
+  font-size: 110%;
+}
+
+.result-container tr {
+  border-width: 1px 0;
+}
+
+.restart-button {
+  font-weight: 700;
+}
+
+.result-container > .close-button {
+  width: 14px;
+  height: 14px;
+
+  position: fixed;
+  align-self: end;
+
+  background: none;
+}
+
+.close-button > img {
+  width: 100%;
+  height: 100%;
+}
