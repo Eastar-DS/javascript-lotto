@@ -1,4 +1,21 @@
-/**
- * step 2의 시작점이 되는 파일입니다.
- * 노드 환경에서 사용하는 readline 등을 불러올 경우 정상적으로 빌드할 수 없습니다.
- */
+import $lottoHeader from './components/lottoHeader/lottoHeader.js';
+import handleLottoPurchase from './domain/lottoPurchase.js';
+import LottoMachine from './domain/model/LottoMachine.js';
+
+const lottoStart = () => {
+  const lottoMachine = new LottoMachine();
+  const lottoContainer = document.getElementById('lottoContainer');
+  lottoContainer.innerHTML = '';
+
+  lottoContainer.appendChild($lottoHeader());
+
+  const lottoBuyForm = document.getElementById('lottoBuyForm');
+  const handleLottoPurchaseSubmit = (e) => {
+    handleLottoPurchase(e, lottoMachine);
+  };
+  lottoBuyForm.addEventListener('submit', handleLottoPurchaseSubmit);
+};
+
+lottoStart();
+
+export default lottoStart;
