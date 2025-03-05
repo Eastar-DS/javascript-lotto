@@ -1,0 +1,36 @@
+@import "./Nav.css";
+@import "./Footer.css";
+
+@import "./Button.css";
+@import "./Modal.css";
+
+@import "./LottoGame.css";
+@import "./PurchaseForm.css";
+@import "./LottoPurchaseHistory.css";
+@import "./LottoHistoryItem.css";
+@import "./LottoWinningInfoForm.css";
+@import "./WinningStatistic.css";
+@import "./StatisticsTable.css";
+
+:root {
+  --main-color: #4e5ba6;
+  --light-gray: #b4b4b4;
+  --dark-gray: #8b8b8b;
+}
+
+body {
+  margin: 0px;
+  height: 100%;
+}
+
+html,
+body {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.container {
+  flex: 1;
+  padding: 50px 0;
+}

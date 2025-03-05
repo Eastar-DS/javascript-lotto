@@ -1,0 +1,27 @@
+.winning-static-container {
+  height: calc(100% - 20px);
+  display: flex;
+  flex-direction: column;
+}
+
+.winning-static-title {
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
+  margin-top: 10px;
+  margin-bottom: 30px;
+}
+
+.rate-text {
+  font-size: 15px;
+  font-weight: bold;
+  text-align: center;
+  margin: 30px 0;
+}
+
+.winning-static-footer {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  flex-grow: 1;
+}

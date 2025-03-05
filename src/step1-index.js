@@ -2,8 +2,8 @@ import { INPUT, OUTPUT, RETRY_STRING, ERROR } from "./constants/message.js";
 import Input from "./view/Input.js";
 import Output from "./view/Output.js";
 import { divideByUnit } from "./utils/count.js";
-import PriceValidator from "./validation/PriceValidator.js";
-import BonusNumberValidator from "./validation/BonusNumberValidator.js";
+import validatePrice from "./validation/validatePrice.js";
+import validateBonusNumber from "./validation/validateBonusNumber.js";
 import Lotto from "./domain/Lotto.js";
 import LottoMachine from "./domain/LottoMachine.js";
 import LottoResult from "./domain/LottoResult.js";
@@ -19,7 +19,7 @@ import LottoFactory from "./domain/LottoFactory.js";
 const priceInput = async () =>
   Input.retry(async () => {
     const input = await Input.readLineAsync(INPUT.PRICE);
-    new PriceValidator().validatePrice(Number(input));
+    validatePrice(Number(input));
     return Number(input);
   });
 
@@ -33,10 +33,7 @@ const getNeededLottoNumbers = async () => {
 
   const bonusLottoNumber = await Input.retry(async () => {
     const input = await Input.readLineAsync(INPUT.BONUS_NUMBER);
-    new BonusNumberValidator().validateBonusNumber(
-      winningLotto.getLottoNumbers(),
-      Number(input)
-    );
+    validateBonusNumber(winningLotto.getLottoNumbers(), Number(input));
     return Number(input);
   });
   return { winningLotto, bonusLottoNumber };

@@ -1,0 +1,12 @@
+.lotto-history-list {
+  padding: 0;
+}
+
+.hidden {
+  visibility: hidden;
+}
+
+.lotto-list-wrap {
+  overflow-y: auto;
+  height: 300px;
+}
