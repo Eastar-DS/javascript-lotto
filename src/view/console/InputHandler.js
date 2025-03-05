@@ -1,5 +1,5 @@
-import readLineAsync from "../util/readLineAsync.js";
-import OutputView from "./outputView.js";
+import readLineAsync from "../../util/readLineAsync.js";
+import OutputView from "./OutputView.js";
 
 const InputHandler = async ({ inputMessage, parser, validator }) => {
   try {

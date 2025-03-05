@@ -1,0 +1,148 @@
+.body_container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+  padding: 84px 0px;
+  box-sizing: border-box;
+}
+
+.body_wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 414px;
+  height: 727px;
+  padding: 32px 16px;
+  border-radius: 4px;
+  border: solid 1px rgba(0, 0, 0, 0.12);
+  background-color: white;
+}
+
+.body_title {
+  font-weight: 800;
+  font-size: 24px;
+  margin-bottom: 24px;
+  line-height: 1.5;
+}
+
+.purchase_wrapper {
+  width: 100%;
+  padding-top: 28px;
+}
+
+.purchase_input_wrapper {
+  display: flex;
+  align-items: center;
+  padding-top: 4px;
+  gap: 16px;
+}
+
+.body_text {
+  font-size: 15px;
+  font-weight: normal;
+  text-align: left;
+  line-height: 1.6;
+}
+
+.purchase_input {
+  width: 100%;
+  height: 36px;
+  border-radius: 4px;
+  border: solid 1px #b4b4b4;
+  padding: 6px 8px;
+  box-sizing: border-box;
+}
+
+.purchase_button {
+  width: 56px;
+  height: 36px;
+  border-radius: 4px;
+  border: none;
+  background-color: #4e5ba6;
+  color: white;
+}
+
+.lotto_list_wrapper {
+  width: 100%;
+  padding-top: 28px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+  align-items: flex-start;
+}
+
+.lotto_list {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  flex: 1;
+  overflow-y: auto;
+  padding-top: 8px;
+}
+
+.lotto_row {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.lotto_icon {
+  font-size: 34px;
+  text-align: center;
+  padding-top: 4px;
+}
+
+.number_input_form {
+  padding-top: 24px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.number_input_container {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 12px;
+}
+
+.number_input_box {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.number_input_wrapper {
+  display: flex;
+  gap: 8px;
+}
+
+.number_input {
+  width: 34px;
+  height: 36px;
+  border-radius: 4px;
+  border: solid 1px #b4b4b4;
+  box-sizing: border-box;
+  padding: 8px;
+}
+
+.result_button_wrapper {
+  padding-top: 28px;
+  width: 100%;
+}
+
+.result_button {
+  width: 100%;
+  height: 36px;
+  padding: 6px;
+  border-radius: 4px;
+  background-color: #4e5ba6;
+  border: none;
+  color: white;
+}
+
+button:disabled {
+  background-color: #b4b4b4;
+}

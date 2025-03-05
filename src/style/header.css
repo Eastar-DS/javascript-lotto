@@ -1,0 +1,14 @@
+.header_container {
+  width: 100%;
+  background-color: #4e5ba6;
+  height: 64px;
+  padding: 14px 130px;
+  box-sizing: border-box;
+}
+
+.header_title {
+  font-size: 24px;
+  font-weight: 800;
+  line-height: 1.5;
+  color: white;
+}

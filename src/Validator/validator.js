@@ -12,13 +12,13 @@ import {
   isValidArrayLength,
 } from "../util/validations.js";
 import { throwCustomError } from "../util/throwCustomError.js";
+import { createValidator } from "./createValidator.js";
+import { ERROR_TYPE } from "../constant/errorType.js";
 
 const Validator = {
   validatePurchaseMoney(purchaseMoney) {
-    if (!isNumber(purchaseMoney))
-      throwCustomError(ERROR_MESSAGE.purchaseMoney.notNumber);
-    if (!isInteger(purchaseMoney))
-      throwCustomError(ERROR_MESSAGE.purchaseMoney.notInteger);
+    this.validateNumber(purchaseMoney, ERROR_TYPE.purchaseMoney);
+
     if (isLessThanMin(purchaseMoney, 1))
       throwCustomError(ERROR_MESSAGE.purchaseMoney.notPositive);
     if (!isMultipleOfUnit(purchaseMoney, LOTTO_RULE.purchaseUnit))
@@ -27,18 +27,8 @@ const Validator = {
 
   validateWinningNumbers(winningNumbers) {
     winningNumbers.forEach((winningNumber) => {
-      if (!isNumber(winningNumber))
-        throwCustomError(ERROR_MESSAGE.winningNumbers.notNumber);
-      if (!isInteger(winningNumber))
-        throwCustomError(ERROR_MESSAGE.winningNumbers.notInteger);
-      if (
-        !isInRange(
-          winningNumber,
-          LOTTO_RULE.lottoNumber.min,
-          LOTTO_RULE.lottoNumber.max
-        )
-      )
-        throwCustomError(ERROR_MESSAGE.winningNumbers.notInRange);
+      this.validateNumber(winningNumber, ERROR_TYPE.winningNumbers);
+      this.validateLottoNumberRange(winningNumber, ERROR_TYPE.winningNumbers);
     });
 
     if (isDuplicated(winningNumbers)) {
@@ -50,22 +40,38 @@ const Validator = {
   },
 
   validateBonusNumber(winningNumbers, bonusNumber) {
-    if (!isNumber(bonusNumber))
-      throwCustomError(ERROR_MESSAGE.bonusNumber.notNumber);
+    this.validateNumber(bonusNumber, ERROR_TYPE.bonusNumber);
+    this.validateLottoNumberRange(bonusNumber, ERROR_TYPE.bonusNumber);
 
-    if (!isInteger(bonusNumber))
-      throwCustomError(ERROR_MESSAGE.bonusNumber.notInteger);
-
-    if (
-      !isInRange(
-        bonusNumber,
-        LOTTO_RULE.lottoNumber.min,
-        LOTTO_RULE.lottoNumber.max
-      )
-    )
-      throwCustomError(ERROR_MESSAGE.bonusNumber.notInRange);
     if (isIncludesInArray(winningNumbers, bonusNumber))
       throwCustomError(ERROR_MESSAGE.bonusNumber.duplicateWithWinningNumber);
+  },
+
+  validateNumber(number, type) {
+    createValidator(
+      [
+        [isNumber, ERROR_MESSAGE[type].notNumber],
+        [isInteger, ERROR_MESSAGE[type].notInteger],
+      ],
+      number
+    );
+  },
+
+  validateLottoNumberRange(lottoNumber, type) {
+    createValidator(
+      [
+        [
+          (num) =>
+            isInRange(
+              num,
+              LOTTO_RULE.lottoNumber.min,
+              LOTTO_RULE.lottoNumber.max
+            ),
+          ERROR_MESSAGE[type].notInRange,
+        ],
+      ],
+      lottoNumber
+    );
   },
 
   validateRestartRequest(input) {

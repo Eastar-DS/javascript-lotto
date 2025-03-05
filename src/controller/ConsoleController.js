@@ -1,11 +1,9 @@
-import LottoCalculator from "./domain/lottoCalculator.js";
-import LottoMachine from "./domain/lottoMachine.js";
-import InputView from "./view/InputView.js";
-import OutputView from "./view/outputView.js";
+import LottoCalculator from "../domain/lottoCalculator.js";
+import LottoMachine from "../domain/lottoMachine.js";
+import InputView from "../view/console/InputView.js";
+import OutputView from "../view/console/OutputView.js";
 
-class App {
-  #lottoCalculator;
-
+class ConsoleController {
   async run() {
     const purchaseMoney = await InputView.getPurchaseMoney();
 
@@ -16,8 +14,8 @@ class App {
     const winningNumbers = await InputView.getWinningNumbers();
     const bonusNumber = await InputView.getBonusNumber(winningNumbers);
 
-    this.#lottoCalculator = new LottoCalculator(winningNumbers, bonusNumber);
-    const result = this.#lottoCalculator.calculateResult(lottos, purchaseMoney);
+    const lottoCalculator = new LottoCalculator(winningNumbers, bonusNumber);
+    const result = lottoCalculator.calculateResult(lottos, purchaseMoney);
     OutputView.printResult(result);
 
     await this.restart();
@@ -31,4 +29,4 @@ class App {
   }
 }
 
-export default App;
+export default ConsoleController;

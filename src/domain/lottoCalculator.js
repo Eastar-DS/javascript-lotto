@@ -47,7 +47,10 @@ class LottoCalculator {
     if (matchCount < 3 || matchCount > 6) {
       return null;
     }
-    return MATCH_TO_RANK_TABLE[matchCount][isMatchBonus];
+
+    const key = `${matchCount}_${isMatchBonus ? "bonus" : "noBonus"}`;
+
+    return MATCH_TO_RANK_TABLE[key];
   }
 
   calculateTotalPrice() {

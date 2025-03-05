@@ -1,5 +1,5 @@
 import InputHandler from "./InputHandler.js";
-import Validator from "../Validator/validator.js";
+import Validator from "../../Validator/validator.js";
 
 class InputView {
   static async getPurchaseMoney() {

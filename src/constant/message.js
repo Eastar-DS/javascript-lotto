@@ -5,7 +5,7 @@ export const ERROR_MESSAGE = {
     notNumber: "구입 금액은 숫자로 입력해야 합니다.",
     notInteger: "구입 금액은 정수로 입력해야 합니다.",
     notPositive: "구입 금액은 양수로 입력해야 합니다.",
-    notMultipleOfPurchaseUnit: `[ERROR] 구입 금액은 ${LOTTO_RULE.purchaseUnit}원 단위로 입력해야 합니다.`,
+    notMultipleOfPurchaseUnit: `구입 금액은 ${LOTTO_RULE.purchaseUnit}원 단위로 입력해야 합니다.`,
   },
   winningNumbers: {
     notNumber: "당첨번호는 숫자로 입력해야 합니다.",
