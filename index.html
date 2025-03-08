@@ -3,14 +3,115 @@
   <head>
     <meta charset="UTF-8" />
     <title>🎱 행운의 로또</title>
+    <link rel="stylesheet" href="./CSS/main.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
   </head>
 
   <body>
     <div id="app">
-      <h1>🎱 행운의 로또</h1>
+      <div class="header">
+        <h1 class="lotto-title">🎱 행운의 로또</h1>
+      </div>
+      <div class="body">
+        <div class="body-container">
+          <p class="body-title">🎱 내 번호 당첨 확인 🎱</p>
+          <div class="purchase-container">
+            <p class="body-text">구입할 금액을 입력해주세요.</p>
+            <div class="purchase-input-container">
+              <input type="text" class="purchase-input" placeholder="구입" />
+              <button class="purchase-button">구입</button>
+            </div>
+          </div>
+          <div class="lotto-list-container">
+            <p class="body-text"></p>
+            <div class="lotto-list"></div>
+          </div>
+          <div class="number-input-form">
+            <p class="body-text">
+              지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.
+            </p>
+            <div class="number-input-container">
+              <div class="number-input">
+                <p class="body-text">당첨 번호</p>
+                <div class="number-input-box">
+                  <input class="winning-number" />
+                  <input class="winning-number" />
+                  <input class="winning-number" />
+                  <input class="winning-number" />
+                  <input class="winning-number" />
+                  <input class="winning-number" />
+                </div>
+              </div>
+              <div class="number-input">
+                <p class="body-text">보너스 번호</p>
+                <div class="number-input-box">
+                  <input class="bonus-number" />
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="result-button-container">
+            <button class="result-button">결과 확인하기</button>
+          </div>
+        </div>
+
+        <div class="modal">
+          <div class="modal-header">
+            <div class="modal-close-button-container">
+              <button class="modal-close-button">
+                <img src="./image/Vector.svg" alt="Close" />
+              </button>
+            </div>
+            <div class="modal-container">
+              <p class="modal-title">🏆 당첨 통계 🏆</p>
+              <div class="modal-table">
+                <div class="modal-table-divider"></div>
+                <div class="modal-table-row">
+                  <p class="modal-table-cell">일치 갯수</p>
+                  <p class="modal-table-cell">당첨금</p>
+                  <p class="modal-table-cell">당첨 갯수</p>
+                </div>
+                <div class="modal-table-divider"></div>
+                <div class="modal-table-row">
+                  <p class="modal-table-cell">3개</p>
+                  <p class="modal-table-cell">5,000</p>
+                  <p class="modal-table-cell">n개</p>
+                </div>
+                <div class="modal-table-divider"></div>
+                <div class="modal-table-row">
+                  <p class="modal-table-cell">4개</p>
+                  <p class="modal-table-cell">50,000</p>
+                  <p class="modal-table-cell">n개</p>
+                </div>
+                <div class="modal-table-divider"></div>
+                <div class="modal-table-row">
+                  <p class="modal-table-cell">5개</p>
+                  <p class="modal-table-cell">1,500,000</p>
+                  <p class="modal-table-cell">n개</p>
+                </div>
+                <div class="modal-table-divider"></div>
+                <div class="modal-table-row">
+                  <p class="modal-table-cell">5개+보너스볼</p>
+                  <p class="modal-table-cell">30,000,000</p>
+                  <p class="modal-table-cell">n개</p>
+                </div>
+                <div class="modal-table-divider"></div>
+                <div class="modal-table-row">
+                  <p class="modal-table-cell">6개</p>
+                  <p class="modal-table-cell">2,000,000,000</p>
+                  <p class="modal-table-cell">n개</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <p>Copyright 2023. woowacourse</p>
+      </footer>
     </div>
-    <script type="module" src="./src/step2-index.js"></script>
   </body>
+  <script type="module" src="./src/step2-index.js" defer></script>
 </html>

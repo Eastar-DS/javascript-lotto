@@ -1,31 +1,25 @@
-import { RANK_INFO_TABLE } from "./constant/rank.js";
 import LottoCalculator from "./domain/lottoCalculator.js";
 import LottoMachine from "./domain/lottoMachine.js";
-import inputView from "./view/InputView.js";
-import outputView from "./view/outputView.js";
+import inputView from "./Input.js";
+import outputView from "./output.js";
 
 class App {
   #lottoCalculator;
 
   async run() {
-    const purchaseMoney = await inputView.getPurchaseMoney();
+    this.purchaseMoney = await inputView.getPurchaseMoney();
 
     const lottoMachine = new LottoMachine();
+    const lottoCount = lottoMachine.getLottoCount(this.purchaseMoney);
+    this.lottos = lottoMachine.drawLotto(lottoCount);
 
-    const lottoCount = lottoMachine.getLottoCount(purchaseMoney);
-    const lottos = lottoMachine.drawLotto(lottoCount);
     outputView.printLottoCount(lottoCount);
-    outputView.printLotto(lottos);
+    outputView.printLotto(this.lottos);
 
     const winningNumbers = await inputView.getWinningNumbers();
     const bonusNumber = await inputView.getBonusNumber(winningNumbers);
 
     this.#lottoCalculator = new LottoCalculator(winningNumbers, bonusNumber);
-
-    this.calculateResult(lottos, purchaseMoney);
-    this.printResult();
-
-    await this.restart();
   }
 
   calculateResult(lottos, purchaseMoney) {
@@ -42,18 +36,7 @@ class App {
   }
 
   printResult() {
-    console.log("당첨 통계");
-    console.log("--------------------");
-    this.prize.forEach((rankLottos, index) => {
-      const rank = index + 1;
-      const info = RANK_INFO_TABLE[rank];
-      console.log(
-        `${info.message} (${info.price.toLocaleString()}원) - ${
-          rankLottos.lottos.length
-        }개`
-      );
-    });
-    console.log(`총 수익률은 ${this.profit}%입니다.`);
+    outputView.printResult(this.prize, this.profit);
   }
 
   async restart() {
