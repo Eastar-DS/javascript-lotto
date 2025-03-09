@@ -1,4 +1,24 @@
-/**
- * step 2의 시작점이 되는 파일입니다.
- * 노드 환경에서 사용하는 readline 등을 불러올 경우 정상적으로 빌드할 수 없습니다.
- */
+import LottoGame from "./LottoGame.js";
+import LottoUI from "./LottoUI.js";
+
+const lottoUi = new LottoUI();
+const lottoGame = new LottoGame(lottoUi);
+
+document.querySelector("#purchase-form").addEventListener("submit", async (event) => {
+  event.preventDefault();
+  const priceInput = document.querySelector("#purchase-input").value;
+  lottoGame.purchaseLotto(priceInput);
+});
+
+document.querySelector(".show-result-btn").addEventListener("click", (event) => {
+  event.preventDefault();
+  lottoGame.showWinningResult();
+});
+
+document.querySelector(".close-btn").addEventListener('click', () => {
+  lottoUi.closeResultModal();
+});
+
+document.querySelector(".restart-btn").addEventListener("click", () => {
+  lottoGame.resetGame();
+});

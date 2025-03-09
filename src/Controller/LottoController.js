@@ -7,9 +7,8 @@ import Winning from '../Model/Winning.js';
 class LottoController {
   async start() {
     const { price, lottos } = await this.#buyLotto();
-    const { winningNumbers, bonusNumber } = await this.#getWinningNumbers();
+    const winning = await this.#getWinningNumbers();
 
-    const winning = new Winning(winningNumbers, bonusNumber);
     this.#processWinningResult(winning, lottos);
     this.#processPrizeResult(winning, price);
 
@@ -32,9 +31,11 @@ class LottoController {
   }
 
   async #getWinningNumbers() {
-    const winningNumbers = await this.#readWinningNumbers();
-    const bonusNumber = await this.#readBonusNumber(winningNumbers);
-    return { winningNumbers, bonusNumber };
+    const winning = await this.#readWinningNumbers();
+    const bonusNumber = await this.#readBonusNumber(winning);
+
+    winning.setBonusNumber(bonusNumber);
+    return winning;
   }
 
   #processWinningResult(winning, lottos) {
@@ -48,35 +49,39 @@ class LottoController {
   }
 
   async #readPrice() {
-    try {
-      const price = await InputView.readPrice();
-      Validate.validatePrice(price);
-      return price;
-    } catch (error) {
-      OutputView.printErrorMessage(error.message);
-      return this.#readPrice();
+    while (true) {
+      try {
+        const price = await InputView.readPrice();
+        Validate.validatePrice(price);
+        return price;
+      } catch (error) {
+        OutputView.printErrorMessage(error.message);
+      }
     }
   }
 
   async #readWinningNumbers() {
-    try {
-      const winningNumbers = await InputView.readWinningNumbers();
-      Validate.validateWinningNumbers(winningNumbers);
-      return winningNumbers.split(',').map(Number);
-    } catch (error) {
-      OutputView.printErrorMessage(error.message);
-      return this.#readWinningNumbers();
+    while (true) {
+      try {
+        const winningNumbers = await InputView.readWinningNumbers();
+        Validate.checkIsEmpty(winningNumbers);
+        return new Winning(winningNumbers.split(','));
+      } catch (error) {
+        OutputView.printErrorMessage(error.message);
+      }
     }
   }
 
-  async #readBonusNumber(winningNumbers) {
-    try {
-      const bonusNumber = await InputView.readBonusNumbers();
-      Validate.validateBonusNumber(bonusNumber, winningNumbers);
-      return Number(bonusNumber);
-    } catch (error) {
-      OutputView.printErrorMessage(error.message);
-      return this.#readBonusNumber(winningNumbers);
+  async #readBonusNumber(winning) {
+    while (true) {
+      try {
+        const bonusNumber = await InputView.readBonusNumbers();
+        Validate.checkIsEmpty(bonusNumber);
+        winning.validateBonusNumber(bonusNumber);
+        return Number(bonusNumber);
+      } catch (error) {
+        OutputView.printErrorMessage(error.message);
+      }
     }
   }
 
