@@ -1,21 +1,33 @@
-import { COMMAND, ERROR_MESSAGES, LOTTO_PRICE, MAX_LOTTO_NUMBER, MIN_LOTTO_NUMBER } from '../lib/constants.js';
+import {
+  ERROR_MESSAGES,
+  LOTTO_PRICE,
+  MAX_LOTTO_NUMBER,
+  MAX_LOTTO_PURCHASE_AMOUNT,
+  MIN_LOTTO_NUMBER,
+  NO,
+  YES,
+} from '../lib/constants.js';
 import { checkUniqueArray } from '../lib/utils.js';
 
-class Validator {
+export default class Validator {
   static validatePurchaseAmount(purchaseAmount) {
-    if (!this.#checkIsPositiveInteger(purchaseAmount)) {
+    if (!this.#checkPositiveInteger(purchaseAmount)) {
       throw new Error(ERROR_MESSAGES.purchaseAmount.positiveInteger);
     }
 
     if (purchaseAmount % LOTTO_PRICE !== 0) {
       throw new Error(ERROR_MESSAGES.purchaseAmount.thousandUnit);
     }
+
+    if (purchaseAmount > MAX_LOTTO_PURCHASE_AMOUNT) {
+      throw new Error(ERROR_MESSAGES.purchaseAmount.maxAmount);
+    }
   }
 
   static validateWinNumbers(winNumbers) {
     if (
       winNumbers.length !== 6 ||
-      winNumbers.some((number) => !this.#checkIsInLottoNumberRange(number) || !this.#checkIsPositiveInteger(number))
+      winNumbers.some((number) => !this.#checkInLottoNumberRange(number) || !this.#checkPositiveInteger(number))
     ) {
       throw new Error(ERROR_MESSAGES.winNumber.range);
     }
@@ -26,7 +38,7 @@ class Validator {
   }
 
   static validateBonusNumber(bonusNumber, winNumbers) {
-    if (!this.#checkIsPositiveInteger(bonusNumber) || !this.#checkIsInLottoNumberRange(bonusNumber)) {
+    if (!this.#checkPositiveInteger(bonusNumber) || !this.#checkInLottoNumberRange(bonusNumber)) {
       throw new Error(ERROR_MESSAGES.bonusNumber.range);
     }
 
@@ -35,19 +47,17 @@ class Validator {
     }
   }
 
-  static #checkIsPositiveInteger(value) {
+  static #checkPositiveInteger(value) {
     return !Number.isNaN(value) && value > 0 && Number.isInteger(value);
   }
 
-  static #checkIsInLottoNumberRange(value) {
+  static #checkInLottoNumberRange(value) {
     return value >= MIN_LOTTO_NUMBER && value <= MAX_LOTTO_NUMBER;
   }
 
   static validateRetry(retryCommand) {
-    if (retryCommand !== COMMAND.yes && retryCommand !== COMMAND.no) {
+    if (retryCommand !== YES && retryCommand !== NO) {
       throw new Error(ERROR_MESSAGES.retry.yesOrNo);
     }
   }
 }
-
-export default Validator;

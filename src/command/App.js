@@ -1,29 +1,25 @@
-import LottoCompany from './domain/LottoCompany.js';
-import LottoShop from './domain/LottoShop.js';
-import { calculateProfitRate, retryUntilSuccess } from './lib/utils.js';
-import InputView from './views/InputView.js';
-import OutputView from './views/OutputView.js';
+import { LottoCompany, LottoShop } from '../domain/index.js';
+import { calculateProfitRate, retryUntilSuccess } from '../lib/utils.js';
+import { InputView, OutputView } from './views/index.js';
 
-class App {
+export default class App {
   async run() {
     const purchaseAmount = await this.#retryReadUntilSuccess(InputView.readPurchaseAmount);
-    const purchaseCount = LottoShop.calculateLottoCount(purchaseAmount);
-    OutputView.printPurchaseCount(purchaseCount);
-    const purchasedLottos = LottoShop.createLotto(purchaseCount);
+    const purchasedLottos = LottoShop.createLotto(purchaseAmount);
+    OutputView.printPurchaseCount(purchasedLottos.length);
 
     OutputView.printPurchasedLottos(purchasedLottos);
 
     const winNumbers = await this.#retryReadUntilSuccess(InputView.readWinNumbers);
-
     const bonusNumber = await this.#retryReadUntilSuccess(() => InputView.readBonusNumber(winNumbers));
 
     const lottoCompany = new LottoCompany(winNumbers, bonusNumber);
-    const lottoRanks = lottoCompany.calculateLottoRanks(purchasedLottos);
+    const lottoRankMap = lottoCompany.calculateLottoRanks(purchasedLottos);
 
-    const totalPrize = lottoCompany.calculateTotalProfit(lottoRanks);
+    const totalPrize = lottoCompany.calculateTotalProfit(lottoRankMap);
     const profitRate = calculateProfitRate(totalPrize, purchaseAmount);
 
-    OutputView.printStatistics(lottoRanks);
+    OutputView.printStatistics(lottoRankMap);
     OutputView.printProfitRate(profitRate);
 
     const isRetry = await this.#retryReadUntilSuccess(InputView.readRetry);
@@ -34,5 +30,3 @@ class App {
     return retryUntilSuccess(callbackFunction, (error) => OutputView.printErrorMessage(error));
   }
 }
-
-export default App;

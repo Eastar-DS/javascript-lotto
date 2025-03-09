@@ -2,12 +2,10 @@ import { LOTTO_LENGTH, LOTTO_PRICE, MAX_LOTTO_NUMBER, MIN_LOTTO_NUMBER } from '.
 import { generateUniqueNumbers } from '../lib/utils.js';
 import Lotto from './Lotto.js';
 
-class LottoShop {
-  static calculateLottoCount(purchaseAmount) {
-    return Math.floor(purchaseAmount / LOTTO_PRICE);
-  }
+export default class LottoShop {
+  static createLotto(purchaseAmount) {
+    const purchaseCount = Math.floor(purchaseAmount / LOTTO_PRICE);
 
-  static createLotto(purchaseCount) {
     return Array.from({ length: purchaseCount }, () => new Lotto(LottoShop.#createLottoNumber()));
   }
 
@@ -15,5 +13,3 @@ class LottoShop {
     return generateUniqueNumbers({ start: MIN_LOTTO_NUMBER, end: MAX_LOTTO_NUMBER }, LOTTO_LENGTH);
   }
 }
-
-export default LottoShop;

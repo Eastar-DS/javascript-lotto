@@ -1,6 +1,6 @@
 import { getIntersectCount } from '../lib/utils.js';
 
-class Lotto {
+export default class Lotto {
   #numbers;
 
   constructor(numbers) {
@@ -11,13 +11,11 @@ class Lotto {
     return getIntersectCount(this.#numbers, winNumbers);
   }
 
-  includes(bonusNumbers) {
-    return this.#numbers.includes(bonusNumbers);
+  includes(number) {
+    return this.#numbers.includes(number);
   }
 
   get numbers() {
     return this.#numbers;
   }
 }
-
-export default Lotto;
