@@ -1,0 +1,30 @@
+:root {
+  --lotto-primary-color: #4e5ba6;
+  --lotto-active-color: #354188;
+  --lotto-greyscale-1-color: #ffffff;
+  --lotto-greyscale-2-color: #fcfcfd;
+  --lotto-greyscale-3-color: #b4b4b4;
+  --lotto-greyscale-4-color: #8b8b8b;
+  --lotto-greyscale-5-color: #000000;
+
+  --border-color: rgba(0, 0, 0, 0.12);
+  --border-radius: 4px;
+
+  --body-text-size: 15px;
+  --body-font-weight: 400;
+
+  --button-text-size: 14px;
+  --button-font-weight: 700;
+}
+
+.hidden {
+  display: none;
+}
+
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  height: 100vh;
+}
