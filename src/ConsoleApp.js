@@ -6,9 +6,7 @@ import {
 } from './View/inputView.js';
 import { readUserInputUntilSuccess, convertFormat } from './View/utils.js';
 import Lotto from './Domain/Model/Lotto.js';
-import LottoMachine from './Domain/Model/LottoMachine.js';
 import WinningLotto from './Domain/Model/WinningLotto.js';
-import LottoManager from './Domain/Model/LottoManager.js';
 import { outputView } from './View/outputView.js';
 import { validatePurchaseAmount } from './View/Validation/purchaseAmount.js';
 import {
@@ -19,7 +17,10 @@ import { validateBonusNumber } from './View/Validation/bonusNumber.js';
 import { validateYorN } from './View/Validation/retry.js';
 import { validateEmptySpace } from './View/Validation/util.js';
 
-class App {
+import { buyLottos } from './Domain/buyLottos.js';
+import { getLottoResult } from './Domain/getLottoResult.js';
+
+class ConsoleApp {
   async #initializePurchaseAmount() {
     const purchaseAmountInput = await readUserInputUntilSuccess({
       readUserInput: getPurchaseAmountInput,
@@ -81,7 +82,7 @@ class App {
   async run() {
     const purchaseAmount = await this.#initializePurchaseAmount();
     const { lottoCounts, lottoNumbersList, lottoList } =
-      this.buyLottos(purchaseAmount);
+      buyLottos(purchaseAmount);
 
     outputView.printLottoCount(lottoCounts);
     outputView.printLottoList(lottoNumbersList);
@@ -94,7 +95,7 @@ class App {
       bonusNumber,
     );
 
-    const { lottoResult, lottoProfit } = this.getLottoResult(
+    const { lottoResult, lottoProfit } = getLottoResult(
       winningLotto,
       lottoList,
     );
@@ -106,23 +107,6 @@ class App {
     await this.retryRun();
   }
 
-  buyLottos(purchaseAmount) {
-    const lottoMachine = new LottoMachine();
-    const lottoCounts = lottoMachine.purchaseLotto(purchaseAmount);
-    lottoMachine.makeLottoList(lottoCounts);
-    const lottoNumbersList = lottoMachine.getLottoNumbersList();
-    const lottoList = lottoMachine.getLottoList();
-    return { lottoCounts, lottoNumbersList, lottoList };
-  }
-
-  getLottoResult(winningLotto, lottoList) {
-    const lottoManager = new LottoManager(winningLotto, lottoList);
-    const lottoResult = lottoManager.compareWinningLotto();
-    const totalLottoPrize = lottoManager.calculatePrize(lottoResult);
-    const lottoProfit = lottoManager.calculateProfit(totalLottoPrize);
-    return { lottoResult, lottoProfit };
-  }
-
   async retryRun() {
     const retry = await this.#initializeRetry();
     if (retry === 'y') {
@@ -130,4 +114,5 @@ class App {
     }
   }
 }
-export default App;
+
+export default ConsoleApp;
