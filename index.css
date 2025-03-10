@@ -1,0 +1,392 @@
+:root {
+    --modal-height: 160px;
+    --modal-padding: 16px;
+}
+
+html {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    height: 100vh;
+}
+
+body {
+    padding: 0;
+    margin: 0;
+}
+
+header {
+    width: 100%;
+    height: 64px;
+    background-color: #4E5BA6;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-content: center;
+}
+
+header h1 {
+    height: 36px;
+    margin: 14px 0 14px 130px;
+    color: white;
+    text-align: center;
+    font-size: 24px;
+}
+
+main {
+    width: 100%;
+    height: 800px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+}
+
+main .container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 414px;
+    height: 727px;
+    border-radius: 4px;
+    border: 1px solid #0000001F;
+}
+
+main .lotto-title {
+    margin: 40px 0 28px 0;
+    padding: 0 16px;
+    border: 0;
+    font-weight: 800;
+    font-size: 24px;
+    line-height: 36px;
+    letter-spacing: 0;
+    text-align: center;
+}
+
+main .purchase-amount {
+    width: 100%;
+    height: 64px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-content: flex-end;
+    align-items: flex-end;
+}
+
+main .purchase-amount-input {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: flex-start;
+    width: 310px;
+    gap: 4px;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+main label {
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 24px;
+    letter-spacing: 0.5px;
+}
+
+main input {
+    width: 310px;
+    height: 36px;
+    gap: 10px;
+    border-radius: 4px;
+    padding: 8px 8px 4px 8px;
+    box-sizing: border-box;
+    border: 1px solid #B4B4B4
+}
+
+main button {
+    width: 56px;
+    height: 36px;
+    border-radius: 4px;
+    padding: 6px 6px 6px 8px;
+    margin-left: 16px;
+    color: white;
+    background-color: #4E5BA6;
+    border: none;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 16px;
+    cursor: pointer;
+}
+
+main .lotto-count-container {
+    margin: 28px 0 8px 0;
+    padding: 0 16px 0 16px;
+}
+
+main .lotto-count {
+    margin: 0;
+    padding: 0;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 24px;
+    letter-spacing: 0.5px;
+}
+
+main .lotto-purchase-message {
+    margin: 28px 0 8px;
+    padding: 0 16px 0 16px;
+}
+
+main .lotto-container {
+    width: 382px;
+    height: 276px;
+    padding: 0 0 0 16px;
+    overflow-y: auto;
+}
+
+main .lotto {
+    width: 238px;
+    height: 36px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    margin: 0 0 4px 0;
+}
+
+main .lotto-img {
+    width: 34px;
+    height: 36px;
+    margin: 0;
+    padding: 0;
+    font-size: 30px;
+}
+
+main .lotto-numbers {
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 24px;
+    letter-spacing: 0.5px;
+    padding: 4px;
+}
+
+main .winning-number-and-bonus {
+    visibility: hidden;
+    width: 100%;
+    height: 104px;
+    margin: 24px 0 0 0;
+}
+
+main .winning-number-and-bonus-message {
+    margin: 0;
+    padding: 0 16px 0 16px;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 24px;
+    letter-spacing: 0.5px;
+}
+
+main .winning-number-and-bonus-input {
+    margin: 0 16px 0 16px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+main .winning-number {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+main .bonus {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+main .number-input {
+    width: 34px;
+    height: 36px;
+    padding: 8px 8px 8px 8px;
+    border-radius: 4px;
+    border-width: 1px;
+}
+
+.winning-number-and-bonus .submit {
+    position: absolute;
+    width: 382px;
+    height: 36px;
+    border-radius: 4px;
+    padding: 6px 6px 6px 8px;
+    background-color: #4E5BA6;
+    color: white;
+    cursor: pointer;
+    margin: 27px 16px 32px 16px;
+}
+
+.winning-number-and-bonus .submit:disabled {
+    background-color: #B4B4B4;
+    color: #FFFFFF;
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+
+main label {
+    margin: 12px 0 8px 0;
+}
+
+dialog {
+    width: 350px;
+    height: 500px;
+    border-radius: 4px;
+    padding: 0;
+    border: 0;
+    overflow: hidden;
+}
+
+.dialog-container {
+    padding: 0 16px;
+    margin: 40px 0 32px 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+dialog h3 {
+    width: 100%;
+    padding: 0;
+    margin: 0 0 33px 0;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 24px;
+    letter-spacing: 0.15px;
+    text-align: center;
+}
+
+dialog::backdrop {
+    background: #00000080;
+}
+
+dialog .modal-contents {
+    width: 319px;
+    height: 247px;
+}
+
+dialog .modal-content {
+    width: 318px;
+    height: 24px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 0;
+    border-top: 1px solid #4E5BA633;
+}
+
+dialog .modal-result-content {
+    width: 318px;
+    height: 24px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 0;
+    border-top: 1px solid #4E5BA633;
+    text-align: center;
+}
+
+dialog .modal-result-content:last-child {
+    border-bottom: 1px solid #4E5BA633;
+}
+
+dialog .modal-content h4 {
+    margin: 0;
+    padding: 0;
+    font-weight: 600;
+    font-size: 15px;
+    line-height: 24px;
+    letter-spacing: 0.5px;
+    text-align: center;
+}
+
+dialog .modal-content p {
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 24px;
+    letter-spacing: 0.5px;
+    text-align: center;
+}
+
+dialog .modal-content h4,
+dialog .modal-result-content p {
+    text-align: center;
+    flex: 1;
+}
+
+dialog .winning-result {
+    width: 100%;
+    margin: 32px 0 32px 0;
+    padding: 0 16px 0 16px;
+    font-weight: 700;
+    font-size: 15px;
+    line-height: 24px;
+    letter-spacing: 0.5px;
+    text-align: center;
+}
+
+dialog .winning-result p{
+    margin: 0;
+    padding: 0;
+}
+
+.show-modal-button {
+    text-align: center;
+}
+
+.modal-close-button {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    width: 20px;
+    height: 20px;
+    border: none;
+    padding: 0;
+    margin: 0;
+    background-color: white;
+}
+
+dialog .submit {
+    position: relative;
+    width: 318px;
+    height: 36px;
+    border-radius: 4px;
+    padding: 6px 6px 6px 6px;
+    margin: 0;
+}
+
+footer {
+    width: 100%;
+    height: 80px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-content: center;
+    border-top: 1px solid #4E5BA633;
+}
+
+footer p {
+    color: #4E5BA6;
+    margin: 28px 0 36px 0;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 16px;
+    text-align: center;
+}
