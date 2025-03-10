@@ -1,0 +1,64 @@
+/* 모달 스타일 */
+/* ✅ 모달 */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  align-items: center;
+  justify-content: center;
+}
+
+.modal__content {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  position: relative;
+  background: var(--gray-1);
+  padding: 40px 16px 32px 16px;
+  border-radius: 8px;
+  text-align: center;
+  width: 350px;
+}
+
+.modal__close-button {
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.modal__restart-button {
+  background: var(--primary);
+  color: var(--gray-1);
+  border-radius: 4px;
+  padding: 12px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  padding: 8px;
+}
+
+tr {
+  border-bottom: 1px solid #ccc;
+}
+
+th {
+  border-top: 1px solid #ccc;
+  font-weight: 600;
+}
+
+.bold-600 {
+  font-weight: 600;
+}

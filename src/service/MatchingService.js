@@ -1,4 +1,4 @@
-import { LOTTO_MATCH_CRITERIA } from "../constants/systemConstants.js";
+import { LOTTO_MATCH_CRITERIA } from '../constants/systemConstants.js';
 
 export const calculateMatchingResult = (winningLotto, lottoArray) => {
   return lottoArray.reduce(

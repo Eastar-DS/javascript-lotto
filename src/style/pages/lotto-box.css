@@ -1,0 +1,70 @@
+/* ✅ 로또 컨테이너 */
+.lotto__container {
+  width: 414px;
+  min-height: 728px;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  padding: 40px 16px 32px 16px;
+  border-radius: 4px;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  background: var(--gray-1);
+}
+
+/* ✅ 구매 폼 */
+.purchase-form {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.purchase-form__input {
+  display: flex;
+  gap: 16px;
+}
+
+.purchase-form__input > input {
+  height: 36px;
+  padding: 8px;
+  border-radius: 4px;
+  border: 1px solid var(--gray-3);
+  flex-grow: 1;
+}
+
+.purchase-form__button {
+  background: var(--primary);
+  padding: 4px 6px;
+  border-radius: 4px;
+  color: var(--gray-1);
+  width: 56px;
+}
+
+/* ✅ 구매 결과 */
+.purchase-form__result {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.purchase-form__list {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.purchase-form__item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.purchase-form__icon {
+  display: flex;
+  justify-content: center;
+  width: 34px;
+  height: 36px;
+}
+
+.lotto-numbers {
+  letter-spacing: 0.5px;
+}

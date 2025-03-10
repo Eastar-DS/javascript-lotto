@@ -1,4 +1,10 @@
-/**
- * step 2의 시작점이 되는 파일입니다.
- * 노드 환경에서 사용하는 readline 등을 불러올 경우 정상적으로 빌드할 수 없습니다.
- */
+import WebGameController from './controller/WebGameController.js';
+import { $ } from './util/web/selector.js';
+
+document.addEventListener('DOMContentLoaded', () => {
+  const webGameController = new WebGameController();
+
+  $('#purchase-form').addEventListener('submit', (event) => webGameController.handlePurchase(event));
+  $('#winning-number-form').addEventListener('submit', (event) => webGameController.handleWinningSubmit(event));
+  $('#restart-button').addEventListener('click', () => webGameController.handleRestartGame());
+});

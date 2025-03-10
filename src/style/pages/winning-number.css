@@ -1,0 +1,59 @@
+.winning-form > button {
+  width: 100%;
+  background-color: var(--primary);
+  color: var(--gray-1);
+  border-radius: 4px;
+  padding: 12px;
+}
+
+.winning-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.winning-form__container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.winning-form__group,
+.winning-form__bonus-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.winning-form__numbers {
+  display: flex;
+  gap: 8px;
+}
+
+.winning-form__number-box {
+  width: 40px;
+  height: 40px;
+  font-size: 18px;
+  text-align: center;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.winning-form__bonus-number {
+  width: 40px;
+  height: 40px;
+  font-size: 18px;
+  text-align: center;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  align-self: flex-end;
+}
+
+.spacing-4 {
+  height: 4px;
+}
+.spacing-12 {
+  height: 12px;
+}
+
+.spacing-28 {
+  height: 28px;
+}

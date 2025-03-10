@@ -1,16 +1,115 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ko">
   <head>
     <meta charset="UTF-8" />
-    <title>🎱 행운의 로또</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <meta name="description" content="행운의 로또 - 로또 구매 및 당첨 확인 웹사이트" />
+    <meta name="author" content="youdame" />
+    <meta property="og:title" content="행운의 로또" />
+    <meta property="og:description" content="로또 번호를 구매하고 당첨 여부를 확인하세요." />
+    <meta property="og:url" content="https://youdame.github.io/javascript-lotto/" />
+    <meta property="og:image" content="https://youdame.github.io/javascript-lotto/favicon.png" />
+    <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="src/style/main.css" />
+    <link rel="stylesheet" href="src/style/pages/index.css" />
+    <link rel="stylesheet" href="src/style/pages/lotto-box.css" />
+    <link rel="stylesheet" href="src/style/pages/winning-number.css" />
+    <link rel="stylesheet" href="src/style/pages/modal.css" />
+    <title>🎱 행운의 로또</title>
   </head>
+  <body class="typo-body">
+    <header>
+      <h1 class="typo-title">🎱 행운의 로또</h1>
+    </header>
+    <main class="flex-center">
+      <section class="lotto__container">
+        <h2 class="lotto__title typo-title flex-center">🎱 내 번호 당첨 확인 🎱</h2>
+        <form id="purchase-form" class="purchase-form">
+          <label for="price">구입할 금액을 입력해주세요.</label>
+          <div class="purchase-form__input">
+            <input type="number" id="price" placeholder="금액" value="30000" />
+            <button class="purchase-form__button typo-caption">구입</button>
+          </div>
+          <p class="purchase-form__error-message typo-caption" id="price-error"></p>
+        </form>
 
-  <body>
-    <div id="app">
-      <h1>🎱 행운의 로또</h1>
-    </div>
-    <script type="module" src="./src/step2-index.js"></script>
+        <div class="purchase-form__result"></div>
+
+        <form id="winning-number-form" class="winning-form">
+          <p class="winning-form__description">지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.</p>
+          <div class="spacing-12"></div>
+          <div class="winning-form__container">
+            <div class="winning-form__group">
+              <label>당첨 번호</label>
+              <div class="winning-form__numbers">
+                <input type="number" id="winning-1" class="winning-form__number-box" maxlength="2" value="10" />
+                <input type="number" id="winning-2" class="winning-form__number-box" maxlength="2" value="2" />
+                <input type="number" id="winning-3" class="winning-form__number-box" maxlength="2" value="13" />
+                <input type="number" id="winning-4" class="winning-form__number-box" maxlength="2" value="4" />
+                <input type="number" id="winning-5" class="winning-form__number-box" maxlength="2" value="5" />
+                <input type="number" id="winning-6" class="winning-form__number-box" maxlength="2" value="6" />
+              </div>
+            </div>
+
+            <div class="winning-form__bonus-group">
+              <label for="bonus">보너스 번호</label>
+              <input id="bonus" class="winning-form__bonus-number" maxlength="2" value="12" />
+            </div>
+          </div>
+          <div class="spacing-4"></div>
+          <p class="winning-form__error-message" id="winning-number-error"></p>
+          <div class="spacing-28"></div>
+          <button class="winning-form__submit typo-caption" id="result-button">결과 확인하기</button>
+        </form>
+      </section>
+
+      <!-- 당첨 통계 모달 -->
+      <div id="result-modal" class="modal">
+        <div class="modal__content">
+          <span class="modal__close-button">&times;</span>
+          <h2 class="modal__title typo-subtitle">🏆 당첨 통계 🏆</h2>
+          <table class="modal__table">
+            <thead>
+              <tr>
+                <th>일치 개수</th>
+                <th>당첨금</th>
+                <th>당첨 개수</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>3개</td>
+                <td>5,000</td>
+                <td id="match-3">n개</td>
+              </tr>
+              <tr>
+                <td>4개</td>
+                <td>50,000</td>
+                <td id="match-4">n개</td>
+              </tr>
+              <tr>
+                <td>5개</td>
+                <td>1,500,000</td>
+                <td id="match-5">n개</td>
+              </tr>
+              <tr>
+                <td>5개+보너스볼</td>
+                <td>30,000,000</td>
+                <td id="match-bonus">n개</td>
+              </tr>
+              <tr>
+                <td>6개</td>
+                <td>2,000,000,000</td>
+                <td id="match-6">n개</td>
+              </tr>
+            </tbody>
+          </table>
+          <p class="modal__profit bold-600" id="profit-rate">당신의 총 수익률은 %입니다.</p>
+          <button id="restart-button" type="submit" class="modal__restart-button bold-600">다시 시작하기</button>
+        </div>
+      </div>
+    </main>
+    <footer><p class="typo-caption flex-center">Copyright 2023. woowacourse</p></footer>
+    <script src="src/step2-index.js" type="module"></script>
   </body>
 </html>
