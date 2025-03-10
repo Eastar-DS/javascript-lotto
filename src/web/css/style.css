@@ -1,0 +1,25 @@
+:root {
+  --main-color: #4e5ba6;
+  --lightgray-color: rgba(0, 0, 0, 0.2);
+  --black-color: black;
+  --white-color: white;
+}
+
+#app {
+  height: 100vh;
+}
+
+h1 {
+  margin: 0px auto;
+  padding: 20px;
+  font-size: 1.5rem;
+}
+
+.hidden {
+  display: none;
+}
+
+.error-message {
+  color: rgb(208, 40, 40);
+  font-size: 0.85rem;
+}
