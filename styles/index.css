@@ -1,0 +1,61 @@
+@import url("./screen.css");
+@import url("./priceInput.css");
+@import url("./purchaseDetail.css");
+@import url("./dialog.css");
+
+:root {
+  --main-color: #4e5ba6;
+  --gray-sclae-2: #fcfcfd;
+  --gray-sclae-3: #b4b4b4;
+  --title-font-size: 24px;
+  --title-font-weight: 800;
+  --subTitle-font-size: 20px;
+  --subTitle-font-weight: 600;
+  --body-font-size: 15px;
+  --button-font-size: 14px;
+  --button-font-weight: 600;
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  min-height: 100vh;
+  height: 100%;
+}
+
+#app {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--gray-sclae-2);
+  height: 100%;
+}
+
+header {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 64px;
+  flex-shrink: 0;
+  background-color: var(--main-color);
+  font-weight: var(--title-font-weight);
+  font-size: var(--title-font-size);
+  color: white;
+}
+
+header h1 {
+  margin-left: 80px;
+}
+
+footer {
+  display: flex;
+  flex-shrink: 0;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 64px;
+  border-top: var(--gray-sclae-3) 1px solid;
+}
