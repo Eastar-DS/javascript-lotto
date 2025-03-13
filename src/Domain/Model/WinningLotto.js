@@ -1,10 +1,12 @@
 import Lotto from './Lotto.js';
+import { validateBonusNumber } from '../../Validation/validateDomain.js';
 
 class WinningLotto extends Lotto {
   #bonusNumber;
 
   constructor(numbers, bonusNumber) {
     super(numbers);
+    validateBonusNumber(bonusNumber, numbers);
     this.#bonusNumber = bonusNumber;
   }
 

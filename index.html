@@ -1,16 +1,141 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ko">
   <head>
     <meta charset="UTF-8" />
     <title>🎱 행운의 로또</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <link rel="stylesheet" href="./css/main.css" />
+    <script type="module" src="./src/step2-index.js"></script>
   </head>
 
   <body>
     <div id="app">
-      <h1>🎱 행운의 로또</h1>
+      <header class="lotto-header">
+        <h1 class="text-title">🎱 행운의 로또</h1>
+      </header>
+      <main class="lotto-app">
+        <section class="lotto-game-view">
+          <section class="header-section">
+            <h1 class="text-title">🎱 내 번호 당첨 확인 🎱</h1>
+          </section>
+          <section class="purchase-section">
+            <h6 class="text-body">구입할 금액을 입력해주세요.</h2>
+            <div class="purchase-input-group">
+              <input
+                type="number"
+                class="purchase-input text-body"
+                placeholder="금액"
+              />
+              <button class="purchase-button text-caption">구입</button>
+            </div>
+          </section>
+          <section class="lotto-list-section">
+            <h6 class="text-body">총 7개를 구매하였습니다.</h2>
+            <ul class="lotto-numbers-list">
+              <li class="lotto-number-item">
+                <p class="text-ticket-icon">🎟️</p>
+                <p class="text-body">12, 19, 22, 23, 28, 37</p>
+              </li>
+              <li class="lotto-number-item">
+                <p class="text-ticket-icon">🎟️</p>
+                <p class="text-body">12, 19, 22, 23, 28, 37</p>
+              </li>
+              <li class="lotto-number-item">
+                <p class="text-ticket-icon">🎟️</p>
+                <p class="text-body">12, 19, 22, 23, 28, 37</p>
+              </li>
+              <li class="lotto-number-item">
+                <p class="text-ticket-icon">🎟️</p>
+                <p class="text-body">12, 19, 22, 23, 28, 37</p>
+              </li>
+              <li class="lotto-number-item">
+                <p class="text-ticket-icon">🎟️</p>
+                <p class="text-body">12, 19, 22, 23, 28, 37</p>
+              </li>
+              <li class="lotto-number-item">
+                <p class="text-ticket-icon">🎟️</p>
+                <p class="text-body">12, 19, 22, 23, 28, 37</p>
+              </li>
+              <li class="lotto-number-item">
+                <p class="text-ticket-icon">🎟️</p>
+                <p class="text-body">12, 19, 22, 23, 28, 37</p>
+              </li>
+            </ul>
+          </section>
+          <section class="winning-numbers-section">
+            <h6 class="text-body">지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.</h2>
+            <div class="number-input-group">
+              <div class="winning-numbers-input-group">
+                <p class="text-body">당첨 번호</p>
+                <div class="winning-numbers-input-list">
+                  <input type="number" class="winning-input numbers-input text-body"/>
+                  <input type="number" class="winning-input numbers-input text-body"/>
+                  <input type="number" class="winning-input numbers-input text-body"/>
+                  <input type="number" class="winning-input numbers-input text-body"/>
+                  <input type="number" class="winning-input numbers-input text-body"/>
+                  <input type="number" class="winning-input numbers-input text-body"/>
+                </div>
+              </div>
+              <div class="bonus-numbers-input-group">
+                <p class="text-body">보너스 번호</p>
+                <input type="number" class="bonus-input numbers-input text-body"/>
+              </div>
+            </div>
+            <button class="result-button text-caption">결과 확인하기</button>
+          </section>
+        </section>
+      </main>
+
+      <footer class="lotto-footer">
+        <p class="text-caption">Copyright 2023. woowacourse</p>
+      </footer>
+
+      <div class="modal-overlay">
+        <div class="modal">
+          <div class="modal-cancel-container">
+            <h6 class="text-title">X</h6>
+          </div>
+          <h2 class="text-subtitle">🏆 당첨 통계 🏆</h2>
+          <table class="result-table">
+            <thead>
+              <tr>
+                <th class="text-body">일치 갯수</th>
+                <th class="text-body">당첨금</th>
+                <th class="text-body">당첨 갯수</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="text-body">3개</td>
+                <td class="text-body">5,000원</td>
+                <td class="text-body">n개</td>
+              </tr>
+              <tr>
+                <td class="text-body">4개</td>
+                <td class="text-body">50,000원</td>
+                <td class="text-body">n개</td>
+              </tr>
+              <tr>
+                <td class="text-body">5개</td>
+                <td class="text-body">1,500,000원</td>
+                <td class="text-body">n개</td>
+              </tr>
+              <tr>
+                <td class="text-body">5개+보너스볼</td>
+                <td class="text-body">30,000,000원</td>
+                <td class="text-body">n개</td>
+              </tr>
+              <tr>
+                <td class="text-body">6개</td>
+                <td class="text-body">2,000,000,000원</td>
+                <td class="text-body">n개</td>
+              </tr>
+            </tbody>
+          </table>
+          <p class="profit-text text-caption">당신의 총 수익률은 %입니다.</p>
+          <button class="retry-button text-caption">다시 시작하기</button>
+        </div>
+      </div>
     </div>
-    <script type="module" src="./src/step2-index.js"></script>
   </body>
 </html>
