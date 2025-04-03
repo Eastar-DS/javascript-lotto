@@ -1,0 +1,28 @@
+* {
+  font-family: "Roboto", "Noto Sans KR", sans-serif;
+  box-sizing: border-box;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.lotto-container {
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  width: 414px;
+  height: 727px;
+  border: 1px solid #0000001f;
+  margin: 148px auto 69px auto;
+  padding: 40px 16px 32px 16px;
+  border-radius: 4px;
+}
+
+.lotto-title {
+  font-size: 24px;
+  font-weight: 800;
+  text-align: center;
+}
