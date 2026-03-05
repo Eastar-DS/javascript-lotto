@@ -36,6 +36,17 @@ class ScoreBoard {
 
     return allRankCount;
   }
+
+  static getProfitRate(allRankCount, money) {
+    const totalProfit =
+      allRankCount["FIRST"] * RANK.FIRST.PRICE +
+      allRankCount["SECOND"] * RANK.SECOND.PRICE +
+      allRankCount["THIRD"] * RANK.THIRD.PRICE +
+      allRankCount["FOURTH"] * RANK.FOURTH.PRICE +
+      allRankCount["FIFTH"] * RANK.FIFTH.PRICE;
+
+    return ((totalProfit / money) * 100).toFixed(1);
+  }
 }
 
 export default ScoreBoard;
