@@ -1,6 +1,7 @@
 import Lotto from "../src/Lotto";
 import LottoGenerator from "../src/LottoGenerator";
 import Utils from "../src/Utils";
+import WinningLotto from "../src/WinningLotto";
 
 describe("로또 발행 테스트", () => {
   test("구매한 로또의 개수를 올바르게 계산해야 한다.", () => {
@@ -96,5 +97,54 @@ describe("유틸 함수 테스트", () => {
     // then 나중에 모킹 해놓기
     expect(randomNumbers.length).toEqual(count);
     expect(randomNumbers.length === new Set(randomNumbers).size).toEqual(true);
+  });
+});
+
+describe("당첨 로또 테스트", () => {
+  test("당첨 로또를 생성한다.", () => {
+    // given
+    const winningNumbers = [1, 2, 3, 4, 5, 6];
+    const bonusNumber = 7;
+
+    // when
+    const winningLotto = new WinningLotto(winningNumbers, bonusNumber);
+
+    // then
+    expect(winningLotto).toBeInstanceOf(WinningLotto);
+  });
+
+  test("0이 입력된 경우 에러를 발생시킨다", () => {
+    // given
+    const wrongWinningNumbers = [0, 1, 2, 3, 4, 5];
+    // when & then
+    expect(() => new WinningLotto(wrongWinningNumbers)).toThrow("[ERROR]");
+  });
+
+  test("음의 정수가 입력된 경우 에러를 발생시킨다", () => {
+    // given
+    const wrongWinningNumbers = [-1, 1, 2, 3, 4, 5];
+    // when & then
+    expect(() => new WinningLotto(wrongWinningNumbers)).toThrow("[ERROR]");
+  });
+
+  test("1~45 사이가 아닌 경우 에러를 발생시킨다", () => {
+    // given
+    const wrongWinningNumbers = [1, 2, 3, 4, 5, 100];
+    // when & then
+    expect(() => new WinningLotto(wrongWinningNumbers)).toThrow("[ERROR]");
+  });
+
+  test("번호가 중복되는 경우 에러를 발생시킨다", () => {
+    // given
+    const wrongWinningNumbers = [1, 1, 2, 3, 4, 5];
+    // when & then
+    expect(() => new WinningLotto(wrongWinningNumbers)).toThrow("[ERROR]");
+  });
+
+  test("로또 번호가 6개가 아닌 경우 에러를 발생시킨다", () => {
+    // given
+    const wrongWinningNumbers = [1, 2, 3, 4, 5];
+    // when & then
+    expect(() => new WinningLotto(wrongWinningNumbers)).toThrow("[ERROR]");
   });
 });
