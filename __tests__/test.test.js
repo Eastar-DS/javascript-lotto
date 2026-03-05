@@ -271,4 +271,23 @@ describe("당첨 여부 테스트", () => {
       FIFTH: 0,
     });
   });
+
+  test("올바른 수익률을 계산해야 한다.", () => {
+    // given
+    const money = 5_000;
+    const result = 40_631_100;
+    const allRankCount = {
+      FIRST: 1,
+      SECOND: 1,
+      THIRD: 1,
+      FOURTH: 1,
+      FIFTH: 1,
+    };
+
+    // when
+    const profitRate = ScoreBoard.getProfitRate(allRankCount, money);
+
+    // then
+    expect(profitRate).toEqual(result.toFixed(1));
+  });
 });
