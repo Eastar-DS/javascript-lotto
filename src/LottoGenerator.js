@@ -4,7 +4,7 @@ import Utils from "./Utils";
 
 const LottoGenerator = {
   calculateBuyLottoCount(money) {
-    return money / ERROR_MESSAGE.PREFIX;
+    return money / LOTTO.PRICE;
   },
 
   makeLottos(buyLottoCount) {
