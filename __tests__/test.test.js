@@ -113,38 +113,95 @@ describe("당첨 로또 테스트", () => {
     expect(winningLotto).toBeInstanceOf(WinningLotto);
   });
 
-  test("0이 입력된 경우 에러를 발생시킨다", () => {
+  test("당첨 번호에 0이 포함된 경우 에러를 발생시킨다", () => {
     // given
     const wrongWinningNumbers = [0, 1, 2, 3, 4, 5];
+    const bonusNumber = 7;
     // when & then
-    expect(() => new WinningLotto(wrongWinningNumbers)).toThrow("[ERROR]");
+    expect(() => new WinningLotto(wrongWinningNumbers, bonusNumber)).toThrow(
+      "[ERROR]",
+    );
   });
 
-  test("음의 정수가 입력된 경우 에러를 발생시킨다", () => {
+  test("당첨 번호에 음의 정수가 포함된 경우 에러를 발생시킨다", () => {
     // given
     const wrongWinningNumbers = [-1, 1, 2, 3, 4, 5];
+    const bonusNumber = 7;
     // when & then
-    expect(() => new WinningLotto(wrongWinningNumbers)).toThrow("[ERROR]");
+    expect(() => new WinningLotto(wrongWinningNumbers, bonusNumber)).toThrow(
+      "[ERROR]",
+    );
   });
 
-  test("1~45 사이가 아닌 경우 에러를 발생시킨다", () => {
+  test("당첨 번호에 1~45 사이가 아닌 값이 포함된 경우 에러를 발생시킨다", () => {
     // given
     const wrongWinningNumbers = [1, 2, 3, 4, 5, 100];
+    const bonusNumber = 7;
     // when & then
-    expect(() => new WinningLotto(wrongWinningNumbers)).toThrow("[ERROR]");
+    expect(() => new WinningLotto(wrongWinningNumbers, bonusNumber)).toThrow(
+      "[ERROR]",
+    );
   });
 
-  test("번호가 중복되는 경우 에러를 발생시킨다", () => {
+  test("당첨 번호가 중복되는 경우 에러를 발생시킨다", () => {
     // given
     const wrongWinningNumbers = [1, 1, 2, 3, 4, 5];
+    const bonusNumber = 7;
     // when & then
-    expect(() => new WinningLotto(wrongWinningNumbers)).toThrow("[ERROR]");
+    expect(() => new WinningLotto(wrongWinningNumbers, bonusNumber)).toThrow(
+      "[ERROR]",
+    );
   });
 
-  test("로또 번호가 6개가 아닌 경우 에러를 발생시킨다", () => {
+  test("당첨 번호가 6개가 아닌 경우 에러를 발생시킨다", () => {
     // given
     const wrongWinningNumbers = [1, 2, 3, 4, 5];
+    const bonusNumber = 7;
     // when & then
-    expect(() => new WinningLotto(wrongWinningNumbers)).toThrow("[ERROR]");
+    expect(() => new WinningLotto(wrongWinningNumbers, bonusNumber)).toThrow(
+      "[ERROR]",
+    );
+  });
+
+  // 보너스 번호
+
+  test("보너스 번호가 0인 경우 에러를 발생시킨다", () => {
+    // given
+    const winningNUmbers = [1, 2, 3, 4, 5, 6];
+    const wrongBonusNumber = 0;
+    // when & then
+    expect(() => new WinningLotto(winningNUmbers, wrongBonusNumber)).toThrow(
+      "[ERROR]",
+    );
+  });
+
+  test("보너스 번호가 음의 정수인 경우 에러를 발생시킨다", () => {
+    // given
+    const winningNUmbers = [1, 2, 3, 4, 5, 6];
+    const wrongBonusNumber = -1;
+    // when & then
+    expect(() => new WinningLotto(winningNUmbers, wrongBonusNumber)).toThrow(
+      "[ERROR]",
+    );
+  });
+
+  test("보너스 번호가 1~45 사이가 아닌 경우 에러를 발생시킨다", () => {
+    // given
+    const winningNUmbers = [1, 2, 3, 4, 5, 6];
+    const wrongBonusNumber = 46;
+    // when & then
+    expect(() => new WinningLotto(winningNUmbers, wrongBonusNumber)).toThrow(
+      "[ERROR]",
+    );
+  });
+
+  test("보너스 번호가 당첨 번호와 중복되는 경우 에러를 발생시킨다", () => {
+    // given
+    const winningNUmbers = [1, 2, 3, 4, 5, 6];
+    const wrongBonusNumber = 1;
+    // when & then
+    expect(() => new WinningLotto(winningNUmbers, wrongBonusNumber)).toThrow(
+      "[ERROR]",
+    );
   });
 });
