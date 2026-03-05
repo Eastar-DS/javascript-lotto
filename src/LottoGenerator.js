@@ -1,4 +1,5 @@
 import Lotto from "./Lotto";
+import Utils from "./Utils";
 
 const LottoGenerator = {
   calculateBuyLottoCount(money) {
@@ -6,8 +7,10 @@ const LottoGenerator = {
   },
 
   makeLottos(buyLottoCount) {
-    const lotto = new Lotto([1, 2, 3, 4, 5, 6]);
-    return Array.from({ length: buyLottoCount }, (v, i) => lotto);
+    return Array.from(
+      { length: buyLottoCount },
+      (v, i) => new Lotto(Utils.getRandomNumbers(1, 45, 6)),
+    );
   },
 };
 
