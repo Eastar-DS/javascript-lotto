@@ -6,9 +6,15 @@ const Utils = {
   },
 
   getRandomNumbers(min, max, count) {
-    return Array.from({ length: count }, (v) =>
-      Utils.getRandomNumber(min, max),
-    );
+    const randomNumbers = [];
+    while (randomNumbers.length !== count) {
+      const randomNumber = Utils.getRandomNumber(min, max);
+      if (randomNumbers.includes(randomNumber)) continue;
+
+      randomNumbers.push(randomNumber);
+    }
+
+    return randomNumbers;
   },
 };
 
