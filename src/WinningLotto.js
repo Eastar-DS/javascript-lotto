@@ -31,6 +31,12 @@ class WinningLotto {
     const numbers = [...winningNumbers, ...lottoNumbers];
     return numbers.length - new Set(numbers).size;
   }
+
+  hasBonus(lotto) {
+    const lottoNumbers = lotto.getNumbers();
+
+    return lottoNumbers.includes(this.#bonusNumber);
+  }
 }
 
 export default WinningLotto;
