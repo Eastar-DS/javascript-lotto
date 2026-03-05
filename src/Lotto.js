@@ -1,13 +1,20 @@
-import { ERROR_MESSAGE } from "./constants";
+import { ERROR_MESSAGE, LOTTO } from "./constants";
+import Validator from "./Validator";
 
 class Lotto {
   #numbers;
 
   constructor(numbers) {
-    if (numbers.indexOf(0) !== -1 || numbers.indexOf(-1) !== -1) {
+    if (numbers.some((number) => !Validator.validatePositiveNumber(number))) {
       throw new Error(ERROR_MESSAGE.PREFIX);
     }
-    if (numbers.some((number) => number < 1 || number > 45)) {
+    if (
+      numbers.some(
+        (number) =>
+          !Validator.validateNumberLower(LOTTO.LOWER, number) ||
+          !Validator.validateNumberUpper(LOTTO.UPPER, number),
+      )
+    ) {
       throw new Error(ERROR_MESSAGE.PREFIX);
     }
     if (numbers.length !== new Set(numbers).size) {
