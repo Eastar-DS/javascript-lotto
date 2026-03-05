@@ -1,4 +1,4 @@
-import LOTTO, { ERROR_MESSAGE } from "./constants";
+import { LOTTO, ERROR_MESSAGE } from "./constants";
 import Lotto from "./Lotto";
 import Validator from "./Validator";
 
