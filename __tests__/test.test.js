@@ -1,6 +1,7 @@
 import { ERROR_MESSAGE } from "../src/constants";
 import Lotto from "../src/Lotto";
 import LottoGenerator from "../src/LottoGenerator";
+import ScoreBoard from "../src/ScoreBoard";
 import Utils from "../src/Utils";
 import WinningLotto from "../src/WinningLotto";
 
@@ -231,4 +232,20 @@ describe("당첨 여부 테스트", () => {
     // then
     expect(hasBonus).toEqual(true);
   });
+
+  test.each([
+    [1, 6, true],
+    [2, 5, true],
+    [3, 5, false],
+    [4, 4, true],
+    [5, 3, true],
+  ])(
+    "일치하는 번호 개수와 보너스 번호의 개수를 확인해 올바르게 등수를 계산해야 한다.(%s등)",
+    (expectedRank, matchCount, hasBonus) => {
+      // when
+      const rank = ScoreBoard.getRank(matchCount, hasBonus);
+      // then
+      expect(rank).toEqual(expectedRank);
+    },
+  );
 });
