@@ -248,4 +248,27 @@ describe("당첨 여부 테스트", () => {
       expect(rank).toEqual(expectedRank);
     },
   );
+
+  test("구매한 모든 로또의 등수를 계산해 반환해야 한다 ", () => {
+    // given
+    const lottos = [
+      new Lotto([1, 2, 3, 4, 5, 6]),
+      new Lotto([2, 3, 4, 5, 6, 7]),
+    ];
+    const winningNumbers = [1, 2, 3, 4, 5, 6];
+    const bonusNumber = 7;
+    const winningLotto = new WinningLotto(winningNumbers, bonusNumber);
+
+    // when
+    const allRankCount = ScoreBoard.makeAllRankCount(lottos, winningLotto);
+
+    // then
+    expect(allRankCount).toEqual({
+      FIRST: 1,
+      SECOND: 1,
+      THIRD: 0,
+      FOURTH: 0,
+      FIFTH: 0,
+    });
+  });
 });
