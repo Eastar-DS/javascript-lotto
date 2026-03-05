@@ -1,4 +1,4 @@
-import { ERROR_MESSAGE } from "../src/constants";
+import { ERROR_MESSAGE, RANK } from "../src/constants";
 import Lotto from "../src/Lotto";
 import LottoGenerator from "../src/LottoGenerator";
 import ScoreBoard from "../src/ScoreBoard";
@@ -234,11 +234,11 @@ describe("당첨 여부 테스트", () => {
   });
 
   test.each([
-    [1, 6, true],
-    [2, 5, true],
-    [3, 5, false],
-    [4, 4, true],
-    [5, 3, true],
+    [RANK.FIRST.DISPLAY, RANK.FIRST.MATCH_COUNT, true],
+    [RANK.SECOND.DISPLAY, RANK.SECOND.MATCH_COUNT, true],
+    [RANK.THIRD.DISPLAY, RANK.THIRD.MATCH_COUNT, false],
+    [RANK.FOURTH.DISPLAY, RANK.FOURTH.MATCH_COUNT, true],
+    [RANK.FIFTH.DISPLAY, RANK.FIFTH.MATCH_COUNT, true],
   ])(
     "일치하는 번호 개수와 보너스 번호의 개수를 확인해 올바르게 등수를 계산해야 한다.(%s등)",
     (expectedRank, matchCount, hasBonus) => {

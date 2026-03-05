@@ -9,4 +9,18 @@ const ERROR_MESSAGE = {
   PREFIX: "[ERROR]",
 };
 
-export { LOTTO, ERROR_MESSAGE };
+const RANK = {
+  FIRST: {
+    DISPLAY: "FIRST",
+    MATCH_COUNT: 6,
+  },
+  SECOND: {
+    DISPLAY: "SECOND",
+    MATCH_COUNT: 5,
+  },
+  THIRD: { DISPLAY: "THIRD", MATCH_COUNT: 5 },
+  FOURTH: { DISPLAY: "FOURTH", MATCH_COUNT: 4 },
+  FIFTH: { DISPLAY: "FIFTH", MATCH_COUNT: 3 },
+};
+
+export { LOTTO, ERROR_MESSAGE, RANK };

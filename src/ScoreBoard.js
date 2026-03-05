@@ -1,19 +1,21 @@
+import { RANK } from "./constants";
+
 class ScoreBoard {
   static getRank(matchCount, hasBonus) {
-    if (matchCount === 6) {
-      return 1;
+    if (matchCount === RANK.FIRST.MATCH_COUNT) {
+      return RANK.FIRST.DISPLAY;
     }
-    if (matchCount === 5 && hasBonus) {
-      return 2;
+    if (matchCount === RANK.SECOND.MATCH_COUNT && hasBonus) {
+      return RANK.SECOND.DISPLAY;
     }
-    if (matchCount === 5) {
-      return 3;
+    if (matchCount === RANK.THIRD.MATCH_COUNT) {
+      return RANK.THIRD.DISPLAY;
     }
-    if (matchCount === 4) {
-      return 4;
+    if (matchCount === RANK.FOURTH.MATCH_COUNT) {
+      return RANK.FOURTH.DISPLAY;
     }
-    if (matchCount === 3) {
-      return 5;
+    if (matchCount === RANK.FIFTH.MATCH_COUNT) {
+      return RANK.FIFTH.DISPLAY;
     }
   }
 }
