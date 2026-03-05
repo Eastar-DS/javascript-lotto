@@ -23,6 +23,14 @@ class WinningLotto {
     this.#bonusNumber = bonusNumber;
     // this.#numbers = numbers.sort((a, b) => a - b);
   }
+
+  getMatchCount(lotto) {
+    const winningNumbers = this.#lotto.getNumbers();
+    const lottoNumbers = lotto.getNumbers();
+
+    const numbers = [...winningNumbers, ...lottoNumbers];
+    return numbers.length - new Set(numbers).size;
+  }
 }
 
 export default WinningLotto;
