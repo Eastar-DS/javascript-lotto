@@ -1,4 +1,6 @@
+import LOTTO, { ERROR_MESSAGE } from "./constants";
 import Lotto from "./Lotto";
+import Validator from "./Validator";
 
 class WinningLotto {
   #lotto;
@@ -6,14 +8,17 @@ class WinningLotto {
 
   constructor(winningNumbers, bonusNumber) {
     this.#lotto = new Lotto(winningNumbers);
-    if (bonusNumber <= 0) {
-      throw new Error("[ERROR]");
+    if (!Validator.validatePositiveNumber(bonusNumber)) {
+      throw new Error(ERROR_MESSAGE.PREFIX);
     }
-    if (bonusNumber < 1 || bonusNumber > 45) {
-      throw new Error("[ERROR]");
+    if (
+      !Validator.validateNumberLower(LOTTO.LOWER, bonusNumber) ||
+      !Validator.validateNumberUpper(LOTTO.UPPER, bonusNumber)
+    ) {
+      throw new Error(ERROR_MESSAGE.PREFIX);
     }
     if (this.#lotto.getNumbers().includes(bonusNumber)) {
-      throw new Error("[ERROR]");
+      throw new Error(ERROR_MESSAGE.PREFIX);
     }
     this.#bonusNumber = bonusNumber;
     // this.#numbers = numbers.sort((a, b) => a - b);

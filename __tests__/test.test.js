@@ -1,3 +1,4 @@
+import { ERROR_MESSAGE } from "../src/constants";
 import Lotto from "../src/Lotto";
 import LottoGenerator from "../src/LottoGenerator";
 import Utils from "../src/Utils";
@@ -24,35 +25,35 @@ describe("로또 발행 테스트", () => {
     // given
     const wrongNumbers = [0, 1, 2, 3, 4, 5];
     // when & then
-    expect(() => new Lotto(wrongNumbers)).toThrow("[ERROR]");
+    expect(() => new Lotto(wrongNumbers)).toThrow(ERROR_MESSAGE.PREFIX);
   });
 
   test("음의 정수가 입력된 경우 에러를 발생시킨다", () => {
     // given
     const wrongNumbers = [-1, 1, 2, 3, 4, 5];
     // when & then
-    expect(() => new Lotto(wrongNumbers)).toThrow("[ERROR]");
+    expect(() => new Lotto(wrongNumbers)).toThrow(ERROR_MESSAGE.PREFIX);
   });
 
   test("1~45 사이가 아닌 경우 에러를 발생시킨다", () => {
     // given
     const wrongNumbers = [1, 2, 3, 4, 5, 100];
     // when & then
-    expect(() => new Lotto(wrongNumbers)).toThrow("[ERROR]");
+    expect(() => new Lotto(wrongNumbers)).toThrow(ERROR_MESSAGE.PREFIX);
   });
 
   test("번호가 중복되는 경우 에러를 발생시킨다", () => {
     // given
     const wrongNumbers = [1, 1, 2, 3, 4, 5];
     // when & then
-    expect(() => new Lotto(wrongNumbers)).toThrow("[ERROR]");
+    expect(() => new Lotto(wrongNumbers)).toThrow(ERROR_MESSAGE.PREFIX);
   });
 
   test("로또 번호가 6개가 아닌 경우 에러를 발생시킨다", () => {
     // given
     const wrongNumbers = [1, 2, 3, 4, 5];
     // when & then
-    expect(() => new Lotto(wrongNumbers)).toThrow("[ERROR]");
+    expect(() => new Lotto(wrongNumbers)).toThrow(ERROR_MESSAGE.PREFIX);
   });
 
   test("로또 생성 시 번호를 오름차순으로 올바르게 정렬해야 한다", () => {
@@ -119,7 +120,7 @@ describe("당첨 로또 테스트", () => {
     const bonusNumber = 7;
     // when & then
     expect(() => new WinningLotto(wrongWinningNumbers, bonusNumber)).toThrow(
-      "[ERROR]",
+      ERROR_MESSAGE.PREFIX,
     );
   });
 
@@ -129,7 +130,7 @@ describe("당첨 로또 테스트", () => {
     const bonusNumber = 7;
     // when & then
     expect(() => new WinningLotto(wrongWinningNumbers, bonusNumber)).toThrow(
-      "[ERROR]",
+      ERROR_MESSAGE.PREFIX,
     );
   });
 
@@ -139,7 +140,7 @@ describe("당첨 로또 테스트", () => {
     const bonusNumber = 7;
     // when & then
     expect(() => new WinningLotto(wrongWinningNumbers, bonusNumber)).toThrow(
-      "[ERROR]",
+      ERROR_MESSAGE.PREFIX,
     );
   });
 
@@ -149,7 +150,7 @@ describe("당첨 로또 테스트", () => {
     const bonusNumber = 7;
     // when & then
     expect(() => new WinningLotto(wrongWinningNumbers, bonusNumber)).toThrow(
-      "[ERROR]",
+      ERROR_MESSAGE.PREFIX,
     );
   });
 
@@ -159,7 +160,7 @@ describe("당첨 로또 테스트", () => {
     const bonusNumber = 7;
     // when & then
     expect(() => new WinningLotto(wrongWinningNumbers, bonusNumber)).toThrow(
-      "[ERROR]",
+      ERROR_MESSAGE.PREFIX,
     );
   });
 
@@ -171,7 +172,7 @@ describe("당첨 로또 테스트", () => {
     const wrongBonusNumber = 0;
     // when & then
     expect(() => new WinningLotto(winningNUmbers, wrongBonusNumber)).toThrow(
-      "[ERROR]",
+      ERROR_MESSAGE.PREFIX,
     );
   });
 
@@ -181,7 +182,7 @@ describe("당첨 로또 테스트", () => {
     const wrongBonusNumber = -1;
     // when & then
     expect(() => new WinningLotto(winningNUmbers, wrongBonusNumber)).toThrow(
-      "[ERROR]",
+      ERROR_MESSAGE.PREFIX,
     );
   });
 
@@ -191,7 +192,7 @@ describe("당첨 로또 테스트", () => {
     const wrongBonusNumber = 46;
     // when & then
     expect(() => new WinningLotto(winningNUmbers, wrongBonusNumber)).toThrow(
-      "[ERROR]",
+      ERROR_MESSAGE.PREFIX,
     );
   });
 
@@ -201,7 +202,7 @@ describe("당첨 로또 테스트", () => {
     const wrongBonusNumber = 1;
     // when & then
     expect(() => new WinningLotto(winningNUmbers, wrongBonusNumber)).toThrow(
-      "[ERROR]",
+      ERROR_MESSAGE.PREFIX,
     );
   });
 });
