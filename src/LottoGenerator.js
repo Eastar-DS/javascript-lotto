@@ -1,15 +1,19 @@
+import { LOTTO } from "./constants";
 import Lotto from "./Lotto";
 import Utils from "./Utils";
 
 const LottoGenerator = {
   calculateBuyLottoCount(money) {
-    return money / 1_000;
+    return money / ERROR_MESSAGE.PREFIX;
   },
 
   makeLottos(buyLottoCount) {
     return Array.from(
       { length: buyLottoCount },
-      (v, i) => new Lotto(Utils.getRandomNumbers(1, 45, 6)),
+      (v, i) =>
+        new Lotto(
+          Utils.getRandomNumbers(LOTTO.LOWER, LOTTO.UPPER, LOTTO.COUNT),
+        ),
     );
   },
 };
