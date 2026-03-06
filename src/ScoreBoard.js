@@ -1,7 +1,7 @@
 import { RANK } from "./constants.js";
 
-class ScoreBoard {
-  static getRank(matchCount, hasBonus) {
+const ScoreBoard = {
+  getRank(matchCount, hasBonus) {
     if (matchCount === RANK.FIRST.MATCH_COUNT) {
       return RANK.FIRST.DISPLAY;
     }
@@ -17,9 +17,9 @@ class ScoreBoard {
     if (matchCount === RANK.FIFTH.MATCH_COUNT) {
       return RANK.FIFTH.DISPLAY;
     }
-  }
+  },
 
-  static makeAllRankCount(lottos, winningLotto) {
+  makeAllRankCount(lottos, winningLotto) {
     const allRankCount = {
       FIRST: 0,
       SECOND: 0,
@@ -35,9 +35,9 @@ class ScoreBoard {
     });
 
     return allRankCount;
-  }
+  },
 
-  static getProfitRate(allRankCount, money) {
+  getProfitRate(allRankCount, money) {
     const totalProfit =
       allRankCount[RANK.FIRST.DISPLAY] * RANK.FIRST.PRICE +
       allRankCount[RANK.SECOND.DISPLAY] * RANK.SECOND.PRICE +
@@ -46,7 +46,7 @@ class ScoreBoard {
       allRankCount[RANK.FIFTH.DISPLAY] * RANK.FIFTH.PRICE;
 
     return ((totalProfit / money) * 100).toFixed(1);
-  }
-}
+  },
+};
 
 export default ScoreBoard;
