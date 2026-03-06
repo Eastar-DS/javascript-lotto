@@ -1,10 +1,10 @@
-import { ERROR_MESSAGE, LOTTO } from "../constants.js";
+import { COMMAND, ERROR_MESSAGE, INPUT_MESSAGE, LOTTO } from "../constants.js";
 import Utils from "../Utils.js";
 import Validator from "../Validator.js";
 
 const InputView = {
   async readMoney() {
-    const input = await Utils.readLineAsync("> 구입금액을 입력해 주세요. ");
+    const input = await Utils.readLineAsync(INPUT_MESSAGE.MONEY);
     Validator.validateNotEmptyString(input);
     Validator.validateStringIsNumber(input);
 
@@ -17,7 +17,7 @@ const InputView = {
   },
 
   async readWinningNumbers() {
-    const input = await Utils.readLineAsync("> 당첨 번호를 입력해 주세요. ");
+    const input = await Utils.readLineAsync(INPUT_MESSAGE.WINNING_NUMBERS);
     if (Validator.validateNotEmptyString(input)) {
       throw new Error(ERROR_MESSAGE.PREFIX);
     }
@@ -40,7 +40,7 @@ const InputView = {
   },
 
   async readBonusNumber() {
-    const input = await Utils.readLineAsync("> 보너스 번호를 입력해 주세요.");
+    const input = await Utils.readLineAsync(INPUT_MESSAGE.BONUS_NUMBER);
     Validator.validateNotEmptyString(input);
     Validator.validateStringIsNumber(input);
     const bonusNumber = Number(input);
@@ -53,15 +53,11 @@ const InputView = {
   },
 
   async readRestartCommand() {
-    const restartCommand = await Utils.readLineAsync(
-      "> 다시 시작하시겠습니까? (y/n) ",
-    );
+    const restartCommand = await Utils.readLineAsync(INPUT_MESSAGE.COMMAND);
     if (
       !(
-        restartCommand === "n" ||
-        restartCommand === "N" ||
-        restartCommand === "y" ||
-        restartCommand === "Y"
+        COMMAND.YES.includes(restartCommand) ||
+        COMMAND.NO.includes(restartCommand)
       )
     ) {
       throw new Error(ERROR_MESSAGE.PREFIX);

@@ -3,7 +3,7 @@
  * 브라우저 환경에서 사용하는 css 파일 등을 불러올 경우 정상적으로 빌드할 수 없습니다.
  */
 
-import { LOTTO } from "./constants.js";
+import { COMMAND, LOTTO } from "./constants.js";
 import InputView from "./View/InputView.js";
 import LottoGenerator from "./LottoGenerator.js";
 import OutputView from "./View/OutputView.js";
@@ -14,32 +14,23 @@ class App {
   static async run() {
     while (true) {
       const money = await App.readMoneyUntilCorrect();
-
       const buyLottoCount = money / LOTTO.PRICE;
       OutputView.printBuyLottoCount(buyLottoCount);
 
-      // 로또 발행
       const lottos = LottoGenerator.makeLottos(buyLottoCount);
       lottos.forEach((lotto) =>
         OutputView.printLottoNumbers(lotto.getNumbers()),
       );
 
-      // 당첨 번호 입력
-
       const winningNumbers = await App.readWinningNumbersUntilCorrect();
-
       const winningLotto = await App.getWinningLotto(winningNumbers);
 
-      // 당첨 여부 확인
       const allRankCount = ScoreBoard.makeAllRankCount(lottos, winningLotto);
-
-      // 수익률 확인
       const profitRate = ScoreBoard.getProfitRate(allRankCount, money);
-
       OutputView.printLottoResult(allRankCount, profitRate);
 
       const restartCommand = await App.readRestartCommandUntilCorrect();
-      if (restartCommand === "N" || restartCommand === "n") break;
+      if (COMMAND.NO.includes(restartCommand)) break;
     }
   }
 
