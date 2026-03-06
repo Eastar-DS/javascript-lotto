@@ -36,6 +36,18 @@ const Validator = {
       throw new Error(ERROR_MESSAGE.PREFIX);
     }
   },
+
+  validateNotDuplicated(array) {
+    if (array.length !== new Set(array).size) {
+      throw new Error(ERROR_MESSAGE.PREFIX);
+    }
+  },
+
+  validateArrayLength(array, length) {
+    if (array.length !== length) {
+      throw new Error(ERROR_MESSAGE.PREFIX);
+    }
+  },
 };
 
 export default Validator;
