@@ -24,12 +24,13 @@ describe("로또 구입 금액 입력 테스트", () => {
     mockQuestions(input);
 
     // when & then
-    await expect(InputView.readMoney()).rejects.toThrow(ERROR_MESSAGE.PREFIX);
+    await expect(InputView.readMoney("")).rejects.toThrow(ERROR_MESSAGE.PREFIX);
   });
 
   test("문자가 포함되는 경우 에러를 발생 시켜야 한다 ", async () => {
     // given
-    const input = "a";
+    const input = ["1000j"];
+    mockQuestions(input);
 
     // when & then
     await expect(InputView.readMoney()).rejects.toThrow(ERROR_MESSAGE.PREFIX);
@@ -37,7 +38,8 @@ describe("로또 구입 금액 입력 테스트", () => {
 
   test("1000원 단위 입력이 아닌 경우 에러를 발생 시켜야 한다 ", async () => {
     // given
-    const input = "1500";
+    const input = ["1500"];
+    mockQuestions(input);
 
     // when & then
     await expect(InputView.readMoney()).rejects.toThrow(ERROR_MESSAGE.PREFIX);
@@ -45,7 +47,8 @@ describe("로또 구입 금액 입력 테스트", () => {
 
   test("입력이 0인 경우 에러를 발생 시켜야 한다 ", async () => {
     // given
-    const input = "0";
+    const input = ["0"];
+    mockQuestions(input);
 
     // when & then
     await expect(InputView.readMoney()).rejects.toThrow(ERROR_MESSAGE.PREFIX);
@@ -53,7 +56,8 @@ describe("로또 구입 금액 입력 테스트", () => {
 
   test("입력이 음수인 경우 에러를 발생 시켜야 한다 ", async () => {
     // given
-    const input = "-1";
+    const input = ["-1"];
+    mockQuestions(input);
 
     // when & then
     await expect(InputView.readMoney()).rejects.toThrow(ERROR_MESSAGE.PREFIX);
