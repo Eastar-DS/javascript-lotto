@@ -4,36 +4,43 @@
  */
 
 import { LOTTO } from "./constants.js";
-import InputView from "./InputView.js";
+import InputView from "./View/InputView.js";
 import LottoGenerator from "./LottoGenerator.js";
-import OutputView from "./OutputView.js";
+import OutputView from "./View/OutputView.js";
 import ScoreBoard from "./ScoreBoard.js";
-import WinningLotto from "./WinningLotto.js";
+import WinningLotto from "./Model/WinningLotto.js";
 
 class App {
   static async run() {
-    const money = await App.readMoneyUntilCorrect();
+    while (true) {
+      const money = await App.readMoneyUntilCorrect();
 
-    const buyLottoCount = money / LOTTO.PRICE;
-    OutputView.printBuyLottoCount(buyLottoCount);
+      const buyLottoCount = money / LOTTO.PRICE;
+      OutputView.printBuyLottoCount(buyLottoCount);
 
-    // 로또 발행
-    const lottos = LottoGenerator.makeLottos(buyLottoCount);
-    lottos.forEach((lotto) => OutputView.printLottoNumbers(lotto.getNumbers()));
+      // 로또 발행
+      const lottos = LottoGenerator.makeLottos(buyLottoCount);
+      lottos.forEach((lotto) =>
+        OutputView.printLottoNumbers(lotto.getNumbers()),
+      );
 
-    // 당첨 번호 입력
+      // 당첨 번호 입력
 
-    const winningNumbers = await App.readWinningNumbersUntilCorrect();
+      const winningNumbers = await App.readWinningNumbersUntilCorrect();
 
-    const winningLotto = await App.getWinningLotto(winningNumbers);
+      const winningLotto = await App.getWinningLotto(winningNumbers);
 
-    // 당첨 여부 확인
-    const allRankCount = ScoreBoard.makeAllRankCount(lottos, winningLotto);
+      // 당첨 여부 확인
+      const allRankCount = ScoreBoard.makeAllRankCount(lottos, winningLotto);
 
-    // 수익률 확인
-    const profitRate = ScoreBoard.getProfitRate(allRankCount, money);
+      // 수익률 확인
+      const profitRate = ScoreBoard.getProfitRate(allRankCount, money);
 
-    OutputView.printLottoResult(allRankCount, profitRate);
+      OutputView.printLottoResult(allRankCount, profitRate);
+
+      const restartCommand = await App.readRestartCommandUntilCorrect();
+      if (restartCommand === "N" || restartCommand === "n") break;
+    }
   }
 
   static async readMoneyUntilCorrect() {
@@ -80,6 +87,19 @@ class App {
     } catch (error) {
       console.log(error.message);
       return await App.getWinningLotto(winningNumbers);
+    }
+  }
+
+  static async readRestartCommandUntilCorrect() {
+    try {
+      const restartCommand = await InputView.readRestartCommand(
+        "> 다시 시작하시겠습니까? (y/n) ",
+      );
+
+      return restartCommand;
+    } catch (error) {
+      console.log(error.message);
+      return await App.readRestartCommandUntilCorrect();
     }
   }
 }

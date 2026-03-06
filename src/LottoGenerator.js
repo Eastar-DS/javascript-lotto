@@ -1,5 +1,5 @@
 import { LOTTO } from "./constants.js";
-import Lotto from "./Lotto.js";
+import Lotto from "./Model/Lotto.js";
 import Utils from "./Utils.js";
 
 const LottoGenerator = {

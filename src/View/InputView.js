@@ -1,6 +1,6 @@
-import { ERROR_MESSAGE, LOTTO } from "./constants.js";
-import Utils from "./Utils.js";
-import Validator from "./Validator.js";
+import { ERROR_MESSAGE, LOTTO } from "../constants.js";
+import Utils from "../Utils.js";
+import Validator from "../Validator.js";
 
 const InputView = {
   async readMoney(inputMessage) {
@@ -57,6 +57,21 @@ const InputView = {
     Validator.validateNumberUpper(LOTTO.UPPER, bonusNumber);
 
     return bonusNumber;
+  },
+
+  async readRestartCommand(inputMessage) {
+    const restartCommand = await Utils.readLineAsync(inputMessage);
+    if (
+      !(
+        restartCommand === "n" ||
+        restartCommand === "N" ||
+        restartCommand === "y" ||
+        restartCommand === "Y"
+      )
+    ) {
+      throw new Error(ERROR_MESSAGE.PREFIX);
+    }
+    return restartCommand;
   },
 };
 

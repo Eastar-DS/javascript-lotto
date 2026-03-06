@@ -1,11 +1,11 @@
 import { ERROR_MESSAGE, RANK } from "../src/constants";
-import InputView from "../src/InputView";
-import Lotto from "../src/Lotto";
+import InputView from "../src/View/InputView";
+import Lotto from "../src/Model/Lotto";
 import LottoGenerator from "../src/LottoGenerator";
 import ScoreBoard from "../src/ScoreBoard";
 import Utils from "../src/Utils";
 import Validator from "../src/Validator";
-import WinningLotto from "../src/WinningLotto";
+import WinningLotto from "../src/Model/WinningLotto";
 
 const mockQuestions = (inputs) => {
   Utils.readLineAsync = jest.fn();
