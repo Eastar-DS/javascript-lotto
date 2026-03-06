@@ -16,6 +16,7 @@ class App {
 
     // 로또 발행
     const lottos = LottoGenerator.makeLottos(buyLottoCount);
+    lottos.forEach((lotto) => console.log(lotto.getNumbers()));
   }
 }
 
