@@ -17,6 +17,10 @@ class App {
     // 로또 발행
     const lottos = LottoGenerator.makeLottos(buyLottoCount);
     lottos.forEach((lotto) => console.log(lotto.getNumbers()));
+
+    // 당첨 번호 입력
+    const winningNumbers =
+      await InputView.readWinningNumbers("> 당첨 번호를 입력해 주세요. ");
   }
 }
 

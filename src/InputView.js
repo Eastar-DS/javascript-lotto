@@ -1,10 +1,10 @@
 import { ERROR_MESSAGE, LOTTO } from "./constants.js";
 import Utils from "./Utils.js";
+import Validator from "./Validator.js";
 
 const InputView = {
   async readMoney(inputMessage) {
-    console.log(inputMessage);
-    const input = await Utils.readLineAsync("");
+    const input = await Utils.readLineAsync(inputMessage);
     if (input === "") {
       throw new Error(ERROR_MESSAGE.PREFIX);
     }
@@ -21,6 +21,30 @@ const InputView = {
     }
 
     return money;
+  },
+
+  async readWinningNumbers(inputMessage) {
+    const input = await Utils.readLineAsync(inputMessage);
+    if (Validator.validateNotEmptyString(input)) {
+      throw new Error(ERROR_MESSAGE.PREFIX);
+    }
+    const splitInput = input.split(",");
+    splitInput.forEach((string) => {
+      Validator.validateStringIsNumber(string);
+    });
+
+    const numbers = splitInput.map((string) => Number(string));
+    numbers.forEach((number) => {
+      Validator.validatePositiveNumber(number);
+      Validator.validateNumberLower(LOTTO.LOWER, number);
+      Validator.validateNumberUpper(LOTTO.UPPER, number);
+    });
+
+    if (numbers.length !== LOTTO.COUNT) {
+      throw new Error(ERROR_MESSAGE.PREFIX);
+    }
+
+    return numbers;
   },
 };
 
