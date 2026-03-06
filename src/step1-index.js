@@ -6,6 +6,7 @@
 import { LOTTO } from "./constants.js";
 import InputView from "./InputView.js";
 import LottoGenerator from "./LottoGenerator.js";
+import ScoreBoard from "./ScoreBoard.js";
 import WinningLotto from "./WinningLotto.js";
 
 class App {
@@ -27,6 +28,10 @@ class App {
       await InputView.readBonusNumber("> 보너스 번호를 입력해 주세요.");
 
     const winningLotto = new WinningLotto(winningNumbers, bonusNumber);
+
+    // 당첨 여부 확인
+    const allRankCount = ScoreBoard.makeAllRankCount(lottos, winningLotto);
+    console.log(allRankCount);
   }
 }
 await App.run();
