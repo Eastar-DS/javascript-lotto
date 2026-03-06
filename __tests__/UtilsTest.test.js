@@ -1,20 +1,27 @@
+import { LOTTO } from "../src/constants";
 import Utils from "../src/Utils";
 
 describe("유틸 함수 테스트", () => {
-  test("1~45 사이의 무작위 숫자 하나를 반환해야 한다", () => {
+  test(`${LOTTO.LOWER}~${LOTTO.UPPER} 사이의 무작위 숫자 하나를 반환해야 한다`, () => {
     // given & when
-    const randomNumber = Utils.getRandomNumber(1, 45);
+    const randomNumber = Utils.getRandomNumber(LOTTO.LOWER, LOTTO.UPPER);
 
     // then 나중에 모킹 해놓기
-    expect(randomNumber >= 1 && randomNumber <= 45).toEqual(true);
+    expect(randomNumber >= LOTTO.LOWER && randomNumber <= LOTTO.UPPER).toEqual(
+      true,
+    );
   });
 
-  test("1~45 사이의 중복되지 않는 무작위 숫자 6개를 반환해야 한다", () => {
+  test(`${LOTTO.LOWER}~${LOTTO.UPPER} 사이의 중복되지 않는 무작위 숫자 ${LOTTO.COUNT}개를 반환해야 한다`, () => {
     // given
-    const count = 6;
+    const count = LOTTO.COUNT;
 
     // when
-    const randomNumbers = Utils.getRandomNumbers(1, 45, count);
+    const randomNumbers = Utils.getRandomNumbers(
+      LOTTO.LOWER,
+      LOTTO.UPPER,
+      count,
+    );
 
     // then 나중에 모킹 해놓기
     expect(randomNumbers.length).toEqual(count);
