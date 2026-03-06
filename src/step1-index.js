@@ -6,19 +6,19 @@
 import { LOTTO } from "./constants.js";
 import InputView from "./InputView.js";
 import LottoGenerator from "./LottoGenerator.js";
+import OutputView from "./OutputView.js";
 import ScoreBoard from "./ScoreBoard.js";
 import WinningLotto from "./WinningLotto.js";
 
 class App {
   static async run() {
     const money = await InputView.readMoney("> 구입금액을 입력해 주세요.");
-    console.log(money);
     const buyLottoCount = money / LOTTO.PRICE;
-    console.log(buyLottoCount);
+    OutputView.printBuyLottoCount(buyLottoCount);
 
     // 로또 발행
     const lottos = LottoGenerator.makeLottos(buyLottoCount);
-    lottos.forEach((lotto) => console.log(lotto.getNumbers()));
+    lottos.forEach((lotto) => OutputView.printLottoNumbers(lotto.getNumbers()));
 
     // 당첨 번호 입력
     const winningNumbers =
@@ -31,7 +31,11 @@ class App {
 
     // 당첨 여부 확인
     const allRankCount = ScoreBoard.makeAllRankCount(lottos, winningLotto);
-    console.log(allRankCount);
+
+    // 수익률 확인
+    const profitRate = ScoreBoard.getProfitRate(allRankCount, money);
+
+    OutputView.printLottoResult(allRankCount, profitRate);
   }
 }
 await App.run();
