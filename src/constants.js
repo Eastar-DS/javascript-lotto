@@ -1,15 +1,15 @@
-const LOTTO = {
+export const LOTTO = {
   UPPER: 45,
   LOWER: 1,
   COUNT: 6,
   PRICE: 1_000,
 };
 
-const ERROR_MESSAGE = {
+export const ERROR_MESSAGE = {
   PREFIX: "[ERROR]",
 };
 
-const RANK = {
+export const RANK = {
   FIRST: {
     DISPLAY: "FIRST",
     MATCH_COUNT: 6,
@@ -24,5 +24,3 @@ const RANK = {
   FOURTH: { DISPLAY: "FOURTH", MATCH_COUNT: 4, PRICE: 50_000 },
   FIFTH: { DISPLAY: "FIFTH", MATCH_COUNT: 3, PRICE: 5_000 },
 };
-
-export { LOTTO, ERROR_MESSAGE, RANK };
