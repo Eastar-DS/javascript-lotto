@@ -13,7 +13,6 @@ class WinningLotto {
       throw new Error(ERROR_MESSAGE.PREFIX);
     }
     this.#bonusNumber = bonusNumber;
-    // this.#numbers = numbers.sort((a, b) => a - b);
   }
 
   getMatchCount(lotto) {
