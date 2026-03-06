@@ -352,48 +352,33 @@ describe("당첨 여부 테스트", () => {
 });
 
 describe("유효성 검증 테스트", () => {
-  test("입력된 문자열이 빈 값이 아닌지 검증해야 한다", () => {
+  test("입력된 문자열이 빈 값이면 에러를 발생시켜야 한다", () => {
     // given
-    const correctInput = "input";
     const wrongInput = "";
 
-    // when
-    const correctResult = Validator.validateNotEmptyString(correctInput);
-    const wrongResult = Validator.validateNotEmptyString(wrongInput);
-
-    // then
-    expect([correctResult, wrongResult]).toEqual([true, false]);
+    // when & then
+    expect(() => Validator.validateNotEmptyString(wrongInput)).toThrow(
+      ERROR_MESSAGE.PREFIX,
+    );
   });
-  test("입력된 문자열이 숫자인지 검증해야 한다", () => {
+  test("입력된 문자열이 숫자가 아니면 에러를 발생시켜야 한다", () => {
     // given
-    const correctInput = "500";
     const wrongInput = "NoNumber";
 
-    // when
-    const correctResult = Validator.validateStringIsNumber(correctInput);
-    const wrongResult = Validator.validateStringIsNumber(wrongInput);
-
-    // then
-    expect([correctResult, wrongResult]).toEqual([true, false]);
+    // when & then
+    expect(() => Validator.validateStringIsNumber(wrongInput)).toThrow(
+      ERROR_MESSAGE.PREFIX,
+    );
   });
 
   test("숫자가 특정 값으로 나누어 떨어지는지 검증해야한다", () => {
     // given
     const divideNumber = 1000;
-    const correctInput = 1000;
     const wrongInput = 1500;
 
-    // when
-    const correctResult = Validator.validateNumberDivided(
-      correctInput,
-      divideNumber,
-    );
-    const wrongResult = Validator.validateNumberDivided(
-      wrongInput,
-      divideNumber,
-    );
-
-    // then
-    expect([correctResult, wrongResult]).toEqual([true, false]);
+    // when & then
+    expect(() =>
+      Validator.validateNumberDivided(wrongInput, divideNumber),
+    ).toThrow(ERROR_MESSAGE.PREFIX);
   });
 });

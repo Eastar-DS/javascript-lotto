@@ -5,18 +5,12 @@ class Lotto {
   #numbers;
 
   constructor(numbers) {
-    if (numbers.some((number) => !Validator.validatePositiveNumber(number))) {
-      throw new Error(ERROR_MESSAGE.PREFIX);
-    }
-    if (
-      numbers.some(
-        (number) =>
-          !Validator.validateNumberLower(LOTTO.LOWER, number) ||
-          !Validator.validateNumberUpper(LOTTO.UPPER, number),
-      )
-    ) {
-      throw new Error(ERROR_MESSAGE.PREFIX);
-    }
+    numbers.forEach((number) => {
+      Validator.validatePositiveNumber(number);
+      Validator.validateNumberLower(LOTTO.LOWER, number);
+      Validator.validateNumberUpper(LOTTO.UPPER, number);
+    });
+
     if (numbers.length !== new Set(numbers).size) {
       throw new Error(ERROR_MESSAGE.PREFIX);
     }

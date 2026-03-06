@@ -1,26 +1,40 @@
+import { ERROR_MESSAGE } from "./constants.js";
+
 const Validator = {
   validateNotEmptyString(string) {
-    return string !== "";
+    if (string === "") {
+      throw new Error(ERROR_MESSAGE.PREFIX);
+    }
   },
 
   validatePositiveNumber(number) {
-    return number > 0;
+    if (number <= 0) {
+      throw new Error(ERROR_MESSAGE.PREFIX);
+    }
   },
 
   validateNumberUpper(upper, number) {
-    return number <= upper;
+    if (number > upper) {
+      throw new Error(ERROR_MESSAGE.PREFIX);
+    }
   },
 
   validateNumberLower(lower, number) {
-    return number >= lower;
+    if (number < lower) {
+      throw new Error(ERROR_MESSAGE.PREFIX);
+    }
   },
 
   validateStringIsNumber(string) {
-    return !isNaN(string);
+    if (isNaN(string)) {
+      throw new Error(ERROR_MESSAGE.PREFIX);
+    }
   },
 
   validateNumberDivided(number, divideNumber) {
-    return number % divideNumber === 0;
+    if (number % divideNumber !== 0) {
+      throw new Error(ERROR_MESSAGE.PREFIX);
+    }
   },
 };
 
