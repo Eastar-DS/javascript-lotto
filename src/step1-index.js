@@ -6,6 +6,7 @@
 import { LOTTO } from "./constants.js";
 import InputView from "./InputView.js";
 import LottoGenerator from "./LottoGenerator.js";
+import WinningLotto from "./WinningLotto.js";
 
 class App {
   static async run() {
@@ -24,6 +25,8 @@ class App {
 
     const bonusNumber =
       await InputView.readBonusNumber("> 보너스 번호를 입력해 주세요.");
+
+    const winningLotto = new WinningLotto(winningNumbers, bonusNumber);
   }
 }
 await App.run();
