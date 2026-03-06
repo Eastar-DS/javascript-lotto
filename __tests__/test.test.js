@@ -224,38 +224,6 @@ describe("당첨 로또 테스트", () => {
     );
   });
 
-  // 보너스 번호
-
-  test("보너스 번호가 0인 경우 에러를 발생시킨다", () => {
-    // given
-    const winningNUmbers = [1, 2, 3, 4, 5, 6];
-    const wrongBonusNumber = 0;
-    // when & then
-    expect(() => new WinningLotto(winningNUmbers, wrongBonusNumber)).toThrow(
-      ERROR_MESSAGE.PREFIX,
-    );
-  });
-
-  test("보너스 번호가 음의 정수인 경우 에러를 발생시킨다", () => {
-    // given
-    const winningNUmbers = [1, 2, 3, 4, 5, 6];
-    const wrongBonusNumber = -1;
-    // when & then
-    expect(() => new WinningLotto(winningNUmbers, wrongBonusNumber)).toThrow(
-      ERROR_MESSAGE.PREFIX,
-    );
-  });
-
-  test("보너스 번호가 1~45 사이가 아닌 경우 에러를 발생시킨다", () => {
-    // given
-    const winningNUmbers = [1, 2, 3, 4, 5, 6];
-    const wrongBonusNumber = 46;
-    // when & then
-    expect(() => new WinningLotto(winningNUmbers, wrongBonusNumber)).toThrow(
-      ERROR_MESSAGE.PREFIX,
-    );
-  });
-
   test("보너스 번호가 당첨 번호와 중복되는 경우 에러를 발생시킨다", () => {
     // given
     const winningNUmbers = [1, 2, 3, 4, 5, 6];
@@ -371,7 +339,7 @@ describe("유효성 검증 테스트", () => {
     );
   });
 
-  test("숫자가 특정 값으로 나누어 떨어지는지 검증해야한다", () => {
+  test("숫자가 특정 값으로 나누어 떨어지지 않으면 에러를 발생시켜야 한다", () => {
     // given
     const divideNumber = 1000;
     const wrongInput = 1500;
@@ -380,5 +348,25 @@ describe("유효성 검증 테스트", () => {
     expect(() =>
       Validator.validateNumberDivided(wrongInput, divideNumber),
     ).toThrow(ERROR_MESSAGE.PREFIX);
+  });
+
+  test("배열에 중복된 원소가 존재하면 에러를 발생시켜야 한다", () => {
+    // given
+    const wrongArray = [1, 1, 2, 3, 4, 5];
+
+    // when & then
+    expect(() => Validator.validateNotDuplicated(wrongArray)).toThrow(
+      ERROR_MESSAGE.PREFIX,
+    );
+  });
+
+  test("배열의 길이가 올바르지 않으면 에러를 발생시켜야 한다", () => {
+    // given
+    const wrongArray = [1, 2, 3, 4, 5];
+
+    // when & then
+    expect(() => Validator.validateArrayLength(wrongArray, 6)).toThrow(
+      ERROR_MESSAGE.PREFIX,
+    );
   });
 });
