@@ -1,4 +1,4 @@
-import { RANK } from "./constants";
+import { RANK } from "./constants.js";
 
 class ScoreBoard {
   static getRank(matchCount, hasBonus) {

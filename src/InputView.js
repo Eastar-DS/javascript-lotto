@@ -1,8 +1,9 @@
-import { ERROR_MESSAGE, LOTTO } from "./constants";
-import Utils from "./Utils";
+import { ERROR_MESSAGE, LOTTO } from "./constants.js";
+import Utils from "./Utils.js";
 
 const InputView = {
-  async readMoney() {
+  async readMoney(inputMessage) {
+    console.log(inputMessage);
     const input = await Utils.readLineAsync("");
     if (input === "") {
       throw new Error(ERROR_MESSAGE.PREFIX);
@@ -18,6 +19,8 @@ const InputView = {
     if (money <= 0) {
       throw new Error(ERROR_MESSAGE.PREFIX);
     }
+
+    return money;
   },
 };
 

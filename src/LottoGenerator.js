@@ -1,6 +1,6 @@
-import { LOTTO } from "./constants";
-import Lotto from "./Lotto";
-import Utils from "./Utils";
+import { LOTTO } from "./constants.js";
+import Lotto from "./Lotto.js";
+import Utils from "./Utils.js";
 
 const LottoGenerator = {
   calculateBuyLottoCount(money) {
