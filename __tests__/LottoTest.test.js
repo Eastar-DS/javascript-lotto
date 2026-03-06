@@ -1,4 +1,4 @@
-import { ERROR_MESSAGE } from "../src/constants";
+import { ERROR_MESSAGE, LOTTO } from "../src/constants";
 import LottoGenerator from "../src/LottoGenerator";
 import Lotto from "../src/Model/Lotto";
 
@@ -74,5 +74,16 @@ describe("로또 발행 테스트", () => {
 
     // then
     expect(lottos.length).toEqual(buyLottoCount);
+  });
+
+  test(`${LOTTO.LOWER}~${LOTTO.UPPER} 사이의 중복되지 않는 무작위 숫자 ${LOTTO.COUNT}개를 반환해야 한다`, () => {
+    // given
+
+    // when
+    const randomNumbers = LottoGenerator.getRandomLottoNumbers();
+
+    // then
+    expect(randomNumbers.length).toEqual(LOTTO.COUNT);
+    expect(randomNumbers.length === new Set(randomNumbers).size).toEqual(true);
   });
 });

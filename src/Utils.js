@@ -7,18 +7,6 @@ const Utils = {
     return Math.floor(Math.random() * (maxFloored - minCeiled + 1) + minCeiled);
   },
 
-  getRandomNumbers(min, max, count) {
-    const randomNumbers = [];
-    while (randomNumbers.length !== count) {
-      const randomNumber = Utils.getRandomNumber(min, max);
-      if (randomNumbers.includes(randomNumber)) continue;
-
-      randomNumbers.push(randomNumber);
-    }
-
-    return randomNumbers;
-  },
-
   readLineAsync(query) {
     return new Promise((resolve, reject) => {
       if (arguments.length !== 1) {

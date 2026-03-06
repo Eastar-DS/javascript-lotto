@@ -7,13 +7,22 @@ const LottoGenerator = {
     return money / LOTTO.PRICE;
   },
 
+  getRandomLottoNumbers() {
+    const randomNumbers = [];
+    while (randomNumbers.length !== LOTTO.COUNT) {
+      const randomNumber = Utils.getRandomNumber(LOTTO.LOWER, LOTTO.UPPER);
+      if (randomNumbers.includes(randomNumber)) continue;
+
+      randomNumbers.push(randomNumber);
+    }
+
+    return randomNumbers;
+  },
+
   makeLottos(buyLottoCount) {
     return Array.from(
       { length: buyLottoCount },
-      (v, i) =>
-        new Lotto(
-          Utils.getRandomNumbers(LOTTO.LOWER, LOTTO.UPPER, LOTTO.COUNT),
-        ),
+      (v, i) => new Lotto(LottoGenerator.getRandomLottoNumbers()),
     );
   },
 };
