@@ -1,3 +1,5 @@
+import readline from "readline";
+
 const Utils = {
   getRandomNumber(min, max) {
     const minCeiled = Math.ceil(min);
