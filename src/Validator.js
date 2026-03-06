@@ -1,4 +1,8 @@
 const Validator = {
+  validateNotEmptyString(string) {
+    return string !== "";
+  },
+
   validatePositiveNumber(number) {
     return number > 0;
   },
@@ -9,6 +13,14 @@ const Validator = {
 
   validateNumberLower(lower, number) {
     return number >= lower;
+  },
+
+  validateStringIsNumber(string) {
+    return !isNaN(string);
+  },
+
+  validateNumberDivided(number, divideNumber) {
+    return number % divideNumber === 0;
   },
 };
 
