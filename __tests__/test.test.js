@@ -1,9 +1,64 @@
 import { ERROR_MESSAGE, RANK } from "../src/constants";
+import InputView from "../src/InputView";
 import Lotto from "../src/Lotto";
 import LottoGenerator from "../src/LottoGenerator";
 import ScoreBoard from "../src/ScoreBoard";
 import Utils from "../src/Utils";
+import Validator from "../src/Validator";
 import WinningLotto from "../src/WinningLotto";
+
+const mockQuestions = (inputs) => {
+  Utils.readLineAsync = jest.fn();
+
+  Utils.readLineAsync.mockImplementation(() => {
+    const input = inputs.shift();
+
+    return Promise.resolve(input);
+  });
+};
+
+describe("로또 구입 금액 입력 테스트", () => {
+  test("빈 값이 입력되는 경우 에러를 발생 시켜야 한다 ", async () => {
+    // given
+    const input = [""];
+    mockQuestions(input);
+
+    // when & then
+    await expect(InputView.readMoney()).rejects.toThrow(ERROR_MESSAGE.PREFIX);
+  });
+
+  test("문자가 포함되는 경우 에러를 발생 시켜야 한다 ", async () => {
+    // given
+    const input = "a";
+
+    // when & then
+    await expect(InputView.readMoney()).rejects.toThrow(ERROR_MESSAGE.PREFIX);
+  });
+
+  test("1000원 단위 입력이 아닌 경우 에러를 발생 시켜야 한다 ", async () => {
+    // given
+    const input = "1500";
+
+    // when & then
+    await expect(InputView.readMoney()).rejects.toThrow(ERROR_MESSAGE.PREFIX);
+  });
+
+  test("입력이 0인 경우 에러를 발생 시켜야 한다 ", async () => {
+    // given
+    const input = "0";
+
+    // when & then
+    await expect(InputView.readMoney()).rejects.toThrow(ERROR_MESSAGE.PREFIX);
+  });
+
+  test("입력이 음수인 경우 에러를 발생 시켜야 한다 ", async () => {
+    // given
+    const input = "-1";
+
+    // when & then
+    await expect(InputView.readMoney()).rejects.toThrow(ERROR_MESSAGE.PREFIX);
+  });
+});
 
 describe("로또 발행 테스트", () => {
   test("구매한 로또의 개수를 올바르게 계산해야 한다.", () => {
