@@ -16,6 +16,12 @@ class Lotto {
     this.#numbers = numbers.sort((a, b) => a - b);
   }
 
+  checkDuplicate(number) {
+    if (this.#numbers.includes(number)) {
+      throw new Error(ERROR_MESSAGE.PREFIX);
+    }
+  }
+
   getNumbers() {
     return this.#numbers;
   }

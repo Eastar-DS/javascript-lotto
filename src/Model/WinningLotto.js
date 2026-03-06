@@ -1,6 +1,4 @@
-import { LOTTO, ERROR_MESSAGE } from "../constants.js";
 import Lotto from "./Lotto.js";
-import Validator from "../Validator.js";
 
 class WinningLotto {
   #lotto;
@@ -8,10 +6,7 @@ class WinningLotto {
 
   constructor(winningNumbers, bonusNumber) {
     this.#lotto = new Lotto(winningNumbers);
-
-    if (this.#lotto.getNumbers().includes(bonusNumber)) {
-      throw new Error(ERROR_MESSAGE.PREFIX);
-    }
+    this.#lotto.checkDuplicate(bonusNumber);
     this.#bonusNumber = bonusNumber;
   }
 
