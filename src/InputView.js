@@ -39,10 +39,9 @@ const InputView = {
       Validator.validateNumberLower(LOTTO.LOWER, number);
       Validator.validateNumberUpper(LOTTO.UPPER, number);
     });
+    Validator.validateNotDuplicated(numbers);
 
-    if (numbers.length !== LOTTO.COUNT) {
-      throw new Error(ERROR_MESSAGE.PREFIX);
-    }
+    Validator.validateArrayLength(numbers, LOTTO.COUNT);
 
     return numbers;
   },

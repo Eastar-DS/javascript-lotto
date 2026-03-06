@@ -11,12 +11,8 @@ class Lotto {
       Validator.validateNumberUpper(LOTTO.UPPER, number);
     });
 
-    if (numbers.length !== new Set(numbers).size) {
-      throw new Error(ERROR_MESSAGE.PREFIX);
-    }
-    if (numbers.length !== 6) {
-      throw new Error(ERROR_MESSAGE.PREFIX);
-    }
+    Validator.validateNotDuplicated(numbers);
+    Validator.validateArrayLength(numbers, LOTTO.COUNT);
     this.#numbers = numbers.sort((a, b) => a - b);
   }
 
