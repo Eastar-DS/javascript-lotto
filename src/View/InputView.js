@@ -3,28 +3,21 @@ import Utils from "../Utils.js";
 import Validator from "../Validator.js";
 
 const InputView = {
-  async readMoney(inputMessage) {
-    const input = await Utils.readLineAsync(inputMessage);
-    if (input === "") {
-      throw new Error(ERROR_MESSAGE.PREFIX);
-    }
-    if (isNaN(input)) {
-      throw new Error(ERROR_MESSAGE.PREFIX);
-    }
+  async readMoney() {
+    const input = await Utils.readLineAsync("> 구입금액을 입력해 주세요. ");
+    Validator.validateNotEmptyString(input);
+    Validator.validateStringIsNumber(input);
 
     const money = Number(input);
-    if (money % LOTTO.PRICE !== 0) {
-      throw new Error(ERROR_MESSAGE.PREFIX);
-    }
-    if (money <= 0) {
-      throw new Error(ERROR_MESSAGE.PREFIX);
-    }
+
+    Validator.validateNumberDivided(money, LOTTO.PRICE);
+    Validator.validatePositiveNumber(money);
 
     return money;
   },
 
-  async readWinningNumbers(inputMessage) {
-    const input = await Utils.readLineAsync(inputMessage);
+  async readWinningNumbers() {
+    const input = await Utils.readLineAsync("> 당첨 번호를 입력해 주세요. ");
     if (Validator.validateNotEmptyString(input)) {
       throw new Error(ERROR_MESSAGE.PREFIX);
     }
@@ -46,8 +39,8 @@ const InputView = {
     return numbers;
   },
 
-  async readBonusNumber(inputMessage) {
-    const input = await Utils.readLineAsync(inputMessage);
+  async readBonusNumber() {
+    const input = await Utils.readLineAsync("> 보너스 번호를 입력해 주세요.");
     Validator.validateNotEmptyString(input);
     Validator.validateStringIsNumber(input);
     const bonusNumber = Number(input);
@@ -59,8 +52,10 @@ const InputView = {
     return bonusNumber;
   },
 
-  async readRestartCommand(inputMessage) {
-    const restartCommand = await Utils.readLineAsync(inputMessage);
+  async readRestartCommand() {
+    const restartCommand = await Utils.readLineAsync(
+      "> 다시 시작하시겠습니까? (y/n) ",
+    );
     if (
       !(
         restartCommand === "n" ||

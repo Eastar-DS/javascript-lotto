@@ -45,7 +45,7 @@ class App {
 
   static async readMoneyUntilCorrect() {
     try {
-      const input = await InputView.readMoney("> 구입금액을 입력해 주세요.");
+      const input = await InputView.readMoney();
 
       return input;
     } catch (error) {
@@ -56,8 +56,7 @@ class App {
 
   static async readWinningNumbersUntilCorrect() {
     try {
-      const winningNumbers =
-        await InputView.readWinningNumbers("> 당첨 번호를 입력해 주세요. ");
+      const winningNumbers = await InputView.readWinningNumbers();
 
       return winningNumbers;
     } catch (error) {
@@ -68,8 +67,7 @@ class App {
 
   static async readBonusNumberUntilCorrect() {
     try {
-      const bonusNumber =
-        await InputView.readBonusNumber("> 보너스 번호를 입력해 주세요.");
+      const bonusNumber = await InputView.readBonusNumber();
 
       return bonusNumber;
     } catch (error) {
@@ -92,9 +90,7 @@ class App {
 
   static async readRestartCommandUntilCorrect() {
     try {
-      const restartCommand = await InputView.readRestartCommand(
-        "> 다시 시작하시겠습니까? (y/n) ",
-      );
+      const restartCommand = await InputView.readRestartCommand();
 
       return restartCommand;
     } catch (error) {
