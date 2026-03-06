@@ -21,7 +21,9 @@ class App {
     // 당첨 번호 입력
     const winningNumbers =
       await InputView.readWinningNumbers("> 당첨 번호를 입력해 주세요. ");
+
+    const bonusNumber =
+      await InputView.readBonusNumber("> 보너스 번호를 입력해 주세요.");
   }
 }
-
 await App.run();

@@ -46,6 +46,19 @@ const InputView = {
 
     return numbers;
   },
+
+  async readBonusNumber(inputMessage) {
+    const input = await Utils.readLineAsync(inputMessage);
+    Validator.validateNotEmptyString(input);
+    Validator.validateStringIsNumber(input);
+    const bonusNumber = Number(input);
+
+    Validator.validatePositiveNumber(bonusNumber);
+    Validator.validateNumberLower(LOTTO.LOWER, bonusNumber);
+    Validator.validateNumberUpper(LOTTO.UPPER, bonusNumber);
+
+    return bonusNumber;
+  },
 };
 
 export default InputView;
