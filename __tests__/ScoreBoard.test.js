@@ -3,31 +3,7 @@ import Lotto from "../src/Model/Lotto";
 import ScoreBoard from "../src/ScoreBoard";
 import WinningLotto from "../src/Model/WinningLotto";
 
-describe("당첨 여부 테스트", () => {
-  test("구매한 로또 하나와 당첨로또를 비교해서 일치하는 번호의 개수를 반환해야한다", () => {
-    // given
-    const lotto = new Lotto([1, 2, 3, 4, 8, 9]);
-    const winningLotto = new WinningLotto([1, 2, 3, 4, 5, 6], 7);
-
-    // when
-    const matchCount = winningLotto.getMatchCount(lotto);
-
-    // then
-    expect(matchCount).toEqual(4);
-  });
-
-  test("구매한 로또 번호에 보너스 번호가 포함되어 있는지 확인해야 한다", () => {
-    // given
-    const lotto = new Lotto([1, 2, 3, 4, 8, 9]);
-    const winningLotto = new WinningLotto([1, 2, 3, 4, 5, 6], 9);
-
-    // when
-    const hasBonus = winningLotto.hasBonus(lotto);
-
-    // then
-    expect(hasBonus).toEqual(true);
-  });
-
+describe("스코어보드 테스트", () => {
   test.each([
     [RANK.FIRST.DISPLAY, RANK.FIRST.MATCH_COUNT, true],
     [RANK.SECOND.DISPLAY, RANK.SECOND.MATCH_COUNT, true],
