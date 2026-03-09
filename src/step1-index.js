@@ -9,6 +9,13 @@ import LottoGenerator from "./LottoGenerator.js";
 import OutputView from "./View/OutputView.js";
 import ScoreBoard from "./ScoreBoard.js";
 import WinningLotto from "./Model/WinningLotto.js";
+import {
+  validateArrayLength,
+  validateNotDuplicated,
+  validateNumberLower,
+  validateNumberUpper,
+  validatePositiveNumber,
+} from "./Validator.js";
 
 class App {
   static async run() {
@@ -49,6 +56,15 @@ class App {
     try {
       const winningNumbers = await InputView.readWinningNumbers();
 
+      winningNumbers.forEach((number) => {
+        validatePositiveNumber(number);
+        validateNumberLower(LOTTO.LOWER, number);
+        validateNumberUpper(LOTTO.UPPER, number);
+      });
+
+      validateNotDuplicated(winningNumbers);
+      validateArrayLength(winningNumbers, LOTTO.COUNT);
+
       return winningNumbers;
     } catch (error) {
       console.log(error.message);
@@ -59,6 +75,10 @@ class App {
   static async readBonusNumberUntilCorrect() {
     try {
       const bonusNumber = await InputView.readBonusNumber();
+
+      validatePositiveNumber(bonusNumber);
+      validateNumberLower(LOTTO.LOWER, bonusNumber);
+      validateNumberUpper(LOTTO.UPPER, bonusNumber);
 
       return bonusNumber;
     } catch (error) {

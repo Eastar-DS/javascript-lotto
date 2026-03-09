@@ -33,14 +33,6 @@ const InputView = {
     });
 
     const numbers = splitInput.map((string) => Number(string));
-    numbers.forEach((number) => {
-      validatePositiveNumber(number);
-      validateNumberLower(LOTTO.LOWER, number);
-      validateNumberUpper(LOTTO.UPPER, number);
-    });
-    validateNotDuplicated(numbers);
-
-    validateArrayLength(numbers, LOTTO.COUNT);
 
     return numbers;
   },
@@ -50,10 +42,6 @@ const InputView = {
     validateNotEmptyString(input);
     validateStringIsNumber(input);
     const bonusNumber = Number(input);
-
-    validatePositiveNumber(bonusNumber);
-    validateNumberLower(LOTTO.LOWER, bonusNumber);
-    validateNumberUpper(LOTTO.UPPER, bonusNumber);
 
     return bonusNumber;
   },
