@@ -18,9 +18,8 @@ const InputView = {
 
   async readWinningNumbers() {
     const input = await Utils.readLineAsync(INPUT_MESSAGE.WINNING_NUMBERS);
-    if (Validator.validateNotEmptyString(input)) {
-      throw new Error(ERROR_MESSAGE.PREFIX);
-    }
+    Validator.validateNotEmptyString(input)
+    
     const splitInput = input.split(",");
     splitInput.forEach((string) => {
       Validator.validateStringIsNumber(string);
