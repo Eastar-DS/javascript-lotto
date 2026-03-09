@@ -1,5 +1,11 @@
 import { ERROR_MESSAGE } from "../src/constants";
-import Validator from "../src/Validator";
+import {
+  validateArrayLength,
+  validateNotDuplicated,
+  validateNotEmptyString,
+  validateNumberDivided,
+  validateStringIsNumber,
+} from "../src/Validator";
 
 describe("유효성 검증 테스트", () => {
   test("입력된 문자열이 빈 값이면 에러를 발생시켜야 한다", () => {
@@ -7,7 +13,7 @@ describe("유효성 검증 테스트", () => {
     const wrongInput = "";
 
     // when & then
-    expect(() => Validator.validateNotEmptyString(wrongInput)).toThrow(
+    expect(() => validateNotEmptyString(wrongInput)).toThrow(
       ERROR_MESSAGE.PREFIX,
     );
   });
@@ -16,7 +22,7 @@ describe("유효성 검증 테스트", () => {
     const wrongInput = "NoNumber";
 
     // when & then
-    expect(() => Validator.validateStringIsNumber(wrongInput)).toThrow(
+    expect(() => validateStringIsNumber(wrongInput)).toThrow(
       ERROR_MESSAGE.PREFIX,
     );
   });
@@ -27,9 +33,9 @@ describe("유효성 검증 테스트", () => {
     const wrongInput = 1500;
 
     // when & then
-    expect(() =>
-      Validator.validateNumberDivided(wrongInput, divideNumber),
-    ).toThrow(ERROR_MESSAGE.PREFIX);
+    expect(() => validateNumberDivided(wrongInput, divideNumber)).toThrow(
+      ERROR_MESSAGE.PREFIX,
+    );
   });
 
   test("배열에 중복된 원소가 존재하면 에러를 발생시켜야 한다", () => {
@@ -37,7 +43,7 @@ describe("유효성 검증 테스트", () => {
     const wrongArray = [1, 1, 2, 3, 4, 5];
 
     // when & then
-    expect(() => Validator.validateNotDuplicated(wrongArray)).toThrow(
+    expect(() => validateNotDuplicated(wrongArray)).toThrow(
       ERROR_MESSAGE.PREFIX,
     );
   });
@@ -47,7 +53,7 @@ describe("유효성 검증 테스트", () => {
     const wrongArray = [1, 2, 3, 4, 5];
 
     // when & then
-    expect(() => Validator.validateArrayLength(wrongArray, 6)).toThrow(
+    expect(() => validateArrayLength(wrongArray, 6)).toThrow(
       ERROR_MESSAGE.PREFIX,
     );
   });
