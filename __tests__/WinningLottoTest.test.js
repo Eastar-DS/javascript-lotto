@@ -1,4 +1,5 @@
 import { ERROR_MESSAGE } from "../src/constants";
+import Lotto from '../src/Model/Lotto';
 import WinningLotto from "../src/Model/WinningLotto";
 
 describe("당첨 로또 생성 테스트", () => {
