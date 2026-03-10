@@ -12,6 +12,7 @@ import WinningLotto from "./Model/WinningLotto.js";
 import {
   validateArrayLength,
   validateNotDuplicated,
+  validateNumberDivided,
   validateNumberLower,
   validateNumberUpper,
   validatePositiveNumber,
@@ -43,9 +44,12 @@ class App {
 
   static async readMoneyUntilCorrect() {
     try {
-      const input = await InputView.readMoney();
+      const money = await InputView.readMoney();
 
-      return input;
+      validateNumberDivided(money, LOTTO.PRICE);
+      validatePositiveNumber(money);
+
+      return money;
     } catch (error) {
       console.log(error.message);
       return await App.readMoneyUntilCorrect();

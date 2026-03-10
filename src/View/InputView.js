@@ -2,10 +2,6 @@ import { COMMAND, ERROR_MESSAGE, INPUT_MESSAGE, LOTTO } from "../constants.js";
 import Utils from "../Utils.js";
 import {
   validateNotEmptyString,
-  validateNumberDivided,
-  validateNumberLower,
-  validateNumberUpper,
-  validatePositiveNumber,
   validateStringIsNumber,
 } from "../Validator.js";
 
@@ -16,9 +12,6 @@ const InputView = {
     validateStringIsNumber(input);
 
     const money = Number(input);
-
-    validateNumberDivided(money, LOTTO.PRICE);
-    validatePositiveNumber(money);
 
     return money;
   },
