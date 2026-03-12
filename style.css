@@ -1,0 +1,17 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  height: 64px;
+  padding: 0 130px;
+  background: #4e5ba6;
+}
+
+.header-title {
+    color: white;
+}
