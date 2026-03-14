@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ko">
   <head>
     <meta charset="UTF-8" />
@@ -13,7 +13,33 @@
       <h1 class="header-title">🎱 행운의 로또</h1>
     </header>
 
-    
+    <main class="main">
+      <section class="card">
+        <h2 class="card-title">🎱 내 번호 당첨 확인 🎱</h2>
+
+        <form id="money-form" class="money-form">
+          <label for="money-input" class="label"
+            >구입할 금액을 입력해주세요.</label
+          >
+          <div class="input-row">
+            <input
+              id="money-input"
+              class="input"
+              type="number"
+              placeholder="ex) 5000"
+            />
+            <button type="submit" class="btn btn-small">구입</button>
+          </div>
+        </form>
+
+        <section id="lotto-section" class="lotto-section hidden">
+          <p id="buy-count"></p>
+          <ul id="lotto-list" class="lotto-list"></ul>
+        </section>
+      </section>
+    </main>
+
+    <footer></footer>
     <script type="module" src="./src/step2-index.js"></script>
   </body>
 </html>

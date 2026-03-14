@@ -13,5 +13,95 @@
 }
 
 .header-title {
-    color: white;
+  color: #ffffff;
+}
+
+.main {
+  display: flex;
+  justify-content: center;
+  padding: 84px 0;
+}
+
+.card {
+  width: 414px;
+  border: 1px solid #b4b4b4;
+  border-radius: 4px;
+  padding: 40px 16px;
+}
+
+.card-title {
+  margin: 0 0 28px;
+  text-align: center;
+}
+
+.money-form {
+  margin: 0 0 24px;
+}
+
+.label {
+  display: block;
+  margin: 0 0 4px;
+}
+
+.input-row {
+  display: flex;
+  gap: 16px;
+}
+
+.input {
+  height: 36px;
+  border: 1px solid #b4b4b4;
+  border-radius: 4px;
+  padding: 8px;
+}
+
+.input::placeholder {
+  color: #8b8b8b;
+}
+
+.input-row .input {
+  flex: 1;
+}
+
+.btn {
+  border: none;
+  border-radius: 4px;
+  background: #4e5ba6;
+  color: #ffffff;
+  letter-spacing: 1.25px;
+  cursor: pointer;
+}
+
+.btn-small {
+  width: 56px;
+  height: 36px;
+  font: 700 14px/16px "";
+}
+
+.hidden {
+  display: none;
+}
+
+.lotto-section {
+  margin: 24px 0 0;
+}
+
+.buy-count {
+  margin: 0 0 12px;
+}
+
+.lotto-list {
+  list-style: none;
+}
+
+.lotto-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  height: 36px;
+}
+
+.lotto-icon {
+  font-size: 34px;
+  line-height: 36px;
 }
