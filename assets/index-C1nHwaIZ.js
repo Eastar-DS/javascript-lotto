@@ -178,7 +178,6 @@ const renderLottos = (count) => {
     icon.className = "lotto-icon";
     icon.textContent = "🎟️";
     const numbers = document.createElement("span");
-    numbers.className = "body-text";
     numbers.textContent = lotto.getNumbers().join(", ");
     li.appendChild(icon);
     li.appendChild(numbers);
