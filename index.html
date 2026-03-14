@@ -39,14 +39,16 @@
         </section>
 
         <section id="winning-section" class="winning-section hidden">
-          <p>
-            지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.
-          </p>
+          <p>지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.</p>
           <div class="winning-inputs">
             <div class="winning-numbers">
-              <label class="label">당첨 번호</label>
+              <label for="winning-number" class="label">당첨 번호</label>
               <div class="number-inputs">
-                <input type="number" class="input winning-number" />
+                <input
+                  type="number"
+                  id="winning-number"
+                  class="input winning-number"
+                />
                 <input type="number" class="input winning-number" />
                 <input type="number" class="input winning-number" />
                 <input type="number" class="input winning-number" />
@@ -54,7 +56,16 @@
                 <input type="number" class="input winning-number" />
               </div>
             </div>
+            <div class="bonus-number">
+              <label for="bonus-number" class="label">보너스 번호</label>
+              <div class="number-inputs">
+                <input type="number" id="bonus-number" class="input" />
+              </div>
+            </div>
           </div>
+          <button type="button" id="result-btn" class="btn btn-full">
+            결과 확인하기
+          </button>
         </section>
       </section>
     </main>
