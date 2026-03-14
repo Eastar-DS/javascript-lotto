@@ -148,6 +148,7 @@ const moneyInput = document.getElementById("money-input");
 const lottoSection = document.getElementById("lotto-section");
 const buyCount = document.getElementById("buy-count");
 const lottoList = document.getElementById("lotto-list");
+const winningSection = document.getElementById("winningSection");
 const lottoState = {
   money: 0,
   lottos: []
@@ -184,4 +185,5 @@ const renderLottos = (count) => {
     lottoList.appendChild(li);
   });
   lottoSection.classList.remove("hidden");
+  winningSection.classList.remove("hidden");
 };
