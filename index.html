@@ -1,16 +1,45 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ko">
   <head>
     <meta charset="UTF-8" />
     <title>🎱 행운의 로또</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <script type="module" crossorigin src="/javascript-lotto/assets/index-COaX8i6R.js"></script>
+    <script type="module" crossorigin src="/javascript-lotto/assets/index-Cdna8-Rj.js"></script>
+    <link rel="stylesheet" crossorigin href="/javascript-lotto/assets/index-D8EQ6qkd.css">
   </head>
 
   <body>
-    <div id="app">
-      <h1>🎱 행운의 로또</h1>
-    </div>
+    <header id="app" class="header">
+      <h1 class="header-title">🎱 행운의 로또</h1>
+    </header>
+
+    <main class="main">
+      <section class="card">
+        <h2 class="card-title">🎱 내 번호 당첨 확인 🎱</h2>
+
+        <form id="money-form" class="money-form">
+          <label for="money-input" class="label"
+            >구입할 금액을 입력해주세요.</label
+          >
+          <div class="input-row">
+            <input
+              id="money-input"
+              class="input"
+              type="number"
+              placeholder="ex) 5000"
+            />
+            <button type="submit" class="btn btn-small">구입</button>
+          </div>
+        </form>
+
+        <section id="lotto-section" class="lotto-section hidden">
+          <p id="buy-count" class="body-text"></p>
+          <ul id="lotto-list" class="lotto-list"></ul>
+        </section>
+      </section>
+    </main>
+
+    <footer></footer>
   </body>
 </html>
