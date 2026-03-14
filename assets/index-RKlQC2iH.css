@@ -95,3 +95,8 @@
   align-items: center;
   gap: 8px;
 }
+
+.lotto-icon {
+  font-size: 34px;
+  line-height: 36px;
+}
