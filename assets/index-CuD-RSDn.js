@@ -227,7 +227,7 @@ const resultBtn = document.getElementById("result-btn");
 const modalOverlay = document.getElementById("modal-overlay");
 const modalClose = document.getElementById("modal-close");
 const profitRate = document.getElementById("profit-rate");
-document.getElementById("restart-btn");
+const restartBtn = document.getElementById("restart-btn");
 const lottoState = {
   money: 0,
   lottos: []
@@ -253,7 +253,10 @@ resultBtn.addEventListener("click", () => {
     const winningNumbers = getWinningNumbers();
     const bonusNumber = getBonusNumber();
     const winningLotto = new WinningLotto(winningNumbers, bonusNumber);
-    const allRankCount = ScoreBoard.makeAllRankCount(lottoState.lottos, winningLotto);
+    const allRankCount = ScoreBoard.makeAllRankCount(
+      lottoState.lottos,
+      winningLotto
+    );
     const rate = ScoreBoard.getProfitRate(allRankCount, lottoState.money);
     renderResult(allRankCount, rate);
   } catch (error) {
@@ -262,6 +265,18 @@ resultBtn.addEventListener("click", () => {
 });
 modalClose.addEventListener("click", () => {
   modalOverlay.classList.add("hidden");
+});
+restartBtn.addEventListener("click", () => {
+  modalOverlay.classList.add("hidden");
+  lottoSection.classList.add("hidden");
+  winningSection.classList.add("hidden");
+  moneyInput.value = "";
+  winningNuberInputs.forEach((input) => {
+    input.value = "";
+  });
+  bonusInput.value = "";
+  lottoState.lottos = [];
+  lottoState.money = 0;
 });
 const renderLottos = (count) => {
   buyCount.textContent = `총 ${count}개를 구매하였습니다.`;
