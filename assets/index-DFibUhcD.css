@@ -140,3 +140,7 @@
   width: 34px;
   text-align: center;
 }
+
+.bonus-number .number-inputs {
+  justify-content: flex-end;
+}
