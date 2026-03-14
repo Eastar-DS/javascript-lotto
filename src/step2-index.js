@@ -6,8 +6,12 @@
 import { LOTTO } from "./constants";
 import LottoGenerator from "./LottoGenerator";
 import {
+  validateArrayLength,
+  validateNotDuplicated,
   validateNotEmptyString,
   validateNumberDivided,
+  validateNumberLower,
+  validateNumberUpper,
   validatePositiveNumber,
   validateStringIsNumber,
 } from "./Validator";
@@ -18,6 +22,11 @@ const moneyInput = document.getElementById("money-input");
 const lottoSection = document.getElementById("lotto-section");
 const buyCount = document.getElementById("buy-count");
 const lottoList = document.getElementById("lotto-list");
+
+const winningSection = document.getElementById("winning-section");
+const winningNuberInputs = document.querySelectorAll(".winning-number");
+const bonusInput = document.getElementById("bonus-number");
+const resultBtn = document.getElementById("result-btn");
 
 const lottoState = {
   money: 0,
@@ -67,4 +76,35 @@ const renderLottos = (count) => {
   });
 
   lottoSection.classList.remove("hidden");
+  winningSection.classList.remove("hidden");
+};
+
+const getWinningNumbers = () => {
+  const numbers = Array.from(winningNuberInputs).map((input) => {
+    validateNotEmptyString(input.value);
+    validateStringIsNumber(input.value);
+    return Number(input.value);
+  });
+
+  numbers.forEach((number) => {
+    validatePositiveNumber(number);
+    validateNumberLower(LOTTO.LOWER, number);
+    validateNumberUpper(LOTTO.UPPER, number);
+  });
+  validateNotDuplicated(numbers);
+  validateArrayLength(numbers, LOTTO.COUNT);
+
+  return numbers;
+};
+
+const getBonusNumber = () => {
+  validateNotEmptyString(bonusInput.value);
+  validateStringIsNumber(bonusInput.value);
+
+  const number = Number(bonusInput.value);
+  validatePositiveNumber(number);
+  validateNumberLower(LOTTO.LOWER, number);
+  validateNumberUpper(LOTTO.UPPER, number);
+
+  return number;
 };

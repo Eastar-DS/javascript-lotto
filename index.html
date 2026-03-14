@@ -5,7 +5,6 @@
     <link rel="stylesheet" href="./style.css" />
     <title>🎱 행운의 로또</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
   </head>
 
   <body>
@@ -35,6 +34,40 @@
         <section id="lotto-section" class="lotto-section hidden">
           <p id="buy-count"></p>
           <ul id="lotto-list" class="lotto-list"></ul>
+        </section>
+
+        <section id="winning-section" class="winning-section hidden">
+          <p>지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.</p>
+          <div class="winning-inputs">
+            <div class="winning-numbers">
+              <label for="winning-number" class="label">당첨 번호</label>
+              <div class="number-inputs">
+                <input
+                  type="number"
+                  id="winning-number"
+                  class="input input-small winning-number"
+                />
+                <input type="number" class="input input-small winning-number" />
+                <input type="number" class="input input-small winning-number" />
+                <input type="number" class="input input-small winning-number" />
+                <input type="number" class="input input-small winning-number" />
+                <input type="number" class="input input-small winning-number" />
+              </div>
+            </div>
+            <div class="bonus-number">
+              <label for="bonus-number" class="label">보너스 번호</label>
+              <div class="number-inputs">
+                <input
+                  type="number"
+                  id="bonus-number"
+                  class="input input-small"
+                />
+              </div>
+            </div>
+          </div>
+          <button type="button" id="result-btn" class="btn btn-full">
+            결과 확인하기
+          </button>
         </section>
       </section>
     </main>
