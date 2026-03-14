@@ -36,6 +36,21 @@ const LOTTO = {
 const ERROR_MESSAGE = {
   PREFIX: "[ERROR]"
 };
+const RANK = {
+  FIRST: {
+    DISPLAY: "FIRST",
+    MATCH_COUNT: 6,
+    PRICE: 2e9
+  },
+  SECOND: {
+    DISPLAY: "SECOND",
+    MATCH_COUNT: 5,
+    PRICE: 3e7
+  },
+  THIRD: { DISPLAY: "THIRD", MATCH_COUNT: 5, PRICE: 15e5 },
+  FOURTH: { DISPLAY: "FOURTH", MATCH_COUNT: 4, PRICE: 5e4 },
+  FIFTH: { DISPLAY: "FIFTH", MATCH_COUNT: 3, PRICE: 5e3 }
+};
 function validateNotEmptyString(string) {
   if (string === "") {
     throw new Error(ERROR_MESSAGE.PREFIX);
@@ -143,15 +158,76 @@ const LottoGenerator = {
     );
   }
 };
+class WinningLotto {
+  #lotto;
+  #bonusNumber;
+  constructor(winningNumbers, bonusNumber) {
+    this.#lotto = new Lotto(winningNumbers);
+    this.#lotto.checkDuplicate(bonusNumber);
+    this.#bonusNumber = bonusNumber;
+  }
+  getMatchCount(lotto) {
+    const winningNumbers = this.#lotto.getNumbers();
+    const lottoNumbers = lotto.getNumbers();
+    const numbers = [...winningNumbers, ...lottoNumbers];
+    return numbers.length - new Set(numbers).size;
+  }
+  hasBonus(lotto) {
+    const lottoNumbers = lotto.getNumbers();
+    return lottoNumbers.includes(this.#bonusNumber);
+  }
+}
+const ScoreBoard = {
+  getRank(matchCount, hasBonus) {
+    if (matchCount === RANK.FIRST.MATCH_COUNT) {
+      return RANK.FIRST.DISPLAY;
+    }
+    if (matchCount === RANK.SECOND.MATCH_COUNT && hasBonus) {
+      return RANK.SECOND.DISPLAY;
+    }
+    if (matchCount === RANK.THIRD.MATCH_COUNT) {
+      return RANK.THIRD.DISPLAY;
+    }
+    if (matchCount === RANK.FOURTH.MATCH_COUNT) {
+      return RANK.FOURTH.DISPLAY;
+    }
+    if (matchCount === RANK.FIFTH.MATCH_COUNT) {
+      return RANK.FIFTH.DISPLAY;
+    }
+  },
+  makeAllRankCount(lottos, winningLotto) {
+    const allRankCount = {
+      FIRST: 0,
+      SECOND: 0,
+      THIRD: 0,
+      FOURTH: 0,
+      FIFTH: 0
+    };
+    lottos.forEach((lotto) => {
+      const matchCount = winningLotto.getMatchCount(lotto);
+      const hasBonus = winningLotto.hasBonus(lotto);
+      allRankCount[ScoreBoard.getRank(matchCount, hasBonus)]++;
+    });
+    return allRankCount;
+  },
+  getProfitRate(allRankCount, money) {
+    const totalProfit = allRankCount[RANK.FIRST.DISPLAY] * RANK.FIRST.PRICE + allRankCount[RANK.SECOND.DISPLAY] * RANK.SECOND.PRICE + allRankCount[RANK.THIRD.DISPLAY] * RANK.THIRD.PRICE + allRankCount[RANK.FOURTH.DISPLAY] * RANK.FOURTH.PRICE + allRankCount[RANK.FIFTH.DISPLAY] * RANK.FIFTH.PRICE;
+    return (totalProfit / money * 100).toFixed(1);
+  }
+};
 const moneyForm = document.getElementById("money-form");
 const moneyInput = document.getElementById("money-input");
 const lottoSection = document.getElementById("lotto-section");
 const buyCount = document.getElementById("buy-count");
 const lottoList = document.getElementById("lotto-list");
 const winningSection = document.getElementById("winning-section");
-document.querySelectorAll(".winning-number");
-document.getElementById("bonus-number");
-document.getElementById("result-btn");
+const winningNuberInputs = document.querySelectorAll(".winning-number");
+const bonusInput = document.getElementById("bonus-number");
+const resultBtn = document.getElementById("result-btn");
+const modalOverlay = document.getElementById("modal-overlay");
+document.getElementById("modal-close");
+const profitRate = document.getElementById("profit-rate");
+document.getElementById("restart-btn");
 const lottoState = {
   money: 0,
   lottos: []
@@ -168,6 +244,18 @@ moneyForm.addEventListener("submit", (event) => {
     const buyLottoCount = lottoState.money / LOTTO.PRICE;
     lottoState.lottos = LottoGenerator.makeLottos(buyLottoCount);
     renderLottos(buyLottoCount);
+  } catch (error) {
+    alert(error.message);
+  }
+});
+resultBtn.addEventListener("click", () => {
+  try {
+    const winningNumbers = getWinningNumbers();
+    const bonusNumber = getBonusNumber();
+    const winningLotto = new WinningLotto(winningNumbers, bonusNumber);
+    const allRankCount = ScoreBoard.makeAllRankCount(lottoState.lottos, winningLotto);
+    const rate = ScoreBoard.getProfitRate(allRankCount, lottoState.money);
+    renderResult(allRankCount, rate);
   } catch (error) {
     alert(error.message);
   }
@@ -189,4 +277,37 @@ const renderLottos = (count) => {
   });
   lottoSection.classList.remove("hidden");
   winningSection.classList.remove("hidden");
+};
+const renderResult = (allRankCount, rate) => {
+  document.getElementById("rank-5th").textContent = `${allRankCount.FIFTH}개`;
+  document.getElementById("rank-4th").textContent = `${allRankCount.FOURTH}개`;
+  document.getElementById("rank-3rd").textContent = `${allRankCount.THIRD}개`;
+  document.getElementById("rank-2nd").textContent = `${allRankCount.SECOND}개`;
+  document.getElementById("rank-1st").textContent = `${allRankCount.FIRST}개`;
+  profitRate.innerHTML = `당신의 총 수익률은 <strong>${rate}</strong>%입니다.`;
+  modalOverlay.classList.remove("hidden");
+};
+const getWinningNumbers = () => {
+  const numbers = Array.from(winningNuberInputs).map((input) => {
+    validateNotEmptyString(input.value);
+    validateStringIsNumber(input.value);
+    return Number(input.value);
+  });
+  numbers.forEach((number) => {
+    validatePositiveNumber(number);
+    validateNumberLower(LOTTO.LOWER, number);
+    validateNumberUpper(LOTTO.UPPER, number);
+  });
+  validateNotDuplicated(numbers);
+  validateArrayLength(numbers, LOTTO.COUNT);
+  return numbers;
+};
+const getBonusNumber = () => {
+  validateNotEmptyString(bonusInput.value);
+  validateStringIsNumber(bonusInput.value);
+  const number = Number(bonusInput.value);
+  validatePositiveNumber(number);
+  validateNumberLower(LOTTO.LOWER, number);
+  validateNumberUpper(LOTTO.UPPER, number);
+  return number;
 };
