@@ -124,8 +124,8 @@ const Utils = {
   }
 };
 const LottoGenerator = {
-  calculateBuyLottoCount(money2) {
-    return money2 / LOTTO.PRICE;
+  calculateBuyLottoCount(money) {
+    return money / LOTTO.PRICE;
   },
   getRandomLottoNumbers() {
     const randomNumbers = [];
@@ -161,7 +161,7 @@ moneyForm.addEventListener("submit", (event) => {
     lottoState.money = Number(moneyString);
     validatePositiveNumber(lottoState.money);
     validateNumberDivided(lottoState.money, LOTTO.PRICE);
-    const buyLottoCount = money / LOTTO.PRICE;
+    const buyLottoCount = lottoState.money / LOTTO.PRICE;
     lottoState.lottos = LottoGenerator.makeLottos(buyLottoCount);
     renderLottos(buyLottoCount);
   } catch (error) {
