@@ -86,6 +86,10 @@
   margin: 24px 0 0;
 }
 
+.buy-count {
+  margin: 0 0 12px;
+}
+
 .lotto-list {
   list-style: none;
 }
