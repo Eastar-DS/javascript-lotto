@@ -165,6 +165,7 @@
 .modal {
   position: relative;
   width: 350px;
+  padding: 40px 16px;
   border-radius: 4px;
   background: #ffffff;
 }
