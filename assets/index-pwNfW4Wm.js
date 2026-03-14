@@ -225,7 +225,7 @@ const winningNuberInputs = document.querySelectorAll(".winning-number");
 const bonusInput = document.getElementById("bonus-number");
 const resultBtn = document.getElementById("result-btn");
 const modalOverlay = document.getElementById("modal-overlay");
-document.getElementById("modal-close");
+const modalClose = document.getElementById("modal-close");
 const profitRate = document.getElementById("profit-rate");
 document.getElementById("restart-btn");
 const lottoState = {
@@ -259,6 +259,9 @@ resultBtn.addEventListener("click", () => {
   } catch (error) {
     alert(error.message);
   }
+});
+modalClose.addEventListener("click", () => {
+  modalOverlay.classList.add("hidden");
 });
 const renderLottos = (count) => {
   buyCount.textContent = `총 ${count}개를 구매하였습니다.`;
