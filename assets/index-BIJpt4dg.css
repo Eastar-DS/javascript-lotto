@@ -76,12 +76,12 @@
   color: #ffffff;
   letter-spacing: 1.25px;
   cursor: pointer;
+  font: 700 14px/16px "";
 }
 
 .btn-small {
   width: 56px;
   height: 36px;
-  font: 700 14px/16px "";
 }
 
 .hidden {
