@@ -149,6 +149,9 @@ const lottoSection = document.getElementById("lotto-section");
 const buyCount = document.getElementById("buy-count");
 const lottoList = document.getElementById("lotto-list");
 const winningSection = document.getElementById("winningSection");
+document.querySelectorAll(".winning-number");
+document.getElementById("bonus-input");
+document.getElementById("result-btn");
 const lottoState = {
   money: 0,
   lottos: []
