@@ -144,3 +144,12 @@
 .bonus-number .number-inputs {
   justify-content: flex-end;
 }
+
+.footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80px;
+  color: #4e5ba6;
+  font-size: 14px;
+}
