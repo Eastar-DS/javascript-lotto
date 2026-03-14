@@ -65,8 +65,8 @@
 
 .input::-webkit-inner-spin-button,
 .input::-webkit-outer-spin-button {
-    appearance: none;
-    margin: 0;
+  appearance: none;
+  margin: 0;
 }
 
 .btn {
@@ -110,4 +110,21 @@
 .lotto-icon {
   font-size: 34px;
   line-height: 36px;
+}
+
+.winning-section {
+  margin: 24px 0 0;
+  padding: 24px 0 0;
+}
+
+.winning-inputs {
+  display: flex;
+  justify-content: space-between;
+  margin: 12px 0;
+}
+
+.number-inputs {
+  display: flex;
+  gap: 8px;
+  margin: 4px 0 0;
 }
