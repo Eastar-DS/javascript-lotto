@@ -148,7 +148,7 @@ const moneyInput = document.getElementById("money-input");
 const lottoSection = document.getElementById("lotto-section");
 const buyCount = document.getElementById("buy-count");
 const lottoList = document.getElementById("lotto-list");
-const winningSection = document.getElementById("winningSection");
+const winningSection = document.getElementById("winning-section");
 document.querySelectorAll(".winning-number");
 document.getElementById("bonus-input");
 document.getElementById("result-btn");
