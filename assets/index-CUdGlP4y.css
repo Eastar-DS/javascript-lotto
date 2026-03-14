@@ -201,6 +201,7 @@
 
 .result-table th,
 .result-table td {
+  padding: 8px 0;
   border-bottom: 1px solid #b4b4b4;
   font-size: 15px;
   text-align: center;
@@ -208,7 +209,7 @@
 
 .profit-text {
   margin: 24px 0;
-  font-size: 15px;
+  font: 600 15px/18px "";
   text-align: center;
 }
 
