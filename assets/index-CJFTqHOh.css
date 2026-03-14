@@ -188,6 +188,11 @@
 
 .result-table {
   width: 100%;
+  border-collapse: collapse;
+}
+
+.result-table thead {
+  border-top: 1px solid #b4b4b4;
 }
 
 .result-table th {
