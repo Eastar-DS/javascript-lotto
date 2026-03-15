@@ -5,6 +5,8 @@
 
 import { LOTTO } from "./constants";
 import LottoGenerator from "./LottoGenerator";
+import WinningLotto from "./Model/WinningLotto";
+import ScoreBoard from "./ScoreBoard";
 import {
   validateArrayLength,
   validateNotDuplicated,
@@ -27,6 +29,11 @@ const winningSection = document.getElementById("winning-section");
 const winningNuberInputs = document.querySelectorAll(".winning-number");
 const bonusInput = document.getElementById("bonus-number");
 const resultBtn = document.getElementById("result-btn");
+
+const modalOverlay = document.getElementById("modal-overlay");
+const modalClose = document.getElementById("modal-close");
+const profitRate = document.getElementById("profit-rate");
+const restartBtn = document.getElementById("restart-btn");
 
 const lottoState = {
   money: 0,
@@ -55,6 +62,43 @@ moneyForm.addEventListener("submit", (event) => {
   }
 });
 
+resultBtn.addEventListener("click", () => {
+  try {
+    const winningNumbers = getWinningNumbers();
+    const bonusNumber = getBonusNumber();
+
+    const winningLotto = new WinningLotto(winningNumbers, bonusNumber);
+    const allRankCount = ScoreBoard.makeAllRankCount(
+      lottoState.lottos,
+      winningLotto,
+    );
+    const rate = ScoreBoard.getProfitRate(allRankCount, lottoState.money);
+
+    renderResult(allRankCount, rate);
+  } catch (error) {
+    alert(error.message);
+  }
+});
+
+modalClose.addEventListener("click", () => {
+  modalOverlay.classList.add("hidden");
+});
+
+restartBtn.addEventListener("click", () => {
+  modalOverlay.classList.add("hidden");
+  lottoSection.classList.add("hidden");
+  winningSection.classList.add("hidden");
+
+  moneyInput.value = "";
+  winningNuberInputs.forEach((input) => {
+    input.value = "";
+  });
+  bonusInput.value = "";
+
+  lottoState.lottos = [];
+  lottoState.money = 0;
+});
+
 const renderLottos = (count) => {
   buyCount.textContent = `총 ${count}개를 구매하였습니다.`;
 
@@ -77,6 +121,17 @@ const renderLottos = (count) => {
 
   lottoSection.classList.remove("hidden");
   winningSection.classList.remove("hidden");
+};
+
+const renderResult = (allRankCount, rate) => {
+  document.getElementById("rank-5th").textContent = `${allRankCount.FIFTH}개`;
+  document.getElementById("rank-4th").textContent = `${allRankCount.FOURTH}개`;
+  document.getElementById("rank-3rd").textContent = `${allRankCount.THIRD}개`;
+  document.getElementById("rank-2nd").textContent = `${allRankCount.SECOND}개`;
+  document.getElementById("rank-1st").textContent = `${allRankCount.FIRST}개`;
+  profitRate.innerHTML = `당신의 총 수익률은 <strong>${rate}</strong>%입니다.`;
+
+  modalOverlay.classList.remove("hidden");
 };
 
 const getWinningNumbers = () => {
