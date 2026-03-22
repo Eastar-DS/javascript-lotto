@@ -215,8 +215,20 @@ const ScoreBoard = {
     return (totalProfit / money * 100).toFixed(1);
   }
 };
+const InputViewWeb = {
+  getMoney() {
+    const input = document.getElementById("money-input").value;
+    validateNotEmptyString(input);
+    validateStringIsNumber(input);
+    return Number(input);
+  },
+  getWinningNumbers() {
+    document.querySelectorAll(".winning-number");
+  },
+  getBonusNumber() {
+  }
+};
 const moneyForm = document.getElementById("money-form");
-const moneyInput = document.getElementById("money-input");
 const lottoSection = document.getElementById("lotto-section");
 const buyCount = document.getElementById("buy-count");
 const lottoList = document.getElementById("lotto-list");
@@ -235,10 +247,7 @@ const lottoState = {
 moneyForm.addEventListener("submit", (event) => {
   event.preventDefault();
   try {
-    const moneyString = moneyInput.value;
-    validateNotEmptyString(moneyString);
-    validateStringIsNumber(moneyString);
-    lottoState.money = Number(moneyString);
+    lottoState.money = InputViewWeb.getMoney();
     validatePositiveNumber(lottoState.money);
     validateNumberDivided(lottoState.money, LOTTO.PRICE);
     const buyLottoCount = lottoState.money / LOTTO.PRICE;
