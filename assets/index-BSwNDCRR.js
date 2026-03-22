@@ -49,7 +49,8 @@ const RANK = {
   },
   THIRD: { DISPLAY: "THIRD", MATCH_COUNT: 5, PRICE: 15e5 },
   FOURTH: { DISPLAY: "FOURTH", MATCH_COUNT: 4, PRICE: 5e4 },
-  FIFTH: { DISPLAY: "FIFTH", MATCH_COUNT: 3, PRICE: 5e3 }
+  FIFTH: { DISPLAY: "FIFTH", MATCH_COUNT: 3, PRICE: 5e3 },
+  NONE: { DISPLAY: "NONE" }
 };
 function validateNotEmptyString(string) {
   if (string === "") {
@@ -194,6 +195,7 @@ const ScoreBoard = {
     if (matchCount === RANK.FIFTH.MATCH_COUNT) {
       return RANK.FIFTH.DISPLAY;
     }
+    return RANK.NONE.DISPLAY;
   },
   makeAllRankCount(lottos, winningLotto) {
     const allRankCount = {
@@ -201,7 +203,8 @@ const ScoreBoard = {
       SECOND: 0,
       THIRD: 0,
       FOURTH: 0,
-      FIFTH: 0
+      FIFTH: 0,
+      NONE: 0
     };
     lottos.forEach((lotto) => {
       const matchCount = winningLotto.getMatchCount(lotto);
