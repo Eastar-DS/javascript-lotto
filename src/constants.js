@@ -7,6 +7,14 @@ export const LOTTO = {
 
 export const ERROR_MESSAGE = {
   PREFIX: "[ERROR]",
+  EMPTY: "[ERROR] 값을 입력해주세요.",
+  NOT_NUMBER: "[ERROR] 숫자를 입력해주세요.",
+  NOT_POSITIVE: "[ERROR] 양수를 입력해주세요.",
+  NOT_DIVIDED: "[ERROR] 1,000원 단위로 입력해주세요.",
+  OVER_UPPER: "[ERROR] 1~45 사이의 숫자를 입력해주세요.",
+  UNDER_LOWER: "[ERROR] 1~45 사이의 숫자를 입력해주세요.",
+  DUPLICATED: "[ERROR] 중복되지 않는 숫자를 입력해주세요.",
+  INVALID_LENGTH: "[ERROR] 6개의 숫자를 입력해주세요.",
 };
 
 export const RANK = {
