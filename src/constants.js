@@ -15,6 +15,7 @@ export const ERROR_MESSAGE = {
   UNDER_LOWER: "[ERROR] 1~45 사이의 숫자를 입력해주세요.",
   DUPLICATED: "[ERROR] 중복되지 않는 숫자를 입력해주세요.",
   INVALID_LENGTH: "[ERROR] 6개의 숫자를 입력해주세요.",
+  BONUS_DUPLICATED: "[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.",
 };
 
 export const RANK = {
