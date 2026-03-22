@@ -223,9 +223,19 @@ const InputViewWeb = {
     return Number(input);
   },
   getWinningNumbers() {
-    document.querySelectorAll(".winning-number");
+    const inputs = document.querySelectorAll(".winning-number");
+    const numbers = Array.from(inputs).map((input) => {
+      validateNotEmptyString(input.value);
+      validateStringIsNumber(input.value);
+      return Number(input.value);
+    });
+    return numbers;
   },
   getBonusNumber() {
+    const input = document.getElementById("bonus-number").value;
+    validateNotEmptyString(input.value);
+    validateStringIsNumber(input.value);
+    return Number(input);
   }
 };
 const moneyForm = document.getElementById("money-form");
@@ -315,11 +325,7 @@ const renderResult = (allRankCount, rate) => {
   modalOverlay.classList.remove("hidden");
 };
 const getWinningNumbers = () => {
-  const numbers = Array.from(winningNuberInputs).map((input) => {
-    validateNotEmptyString(input.value);
-    validateStringIsNumber(input.value);
-    return Number(input.value);
-  });
+  const numbers = InputViewWeb.getWinningNumbers();
   numbers.forEach((number) => {
     validatePositiveNumber(number);
     validateNumberLower(LOTTO.LOWER, number);
@@ -330,9 +336,7 @@ const getWinningNumbers = () => {
   return numbers;
 };
 const getBonusNumber = () => {
-  validateNotEmptyString(bonusInput.value);
-  validateStringIsNumber(bonusInput.value);
-  const number = Number(bonusInput.value);
+  const number = InputViewWeb.getBonusNumber();
   validatePositiveNumber(number);
   validateNumberLower(LOTTO.LOWER, number);
   validateNumberUpper(LOTTO.UPPER, number);
