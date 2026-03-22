@@ -34,7 +34,15 @@ const LOTTO = {
   PRICE: 1e3
 };
 const ERROR_MESSAGE = {
-  PREFIX: "[ERROR]"
+  PREFIX: "[ERROR]",
+  EMPTY: "[ERROR] 값을 입력해주세요.",
+  NOT_NUMBER: "[ERROR] 숫자를 입력해주세요.",
+  NOT_POSITIVE: "[ERROR] 양수를 입력해주세요.",
+  NOT_DIVIDED: "[ERROR] 1,000원 단위로 입력해주세요.",
+  OVER_UPPER: "[ERROR] 1~45 사이의 숫자를 입력해주세요.",
+  UNDER_LOWER: "[ERROR] 1~45 사이의 숫자를 입력해주세요.",
+  DUPLICATED: "[ERROR] 중복되지 않는 숫자를 입력해주세요.",
+  INVALID_LENGTH: "[ERROR] 6개의 숫자를 입력해주세요."
 };
 const RANK = {
   FIRST: {
@@ -54,42 +62,42 @@ const RANK = {
 };
 function validateNotEmptyString(string) {
   if (string === "") {
-    throw new Error(ERROR_MESSAGE.PREFIX);
+    throw new Error(ERROR_MESSAGE.EMPTY);
   }
 }
 function validatePositiveNumber(number) {
   if (number <= 0) {
-    throw new Error(ERROR_MESSAGE.PREFIX);
+    throw new Error(ERROR_MESSAGE.NOT_POSITIVE);
   }
 }
 function validateNumberUpper(upper, number) {
   if (number > upper) {
-    throw new Error(ERROR_MESSAGE.PREFIX);
+    throw new Error(ERROR_MESSAGE.OVER_UPPER);
   }
 }
 function validateNumberLower(lower, number) {
   if (number < lower) {
-    throw new Error(ERROR_MESSAGE.PREFIX);
+    throw new Error(ERROR_MESSAGE.UNDER_LOWER);
   }
 }
 function validateStringIsNumber(string) {
   if (isNaN(string)) {
-    throw new Error(ERROR_MESSAGE.PREFIX);
+    throw new Error(ERROR_MESSAGE.NOT_NUMBER);
   }
 }
 function validateNumberDivided(number, divideNumber) {
   if (number % divideNumber !== 0) {
-    throw new Error(ERROR_MESSAGE.PREFIX);
+    throw new Error(ERROR_MESSAGE.NOT_DIVIDED);
   }
 }
 function validateNotDuplicated(array) {
   if (array.length !== new Set(array).size) {
-    throw new Error(ERROR_MESSAGE.PREFIX);
+    throw new Error(ERROR_MESSAGE.DUPLICATED);
   }
 }
 function validateArrayLength(array, length) {
   if (array.length !== length) {
-    throw new Error(ERROR_MESSAGE.PREFIX);
+    throw new Error(ERROR_MESSAGE.INVALID_LENGTH);
   }
 }
 class Lotto {
