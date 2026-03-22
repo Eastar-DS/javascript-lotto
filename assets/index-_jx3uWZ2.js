@@ -303,7 +303,7 @@ moneyForm.addEventListener("submit", (event) => {
     validateNumberDivided(lottoState.money, LOTTO.PRICE);
     const buyLottoCount = lottoState.money / LOTTO.PRICE;
     lottoState.lottos = LottoGenerator.makeLottos(buyLottoCount);
-    OutputViewWeb.renderLottos(buyLottoCount);
+    OutputViewWeb.renderLottos(lottoState.lottos);
   } catch (error) {
     alert(error.message);
   }
