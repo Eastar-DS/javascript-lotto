@@ -233,8 +233,8 @@ const InputViewWeb = {
   },
   getBonusNumber() {
     const input = document.getElementById("bonus-number").value;
-    validateNotEmptyString(input.value);
-    validateStringIsNumber(input.value);
+    validateNotEmptyString(input);
+    validateStringIsNumber(input);
     return Number(input);
   }
 };
@@ -243,8 +243,6 @@ const lottoSection = document.getElementById("lotto-section");
 const buyCount = document.getElementById("buy-count");
 const lottoList = document.getElementById("lotto-list");
 const winningSection = document.getElementById("winning-section");
-const winningNuberInputs = document.querySelectorAll(".winning-number");
-const bonusInput = document.getElementById("bonus-number");
 const resultBtn = document.getElementById("result-btn");
 const modalOverlay = document.getElementById("modal-overlay");
 const modalClose = document.getElementById("modal-close");
