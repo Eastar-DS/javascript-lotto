@@ -249,11 +249,9 @@ const LottoList = {
   },
   show() {
     document.getElementById("lotto-section").classList.remove("hidden");
-    classList.remove("hidden");
   },
   hide() {
     document.getElementById("lotto-section").classList.remove("hidden");
-    classList.add("hidden");
   },
   reset() {
     const lottoList = document.getElementById("lotto-list");
