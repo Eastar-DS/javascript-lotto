@@ -34,7 +34,6 @@ const LOTTO = {
   PRICE: 1e3
 };
 const ERROR_MESSAGE = {
-  PREFIX: "[ERROR]",
   EMPTY: "[ERROR] 값을 입력해주세요.",
   NOT_NUMBER: "[ERROR] 숫자를 입력해주세요.",
   NOT_POSITIVE: "[ERROR] 양수를 입력해주세요.",
@@ -42,7 +41,8 @@ const ERROR_MESSAGE = {
   OVER_UPPER: "[ERROR] 1~45 사이의 숫자를 입력해주세요.",
   UNDER_LOWER: "[ERROR] 1~45 사이의 숫자를 입력해주세요.",
   DUPLICATED: "[ERROR] 중복되지 않는 숫자를 입력해주세요.",
-  INVALID_LENGTH: "[ERROR] 6개의 숫자를 입력해주세요."
+  INVALID_LENGTH: "[ERROR] 6개의 숫자를 입력해주세요.",
+  BONUS_DUPLICATED: "[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다."
 };
 const RANK = {
   FIRST: {
@@ -114,7 +114,7 @@ class Lotto {
   }
   checkDuplicate(number) {
     if (this.#numbers.includes(number)) {
-      throw new Error(ERROR_MESSAGE.PREFIX);
+      throw new Error(ERROR_MESSAGE.BONUS_DUPLICATED);
     }
   }
   getNumbers() {
@@ -226,31 +226,8 @@ const ScoreBoard = {
     return (totalProfit / money * 100).toFixed(1);
   }
 };
-const InputViewWeb = {
-  getMoney() {
-    const input = document.getElementById("money-input").value;
-    validateNotEmptyString(input);
-    validateStringIsNumber(input);
-    return Number(input);
-  },
-  getWinningNumbers() {
-    const inputs = document.querySelectorAll(".winning-number");
-    const numbers = Array.from(inputs).map((input) => {
-      validateNotEmptyString(input.value);
-      validateStringIsNumber(input.value);
-      return Number(input.value);
-    });
-    return numbers;
-  },
-  getBonusNumber() {
-    const input = document.getElementById("bonus-number").value;
-    validateNotEmptyString(input);
-    validateStringIsNumber(input);
-    return Number(input);
-  }
-};
-const OutputViewWeb = {
-  renderLottos(lottos) {
+const LottoList = {
+  render(lottos) {
     const buyCount = document.getElementById("buy-count");
     const lottoList = document.getElementById("lotto-list");
     buyCount.textContent = `총 ${lottos.length}개를 구매하였습니다.`;
@@ -269,9 +246,42 @@ const OutputViewWeb = {
       li.appendChild(numbers);
       lottoList.appendChild(li);
     });
-    document.getElementById("lotto-section").classList.remove("hidden");
-    document.getElementById("winning-section").classList.remove("hidden");
   },
+  show() {
+    document.getElementById("lotto-section").classList.remove("hidden");
+    classList.remove("hidden");
+  },
+  hide() {
+    document.getElementById("lotto-section").classList.remove("hidden");
+    classList.add("hidden");
+  },
+  reset() {
+    const lottoList = document.getElementById("lotto-list");
+    while (lottoList.firstChild) {
+      lottoList.removeChild(lottoList.firstChild);
+    }
+    document.getElementById("buy-count").textContent = "";
+    this.hide();
+  }
+};
+const MoneyForm = {
+  getMoney() {
+    const input = document.getElementById("money-input").value;
+    validateNotEmptyString(input);
+    validateStringIsNumber(input);
+    return Number(input);
+  },
+  bindSubmit(handler) {
+    document.getElementById("money-form").addEventListener("submit", (event) => {
+      event.preventDefault();
+      handler();
+    });
+  },
+  reset() {
+    document.getElementById("money-input").value = "";
+  }
+};
+const ResultModal = {
   renderResult(allRankCount, rate) {
     document.getElementById("rank-5th").textContent = `${allRankCount.FIFTH}개`;
     document.getElementById("rank-4th").textContent = `${allRankCount.FOURTH}개`;
@@ -279,44 +289,82 @@ const OutputViewWeb = {
     document.getElementById("rank-2nd").textContent = `${allRankCount.SECOND}개`;
     document.getElementById("rank-1st").textContent = `${allRankCount.FIRST}개`;
     document.getElementById("profit-rate-value").textContent = rate;
+  },
+  show() {
     document.getElementById("modal-overlay").classList.remove("hidden");
   },
-  closeModal() {
+  close() {
     document.getElementById("modal-overlay").classList.add("hidden");
   },
-  resetAll() {
-    document.getElementById("modal-overlay").classList.add("hidden");
-    document.getElementById("lotto-section").classList.add("hidden");
+  reset() {
+    document.getElementById("rank-5th").textContent = "0개";
+    document.getElementById("rank-4th").textContent = "0개";
+    document.getElementById("rank-3rd").textContent = "0개";
+    document.getElementById("rank-2nd").textContent = "0개";
+    document.getElementById("rank-1st").textContent = "0개";
+    document.getElementById("profit-rate-value").textContent = "0";
+    this.close();
+  },
+  bindClose(handler) {
+    document.getElementById("modal-close").addEventListener("click", handler);
+  },
+  bindRestart(handler) {
+    document.getElementById("restart-btn").addEventListener("click", handler);
+  }
+};
+const WinningForm = {
+  getWinningNumbers() {
+    const inputs = document.querySelectorAll(".winning-number");
+    const numbers = Array.from(inputs).map((input) => {
+      validateNotEmptyString(input.value);
+      validateStringIsNumber(input.value);
+      return Number(input.value);
+    });
+    return numbers;
+  },
+  getBonusNumber() {
+    const input = document.getElementById("bonus-number").value;
+    validateNotEmptyString(input);
+    validateStringIsNumber(input);
+    return Number(input);
+  },
+  show() {
+    document.getElementById("winning-section").classList.remove("hidden");
+  },
+  hide() {
     document.getElementById("winning-section").classList.add("hidden");
-    document.getElementById("money-input").value = "";
+  },
+  // Output: 자기 영역 초기화
+  reset() {
     document.querySelectorAll(".winning-number").forEach((input) => {
       input.value = "";
     });
     document.getElementById("bonus-number").value = "";
+    this.hide();
+  },
+  bindResultClick(handler) {
+    document.getElementById("result-btn").addEventListener("click", handler);
   }
 };
-const moneyForm = document.getElementById("money-form");
-const resultBtn = document.getElementById("result-btn");
-const modalClose = document.getElementById("modal-close");
-const restartBtn = document.getElementById("restart-btn");
 const lottoState = {
   money: 0,
   lottos: []
 };
-moneyForm.addEventListener("submit", (event) => {
-  event.preventDefault();
+MoneyForm.bindSubmit(() => {
   try {
-    lottoState.money = InputViewWeb.getMoney();
+    lottoState.money = MoneyForm.getMoney();
     validatePositiveNumber(lottoState.money);
     validateNumberDivided(lottoState.money, LOTTO.PRICE);
     const buyLottoCount = lottoState.money / LOTTO.PRICE;
     lottoState.lottos = LottoGenerator.makeLottos(buyLottoCount);
-    OutputViewWeb.renderLottos(lottoState.lottos);
+    LottoList.render(lottoState.lottos);
+    LottoList.show();
+    WinningForm.show();
   } catch (error) {
     alert(error.message);
   }
 });
-resultBtn.addEventListener("click", () => {
+WinningForm.bindResultClick(() => {
   try {
     const winningNumbers = getWinningNumbers();
     const bonusNumber = getBonusNumber();
@@ -326,21 +374,25 @@ resultBtn.addEventListener("click", () => {
       winningLotto
     );
     const rate = ScoreBoard.getProfitRate(allRankCount, lottoState.money);
-    OutputViewWeb.renderResult(allRankCount, rate);
+    ResultModal.renderResult(allRankCount, rate);
+    ResultModal.show();
   } catch (error) {
     alert(error.message);
   }
 });
-modalClose.addEventListener("click", () => {
-  OutputViewWeb.closeModal();
+ResultModal.bindClose(() => {
+  ResultModal.close();
 });
-restartBtn.addEventListener("click", () => {
-  OutputViewWeb.resetAll();
+ResultModal.bindRestart(() => {
+  ResultModal.reset();
+  LottoList.reset();
+  WinningForm.reset();
+  MoneyForm.reset();
   lottoState.lottos = [];
   lottoState.money = 0;
 });
 const getWinningNumbers = () => {
-  const numbers = InputViewWeb.getWinningNumbers();
+  const numbers = WinningForm.getWinningNumbers();
   numbers.forEach((number) => {
     validatePositiveNumber(number);
     validateNumberLower(LOTTO.LOWER, number);
@@ -351,7 +403,7 @@ const getWinningNumbers = () => {
   return numbers;
 };
 const getBonusNumber = () => {
-  const number = InputViewWeb.getBonusNumber();
+  const number = WinningForm.getBonusNumber();
   validatePositiveNumber(number);
   validateNumberLower(LOTTO.LOWER, number);
   validateNumberUpper(LOTTO.UPPER, number);
