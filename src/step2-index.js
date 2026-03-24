@@ -10,31 +10,24 @@ import ScoreBoard from "./ScoreBoard";
 import {
   validateArrayLength,
   validateNotDuplicated,
-  validateNotEmptyString,
   validateNumberDivided,
   validateNumberLower,
   validateNumberUpper,
   validatePositiveNumber,
-  validateStringIsNumber,
 } from "./Validator";
-import InputViewWeb from "./View/InputViewWeb";
-import OutputViewWeb from "./View/OutputViewWeb";
-
-const moneyForm = document.getElementById("money-form");
-const resultBtn = document.getElementById("result-btn");
-const modalClose = document.getElementById("modal-close");
-const restartBtn = document.getElementById("restart-btn");
+import LottoList from "./View/LottoList";
+import MoneyForm from "./View/MoneyForm";
+import ResultModal from "./View/ResultModal";
+import WinningForm from "./View/WinningForm";
 
 const lottoState = {
   money: 0,
   lottos: [],
 };
 
-moneyForm.addEventListener("submit", (event) => {
-  event.preventDefault();
-
+MoneyForm.bindSubmit(() => {
   try {
-    lottoState.money = InputViewWeb.getMoney();
+    lottoState.money = MoneyForm.getMoney();
 
     validatePositiveNumber(lottoState.money);
     validateNumberDivided(lottoState.money, LOTTO.PRICE);
@@ -42,13 +35,16 @@ moneyForm.addEventListener("submit", (event) => {
     const buyLottoCount = lottoState.money / LOTTO.PRICE;
     lottoState.lottos = LottoGenerator.makeLottos(buyLottoCount);
 
-    OutputViewWeb.renderLottos(lottoState.lottos);
+    // Controller가 LottoList와 WinningForm을 연결
+    LottoList.render(lottoState.lottos);
+    LottoList.show();
+    WinningForm.show();
   } catch (error) {
     alert(error.message);
   }
 });
 
-resultBtn.addEventListener("click", () => {
+WinningForm.bindResultClick(() => {
   try {
     const winningNumbers = getWinningNumbers();
     const bonusNumber = getBonusNumber();
@@ -60,25 +56,29 @@ resultBtn.addEventListener("click", () => {
     );
     const rate = ScoreBoard.getProfitRate(allRankCount, lottoState.money);
 
-    OutputViewWeb.renderResult(allRankCount, rate);
+    ResultModal.renderResult(allRankCount, rate);
+    ResultModal.show();
   } catch (error) {
     alert(error.message);
   }
 });
 
-modalClose.addEventListener("click", () => {
-  OutputViewWeb.closeModal();
+ResultModal.bindClose(() => {
+  ResultModal.close();
 });
 
-restartBtn.addEventListener("click", () => {
-  OutputViewWeb.resetAll();
+ResultModal.bindRestart(() => {
+  ResultModal.reset();
+  LottoList.reset();
+  WinningForm.reset();
+  MoneyForm.reset();
 
   lottoState.lottos = [];
   lottoState.money = 0;
 });
 
 const getWinningNumbers = () => {
-  const numbers = InputViewWeb.getWinningNumbers();
+  const numbers = WinningForm.getWinningNumbers();
 
   numbers.forEach((number) => {
     validatePositiveNumber(number);
@@ -92,7 +92,7 @@ const getWinningNumbers = () => {
 };
 
 const getBonusNumber = () => {
-  const number = InputViewWeb.getBonusNumber();
+  const number = WinningForm.getBonusNumber();
 
   validatePositiveNumber(number);
   validateNumberLower(LOTTO.LOWER, number);
