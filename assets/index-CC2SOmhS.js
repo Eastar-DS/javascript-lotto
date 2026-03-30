@@ -226,93 +226,153 @@ const ScoreBoard = {
     return (totalProfit / money * 100).toFixed(1);
   }
 };
+const LottoFacade = {
+  purchaseLottos(moneyString) {
+    validateNotEmptyString(moneyString);
+    validateStringIsNumber(moneyString);
+    const money = Number(moneyString);
+    validatePositiveNumber(money);
+    validateNumberDivided(money, LOTTO.PRICE);
+    const buyLottoCount = money / LOTTO.PRICE;
+    const lottos = LottoGenerator.makeLottos(buyLottoCount);
+    return { money, lottos };
+  },
+  validateWinningNumbers(numbers) {
+    numbers.forEach((number) => {
+      validatePositiveNumber(number);
+      validateNumberLower(LOTTO.LOWER, number);
+      validateNumberUpper(LOTTO.UPPER, number);
+    });
+    validateNotDuplicated(numbers);
+    validateArrayLength(numbers, LOTTO.COUNT);
+  },
+  validateBonusNumber(number) {
+    validatePositiveNumber(number);
+    validateNumberLower(LOTTO.LOWER, number);
+    validateNumberUpper(LOTTO.UPPER, number);
+  },
+  calculateResult(lottos, winningNumbers, bonusNumber, money) {
+    const winningLotto = new WinningLotto(winningNumbers, bonusNumber);
+    const allRankCount = ScoreBoard.makeAllRankCount(lottos, winningLotto);
+    const rate = ScoreBoard.getProfitRate(allRankCount, money);
+    return { allRankCount, rate };
+  }
+};
+const DOM_ID = {
+  MONEY_FORM: "money-form",
+  MONEY_INPUT: "money-input",
+  LOTTO_SECTION: "lotto-section",
+  BUY_COUNT: "buy-count",
+  LOTTO_LIST: "lotto-list",
+  WINNING_SECTION: "winning-section",
+  BONUS_NUMBER: "bonus-number",
+  RESULT_BTN: "result-btn",
+  MODAL_OVERLAY: "modal-overlay",
+  MODAL_CLOSE: "modal-close",
+  PROFIT_RATE_VALUE: "profit-rate-value",
+  RESTART_BTN: "restart-btn",
+  RANK_1ST: "rank-1st",
+  RANK_2ND: "rank-2nd",
+  RANK_3RD: "rank-3rd",
+  RANK_4TH: "rank-4th",
+  RANK_5TH: "rank-5th"
+};
+const DOM_CLASS = {
+  HIDDEN: "hidden",
+  WINNING_NUMBER: "winning-number"
+};
+const create = (tag, attrs = {}) => {
+  const el = document.createElement(tag);
+  const { className, text, ...rest } = attrs;
+  if (className) el.className = className;
+  if (text !== void 0) el.textContent = text;
+  Object.entries(rest).forEach(([key, value]) => {
+    el.setAttribute(key, value);
+  });
+  return el;
+};
 const LottoList = {
   render(lottos) {
-    const buyCount = document.getElementById("buy-count");
-    const lottoList = document.getElementById("lotto-list");
+    const buyCount = document.getElementById(DOM_ID.BUY_COUNT);
+    const lottoList = document.getElementById(DOM_ID.LOTTO_LIST);
     buyCount.textContent = `총 ${lottos.length}개를 구매하였습니다.`;
     while (lottoList.firstChild) {
       lottoList.removeChild(lottoList.firstChild);
     }
     lottos.forEach((lotto) => {
-      const li = document.createElement("li");
-      li.className = "lotto-item";
-      const icon = document.createElement("span");
-      icon.className = "lotto-icon";
-      icon.textContent = "🎟️";
-      const numbers = document.createElement("span");
-      numbers.textContent = lotto.getNumbers().join(", ");
+      const li = create("li", { className: "lotto-item" });
+      const icon = create("span", { className: "lotto-icon", text: "🎟️" });
+      const numbers = create("span", {
+        text: lotto.getNumbers().join(", ")
+      });
       li.appendChild(icon);
       li.appendChild(numbers);
       lottoList.appendChild(li);
     });
   },
   show() {
-    document.getElementById("lotto-section").classList.remove("hidden");
+    document.getElementById(DOM_ID.LOTTO_SECTION).classList.remove(DOM_CLASS.HIDDEN);
   },
   hide() {
-    document.getElementById("lotto-section").classList.remove("hidden");
+    document.getElementById(DOM_ID.LOTTO_SECTION).classList.add(DOM_CLASS.HIDDEN);
   },
   reset() {
-    const lottoList = document.getElementById("lotto-list");
+    const lottoList = document.getElementById(DOM_ID.LOTTO_LIST);
     while (lottoList.firstChild) {
       lottoList.removeChild(lottoList.firstChild);
     }
-    document.getElementById("buy-count").textContent = "";
+    document.getElementById(DOM_ID.BUY_COUNT).textContent = "";
     this.hide();
   }
 };
 const MoneyForm = {
-  getMoney() {
-    const input = document.getElementById("money-input").value;
-    validateNotEmptyString(input);
-    validateStringIsNumber(input);
-    return Number(input);
+  getMoneyString() {
+    return document.getElementById(DOM_ID.MONEY_INPUT).value;
   },
   bindSubmit(handler) {
-    document.getElementById("money-form").addEventListener("submit", (event) => {
+    document.getElementById(DOM_ID.MONEY_FORM).addEventListener("submit", (event) => {
       event.preventDefault();
       handler();
     });
   },
   reset() {
-    document.getElementById("money-input").value = "";
+    document.getElementById(DOM_ID.MONEY_INPUT).value = "";
   }
 };
 const ResultModal = {
   renderResult(allRankCount, rate) {
-    document.getElementById("rank-5th").textContent = `${allRankCount.FIFTH}개`;
-    document.getElementById("rank-4th").textContent = `${allRankCount.FOURTH}개`;
-    document.getElementById("rank-3rd").textContent = `${allRankCount.THIRD}개`;
-    document.getElementById("rank-2nd").textContent = `${allRankCount.SECOND}개`;
-    document.getElementById("rank-1st").textContent = `${allRankCount.FIRST}개`;
-    document.getElementById("profit-rate-value").textContent = rate;
+    document.getElementById(DOM_ID.RANK_5TH).textContent = `${allRankCount.FIFTH}개`;
+    document.getElementById(DOM_ID.RANK_4TH).textContent = `${allRankCount.FOURTH}개`;
+    document.getElementById(DOM_ID.RANK_3RD).textContent = `${allRankCount.THIRD}개`;
+    document.getElementById(DOM_ID.RANK_2ND).textContent = `${allRankCount.SECOND}개`;
+    document.getElementById(DOM_ID.RANK_1ST).textContent = `${allRankCount.FIRST}개`;
+    document.getElementById(DOM_ID.PROFIT_RATE_VALUE).textContent = rate;
   },
   show() {
-    document.getElementById("modal-overlay").classList.remove("hidden");
+    document.getElementById(DOM_ID.MODAL_OVERLAY).classList.remove(DOM_CLASS.HIDDEN);
   },
   close() {
-    document.getElementById("modal-overlay").classList.add("hidden");
+    document.getElementById(DOM_ID.MODAL_OVERLAY).classList.add(DOM_CLASS.HIDDEN);
   },
   reset() {
-    document.getElementById("rank-5th").textContent = "0개";
-    document.getElementById("rank-4th").textContent = "0개";
-    document.getElementById("rank-3rd").textContent = "0개";
-    document.getElementById("rank-2nd").textContent = "0개";
-    document.getElementById("rank-1st").textContent = "0개";
-    document.getElementById("profit-rate-value").textContent = "0";
+    document.getElementById(DOM_ID.RANK_5TH).textContent = "0개";
+    document.getElementById(DOM_ID.RANK_4TH).textContent = "0개";
+    document.getElementById(DOM_ID.RANK_3RD).textContent = "0개";
+    document.getElementById(DOM_ID.RANK_2ND).textContent = "0개";
+    document.getElementById(DOM_ID.RANK_1ST).textContent = "0개";
+    document.getElementById(DOM_ID.PROFIT_RATE_VALUE).textContent = "0";
     this.close();
   },
   bindClose(handler) {
-    document.getElementById("modal-close").addEventListener("click", handler);
+    document.getElementById(DOM_ID.MODAL_CLOSE).addEventListener("click", handler);
   },
   bindRestart(handler) {
-    document.getElementById("restart-btn").addEventListener("click", handler);
+    document.getElementById(DOM_ID.RESTART_BTN).addEventListener("click", handler);
   }
 };
 const WinningForm = {
   getWinningNumbers() {
-    const inputs = document.querySelectorAll(".winning-number");
+    const inputs = document.querySelectorAll(`.${DOM_CLASS.WINNING_NUMBER}`);
     const numbers = Array.from(inputs).map((input) => {
       validateNotEmptyString(input.value);
       validateStringIsNumber(input.value);
@@ -321,27 +381,26 @@ const WinningForm = {
     return numbers;
   },
   getBonusNumber() {
-    const input = document.getElementById("bonus-number").value;
+    const input = document.getElementById(DOM_ID.BONUS_NUMBER).value;
     validateNotEmptyString(input);
     validateStringIsNumber(input);
     return Number(input);
   },
   show() {
-    document.getElementById("winning-section").classList.remove("hidden");
+    document.getElementById(DOM_ID.WINNING_SECTION).classList.remove(DOM_CLASS.HIDDEN);
   },
   hide() {
-    document.getElementById("winning-section").classList.add("hidden");
+    document.getElementById(DOM_ID.WINNING_SECTION).classList.add(DOM_CLASS.HIDDEN);
   },
-  // Output: 자기 영역 초기화
   reset() {
-    document.querySelectorAll(".winning-number").forEach((input) => {
+    document.querySelectorAll(`.${DOM_CLASS.WINNING_NUMBER}`).forEach((input) => {
       input.value = "";
     });
-    document.getElementById("bonus-number").value = "";
+    document.getElementById(DOM_ID.BONUS_NUMBER).value = "";
     this.hide();
   },
   bindResultClick(handler) {
-    document.getElementById("result-btn").addEventListener("click", handler);
+    document.getElementById(DOM_ID.RESULT_BTN).addEventListener("click", handler);
   }
 };
 const lottoState = {
@@ -350,11 +409,10 @@ const lottoState = {
 };
 MoneyForm.bindSubmit(() => {
   try {
-    lottoState.money = MoneyForm.getMoney();
-    validatePositiveNumber(lottoState.money);
-    validateNumberDivided(lottoState.money, LOTTO.PRICE);
-    const buyLottoCount = lottoState.money / LOTTO.PRICE;
-    lottoState.lottos = LottoGenerator.makeLottos(buyLottoCount);
+    const moneyString = MoneyForm.getMoneyString();
+    const { money, lottos } = LottoFacade.purchaseLottos(moneyString);
+    lottoState.money = money;
+    lottoState.lottos = lottos;
     LottoList.render(lottoState.lottos);
     LottoList.show();
     WinningForm.show();
@@ -364,14 +422,16 @@ MoneyForm.bindSubmit(() => {
 });
 WinningForm.bindResultClick(() => {
   try {
-    const winningNumbers = getWinningNumbers();
-    const bonusNumber = getBonusNumber();
-    const winningLotto = new WinningLotto(winningNumbers, bonusNumber);
-    const allRankCount = ScoreBoard.makeAllRankCount(
+    const winningNumbers = WinningForm.getWinningNumbers();
+    const bonusNumber = WinningForm.getBonusNumber();
+    LottoFacade.validateWinningNumbers(winningNumbers);
+    LottoFacade.validateBonusNumber(bonusNumber);
+    const { allRankCount, rate } = LottoFacade.calculateResult(
       lottoState.lottos,
-      winningLotto
+      winningNumbers,
+      bonusNumber,
+      lottoState.money
     );
-    const rate = ScoreBoard.getProfitRate(allRankCount, lottoState.money);
     ResultModal.renderResult(allRankCount, rate);
     ResultModal.show();
   } catch (error) {
@@ -389,21 +449,3 @@ ResultModal.bindRestart(() => {
   lottoState.lottos = [];
   lottoState.money = 0;
 });
-const getWinningNumbers = () => {
-  const numbers = WinningForm.getWinningNumbers();
-  numbers.forEach((number) => {
-    validatePositiveNumber(number);
-    validateNumberLower(LOTTO.LOWER, number);
-    validateNumberUpper(LOTTO.UPPER, number);
-  });
-  validateNotDuplicated(numbers);
-  validateArrayLength(numbers, LOTTO.COUNT);
-  return numbers;
-};
-const getBonusNumber = () => {
-  const number = WinningForm.getBonusNumber();
-  validatePositiveNumber(number);
-  validateNumberLower(LOTTO.LOWER, number);
-  validateNumberUpper(LOTTO.UPPER, number);
-  return number;
-};
